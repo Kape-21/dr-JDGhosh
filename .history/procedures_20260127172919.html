@@ -1,0 +1,380 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width,initial-scale=1" />
+  <meta name="theme-color" content="#05668d" />
+  <title>Advanced Procedures | Dr. Jay Deep Ghosh</title>
+  
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600&family=Montserrat:wght@600;700;800;900&display=swap" rel="stylesheet" />
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css" media="print" onload="this.media='all'" />
+  <noscript><link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css" /></noscript>
+
+  <link rel="stylesheet" href="css/base.css" />
+  <link rel="stylesheet" href="css/components.css" />
+  <link rel="stylesheet" href="css/layout.css" />
+
+  <style>
+    /* --- PAGE SPECIFIC STYLES --- */
+    
+    /* Hero Section */
+    .proc-hero {
+      background: linear-gradient(135deg, #f0fdfa 0%, #fff 100%);
+      padding: 6rem 0 4rem;
+      text-align: center;
+    }
+    .proc-hero h1 { color: var(--color-primary-blue); font-size: 2.5rem; margin-bottom: 1rem; }
+    .proc-hero p { max-width: 700px; margin: 0 auto; color: var(--color-text); opacity: 0.8; font-size: 1.1rem; }
+
+    /* Section Headers */
+    .proc-section-title {
+      text-align: center; margin-bottom: 3rem; position: relative;
+    }
+    .proc-section-title h2 {
+      font-size: 2.2rem; color: var(--color-primary-blue); font-weight: 800;
+    }
+    .proc-section-title::after {
+      content: ""; display: block; width: 60px; height: 5px; 
+      background: var(--color-primary-green); margin: 1rem auto 0; border-radius: 10px;
+    }
+
+    /* --- ZIG ZAG SPOTLIGHT LAYOUT --- */
+    .spotlight-wrapper { padding: 4rem 0; }
+    .spotlight-row {
+      display: flex; align-items: center; gap: 4rem; margin-bottom: 5rem;
+    }
+    /* Alternate Direction */
+    .spotlight-row:nth-child(even) { flex-direction: row-reverse; }
+
+    .spotlight-img-col { flex: 1; position: relative; }
+    .spotlight-img {
+      width: 100%; border-radius: 20px; box-shadow: 0 20px 40px rgba(0,0,0,0.1);
+      transition: transform 0.3s ease; aspect-ratio: 4/3; object-fit: cover;
+    }
+    .spotlight-row:hover .spotlight-img { transform: scale(1.02); }
+    
+    .spotlight-text-col { flex: 1; }
+    .spotlight-tag { 
+      background: rgba(5, 102, 141, 0.1); color: var(--color-primary-blue); 
+      padding: 0.4rem 1rem; border-radius: 50px; font-weight: 700; font-size: 0.8rem;
+      text-transform: uppercase; letter-spacing: 1px; display: inline-block; margin-bottom: 1rem;
+    }
+    .spotlight-heading { font-size: 2rem; margin-bottom: 1rem; color: #111827; line-height: 1.2; }
+    .spotlight-desc { color: #4b5563; margin-bottom: 1.5rem; line-height: 1.7; font-size: 1.05rem; }
+    
+    .feature-list { list-style: none; margin-bottom: 2rem; }
+    .feature-list li { margin-bottom: 0.8rem; display: flex; align-items: flex-start; gap: 0.8rem; color: #374151; font-weight: 500; }
+    .feature-list li i { color: var(--color-primary-green); margin-top: 4px; }
+
+
+    /* --- GRID LAYOUT FOR CONDITIONS --- */
+    .bg-grid { background: #f8fafc; padding: 5rem 0; }
+    .conditions-grid {
+      display: grid; grid-template-columns: repeat(3, 1fr); gap: 2rem;
+    }
+    .cond-card {
+      background: #fff; padding: 2rem; border-radius: 12px;
+      border: 1px solid #e2e8f0; transition: all 0.3s ease;
+      display: flex; flex-direction: column; align-items: flex-start;
+    }
+    .cond-card:hover { transform: translateY(-5px); box-shadow: 0 10px 25px rgba(0,0,0,0.08); border-color: var(--color-primary-blue); }
+    
+    .cond-icon {
+      width: 50px; height: 50px; background: #e0f2fe; color: var(--color-primary-blue);
+      border-radius: 10px; display: grid; place-items: center; font-size: 1.5rem; margin-bottom: 1.5rem;
+    }
+    .cond-title { font-size: 1.2rem; font-weight: 700; margin-bottom: 0.5rem; color: #1e293b; }
+    .cond-text { color: #64748b; font-size: 0.95rem; line-height: 1.5; }
+
+
+    /* --- TECH BAR --- */
+    .tech-bar {
+      background: linear-gradient(90deg, #0f172a 0%, #1e293b 100%);
+      padding: 3rem 0; color: #fff;
+    }
+    .tech-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 2rem; text-align: center; }
+    .tech-item h3 { font-size: 2rem; color: var(--color-primary-green); margin-bottom: 0.5rem; font-weight: 800; }
+    .tech-item p { font-size: 1rem; opacity: 0.9; }
+    .tech-divider { width: 1px; height: 100%; background: rgba(255,255,255,0.1); display: none; }
+
+
+    /* --- RESPONSIVENESS --- */
+    @media (max-width: 1024px) {
+      .spotlight-row { gap: 2rem; }
+      .spotlight-heading { font-size: 1.8rem; }
+      .conditions-grid { grid-template-columns: repeat(2, 1fr); }
+    }
+
+    @media (max-width: 768px) {
+      .spotlight-row, .spotlight-row:nth-child(even) { flex-direction: column; gap: 1.5rem; margin-bottom: 4rem; }
+      .spotlight-img { aspect-ratio: 16/9; }
+      .tech-grid { grid-template-columns: 1fr; gap: 2rem; }
+      .conditions-grid { grid-template-columns: 1fr; }
+      .proc-hero { padding: 4rem 0 2rem; }
+      .proc-hero h1 { font-size: 2rem; }
+    }
+  </style>
+</head>
+
+<body>
+  
+  <header class="site-header" data-header>
+    <div class="header-grid">
+      <a href="index.html" class="brand-area"><img src="assets/icon-new1.png" alt="Logo" class="brand-icon"><div class="brand-text-col"><span class="brand-name">Dr. Jay Deep Ghosh</span><span class="brand-subtitle">Your path to pain free healing</span></div></a>
+      <nav class="nav-center" data-nav-panel>
+        <ul class="nav-list">
+          <li><a href="about.html" class="nav-link"><i class="fa-solid fa-user-tie"></i> About</a></li>
+          <li><a href="procedures.html" class="nav-link active" aria-current="page"><i class="fa-solid fa-stethoscope"></i> Procedures</a></li>
+          <li><a href="outcomes.html" class="nav-link"><i class="fa-solid fa-chart-line"></i> Outcomes</a></li>
+          <li><a href="videos.html" class="nav-link"><i class="fa-solid fa-play-circle"></i> Videos</a></li>
+          <li><a href="testimonials.html" class="nav-link"><i class="fa-solid fa-star"></i> Testimonials</a></li>
+        </ul>
+        <div class="mobile-actions"><a href="appointment.html" class="btn btn-header-primary"><i class="fa-solid fa-calendar-check"></i> Book Appointment</a></div>
+      </nav>
+      <div class="header-actions-desktop"><a href="appointment.html" class="btn btn-header-secondary">Contact Us</a><a href="appointment.html" class="btn btn-header-primary"><i class="fa-solid fa-calendar-check"></i> Book Appointment</a></div>
+      <button class="nav-toggle" data-nav-toggle aria-label="Toggle navigation"><i class="fa-solid fa-bars" id="nav-icon"></i></button>
+    </div>
+  </header>
+
+  <main id="main">
+    
+    <section class="proc-hero">
+      <div class="container">
+        <h1>Advanced Surgical Solutions</h1>
+        <p>Combining state-of-the-art technology with minimally invasive techniques to ensure safety, precision, and faster recovery.</p>
+      </div>
+    </section>
+
+    <section class="spotlight-wrapper">
+      <div class="container">
+        <div class="proc-section-title">
+            <h2>Spine Excellence</h2>
+            <p style="margin-top:0.5rem; color:#666;">Precision care for complex spinal conditions</p>
+        </div>
+
+        <div class="spotlight-row">
+            <div class="spotlight-img-col">
+                <img src="assets/MISS image.webp" alt="Minimally Invasive Spine Surgery" class="spotlight-img" loading="lazy" width="600" height="450">
+            </div>
+            <div class="spotlight-text-col">
+                <span class="spotlight-tag">Gold Standard</span>
+                <h3 class="spotlight-heading">Minimally Invasive Spine Surgery (MISS)</h3>
+                <p class="spotlight-desc">
+                    A modern approach that uses tubular retractors and specialized instruments to treat spinal conditions through tiny incisions. This technique spares the muscles from being cut, resulting in significantly less pain.
+                </p>
+                <ul class="feature-list">
+                    <li><i class="fa-solid fa-check-circle"></i> Tiny incisions (less than 2cm)</li>
+                    <li><i class="fa-solid fa-check-circle"></i> Minimal blood loss & muscle sparing</li>
+                    <li><i class="fa-solid fa-check-circle"></i> Walk within 24 hours of surgery</li>
+                </ul>
+                <a href="appointment.html" class="btn btn-header-secondary">Consult for MISS</a>
+            </div>
+        </div>
+
+        <div class="spotlight-row">
+            <div class="spotlight-img-col">
+                <img src="assets/Endoscopic.webp" alt="Endoscopic Spine Surgery" class="spotlight-img" loading="lazy" width="600" height="450">
+            </div>
+            <div class="spotlight-text-col">
+                <span class="spotlight-tag">Keyhole Tech</span>
+                <h3 class="spotlight-heading">Endoscopic Spine Surgery</h3>
+                <p class="spotlight-desc">
+                    The ultra-minimally invasive solution for slipped discs and sciatica. Using a high-definition endoscope, the surgeon visualizes and removes the herniated disc fragment with extreme precision.
+                </p>
+                <ul class="feature-list">
+                    <li><i class="fa-solid fa-check-circle"></i> Often done under Local Anaesthesia</li>
+                    <li><i class="fa-solid fa-check-circle"></i> Day-care procedure (Home same day)</li>
+                    <li><i class="fa-solid fa-check-circle"></i> No stitches required</li>
+                </ul>
+                <a href="appointment.html" class="btn btn-header-secondary">Is this for me?</a>
+            </div>
+        </div>
+
+      </div>
+    </section>
+
+    <section class="bg-grid">
+        <div class="container">
+            <h3 style="text-align:center; margin-bottom:3rem; font-size:1.8rem; color:#334155;">Specialized Treatments</h3>
+            <div class="conditions-grid">
+                
+                <div class="cond-card">
+                    <div class="cond-icon"><i class="fa-solid fa-x-ray"></i></div>
+                    <h4 class="cond-title">Scoliosis Correction</h4>
+                    <p class="cond-text">Correction of spinal curvature deformities in children and adults using advanced telescopic rod systems and fusion techniques.</p>
+                </div>
+
+                <div class="cond-card">
+                    <div class="cond-icon"><i class="fa-solid fa-bacteria"></i></div>
+                    <h4 class="cond-title">Spinal Tuberculosis</h4>
+                    <p class="cond-text">Comprehensive management of Pott’s Spine through medication and surgical debridement/stabilisation if neural deficits occur.</p>
+                </div>
+
+                <div class="cond-card">
+                    <div class="cond-icon"><i class="fa-solid fa-bone"></i></div>
+                    <h4 class="cond-title">Spondylolisthesis</h4>
+                    <p class="cond-text">Treatment for "slipped vertebrae" using fixation and fusion to restore alignment and relieve nerve compression.</p>
+                </div>
+
+                <div class="cond-card">
+                    <div class="cond-icon"><i class="fa-solid fa-user-injured"></i></div>
+                    <h4 class="cond-title">Cervical Spondylosis</h4>
+                    <p class="cond-text">Management of neck pain and radiating arm pain via ACDF (fusion) or artificial disc replacement.</p>
+                </div>
+
+                <div class="cond-card">
+                    <div class="cond-icon"><i class="fa-solid fa-crutch"></i></div>
+                    <h4 class="cond-title">Osteoporotic Fractures</h4>
+                    <p class="cond-text">Vertebroplasty and Kyphoplasty (cement injection) to instantly relieve pain from compression fractures in the elderly.</p>
+                </div>
+
+                <div class="cond-card">
+                    <div class="cond-icon"><i class="fa-solid fa-child-reaching"></i></div>
+                    <h4 class="cond-title">Paediatric Spine</h4>
+                    <p class="cond-text">Specialized care for congenital spinal defects and deformities in children aimed at ensuring normal growth.</p>
+                </div>
+
+            </div>
+        </div>
+    </section>
+
+    <section class="tech-bar">
+        <div class="container">
+            <div class="tech-grid">
+                <div class="tech-item">
+                    <h3>100%</h3>
+                    <p>Modular OT Hygiene</p>
+                </div>
+                <div class="tech-item">
+                    <h3>C-Arm</h3>
+                    <p>High Precision Imaging</p>
+                </div>
+                <div class="tech-item">
+                    <h3>24/7</h3>
+                    <p>Emergency Trauma Care</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section class="spotlight-wrapper">
+        <div class="container">
+            <div class="proc-section-title">
+                <h2>Orthopaedic Solutions</h2>
+                <p style="margin-top:0.5rem; color:#666;">Restoring movement for active living</p>
+            </div>
+    
+            <div class="spotlight-row">
+                <div class="spotlight-img-col">
+                    <img src="assets/Total-Knee-Arthroplasty-.webp" alt="Total Knee Replacement" class="spotlight-img" loading="lazy" width="600" height="450">
+                </div>
+                <div class="spotlight-text-col">
+                    <span class="spotlight-tag">Joint Revival</span>
+                    <h3 class="spotlight-heading">Total Knee Replacement (TKR)</h3>
+                    <p class="spotlight-desc">
+                        For severe arthritis where conservative treatment fails. We use high-flex designs and computer-assisted techniques to ensure perfect alignment and longevity of the implant.
+                    </p>
+                    <ul class="feature-list">
+                        <li><i class="fa-solid fa-check-circle"></i> Tissue-preserving technique</li>
+                        <li><i class="fa-solid fa-check-circle"></i> Rapid Recovery Protocol</li>
+                        <li><i class="fa-solid fa-check-circle"></i> Implants lasting 20-25 years</li>
+                    </ul>
+                    <a href="appointment.html" class="btn btn-header-secondary">Get Knee Advice</a>
+                </div>
+            </div>
+    
+            <div class="spotlight-row">
+                <div class="spotlight-img-col">
+                    <img src="assets/hip replacement.webp" alt="Hip Replacement" class="spotlight-img" loading="lazy" width="600" height="450">
+                </div>
+                <div class="spotlight-text-col">
+                    <span class="spotlight-tag">Mobility Restored</span>
+                    <h3 class="spotlight-heading">Total Hip Replacement (THR)</h3>
+                    <p class="spotlight-desc">
+                        Ideal for Avascular Necrosis (AVN) or Hip Fractures. Utilizing ceramic-on-ceramic or poly bearings to provide a friction-free, natural range of motion.
+                    </p>
+                    <ul class="feature-list">
+                        <li><i class="fa-solid fa-check-circle"></i> Pain-free walking usually within 2 days</li>
+                        <li><i class="fa-solid fa-check-circle"></i> Minimizes leg length discrepancy</li>
+                        <li><i class="fa-solid fa-check-circle"></i> Low dislocation risk</li>
+                    </ul>
+                    <a href="appointment.html" class="btn btn-header-secondary">Consult for Hip Pain</a>
+                </div>
+            </div>
+
+            <div class="spotlight-row">
+                <div class="spotlight-img-col">
+                    <img src="assets/shoulder-arthroscopy-.webp" alt="Arthroscopy" class="spotlight-img" loading="lazy" width="600" height="450">
+                </div>
+                <div class="spotlight-text-col">
+                    <span class="spotlight-tag">Sports Medicine</span>
+                    <h3 class="spotlight-heading">Arthroscopic (Keyhole) Surgery</h3>
+                    <p class="spotlight-desc">
+                        Diagnostic and therapeutic procedures for knee (ACL/PCL/Meniscus) and shoulder (Rotator Cuff) injuries. Perfect for sports enthusiasts wanting to return to the field.
+                    </p>
+                    <ul class="feature-list">
+                        <li><i class="fa-solid fa-check-circle"></i> Camera-guided precision</li>
+                        <li><i class="fa-solid fa-check-circle"></i> Minimal scarring</li>
+                        <li><i class="fa-solid fa-check-circle"></i> Faster return to sports</li>
+                    </ul>
+                </div>
+            </div>
+    
+        </div>
+    </section>
+
+    <section style="background: #f0fdfa; padding: 5rem 0; text-align: center;">
+        <div class="container">
+            <h2 style="font-size: 2.2rem; color: #111827; margin-bottom: 1rem; font-weight: 800;">Ready to live pain-free?</h2>
+            <p style="max-width: 600px; margin: 0 auto 2rem; color: #4b5563;">
+                Don't let pain dictate your life. Schedule a consultation to discuss the best treatment plan for your condition.
+            </p>
+            <a href="appointment.html" class="btn btn-header-primary" style="padding: 1rem 2.5rem; font-size: 1.1rem;">Book an Appointment</a>
+        </div>
+    </section>
+
+  </main>
+
+  <footer class="site-footer" id="contact">
+    <div class="footer-top">
+      <div class="footer-grid">
+        <div class="footer-col footer-brand-col">
+          <a href="index.html" class="brand-area"><img src="assets/icon-new1.png" alt="Logo" class="brand-icon"><div class="brand-text-col"><span class="brand-name">Dr. Jay Deep Ghosh</span><span class="brand-subtitle">Your path to pain free healing</span></div></a>
+          <p class="footer-tagline">Restoring mobility with advanced spine & orthopaedic care.</p>
+          <div class="footer-legal-links"><a href="#">Terms</a> | <a href="#">Privacy</a></div>
+          <div class="footer-social-icons brand-social"><a href="#"><i class="fa-brands fa-facebook-f"></i></a><a href="#"><i class="fa-brands fa-youtube"></i></a><a href="#"><i class="fa-brands fa-instagram"></i></a></div>
+        </div>
+        <div class="footer-col footer-visit-col">
+          <h3 class="footer-heading">Visit Our Clinic</h3>
+          <div class="map-wrapper">
+            <iframe 
+              src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3580.346894569584!2d91.77869407604345!3d26.15404529094764!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x375a59634c178b53%3A0x81381ecdd1e8f3cd!2sDr.%20Jay%20Deep%20Ghosh%20%7C%20Best%20orthopedic%20%26%20spine%20surgeon%20doctor%20in%20guwahati-assam-northeast!5e0!3m2!1sen!2sin!4v1706346789012!5m2!1sen!2sin" 
+              width="100%" 
+              height="100%" 
+              style="border:0;" 
+              loading="lazy"
+              allowfullscreen="" 
+              referrerpolicy="no-referrer-when-downgrade">
+            </iframe>
+          </div>
+          <p class="footer-address">
+            <i class="fa-solid fa-location-dot"></i> 
+            Apollo Hospitals, Lotus Tower, Christian Basti, Guwahati
+          </p>
+        </div>
+        <div class="footer-col footer-form-col">
+          <div class="footer-form-wrapper">
+            <h3 class="footer-heading">Contact Us</h3>
+            <form class="footer-contact-form"><input type="text" placeholder="Name"><input type="tel" placeholder="Phone"><textarea placeholder="Message"></textarea><button type="submit" class="btn btn-header-primary footer-submit-btn">Send</button></form>
+          </div>
+        </div>
+      </div>
+    </div>
+    <div class="footer-bottom"><div class="footer-bottom-inner"><p class="footer-note">© <span id="year">2026</span> Dr. Jay Deep Ghosh. All rights reserved.<i>Designed & Developed by Kapil</i></p></div></div>
+  </footer>
+
+  <script src="js/main.js" defer></script>
+</body>
+</html>

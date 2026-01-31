@@ -1,0 +1,223 @@
+/* =========================================
+   1. BUTTONS (COMPACT)
+   ========================================= */
+.btn {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: 0.4rem;
+  padding: 0.5rem 1rem; /* Smaller padding */
+  border-radius: 6px; /* Sharper corners */
+  border: 1px solid transparent;
+  font-weight: 600;
+  cursor: pointer;
+  transition: all 0.2s ease;
+}
+
+.btn:hover { transform: translateY(-1px); }
+
+.btn-primary {
+  color: #fff;
+  border: none;
+  background-image: linear-gradient(100deg, var(--color-primary-blue), var(--color-primary-green));
+}
+.btn-primary:hover {
+  box-shadow: 0 4px 12px rgba(5,102,141,.25);
+}
+
+.btn-outline {
+  background: transparent;
+  border: 1px solid var(--color-primary-blue);
+  color: var(--color-primary-blue);
+}
+.btn-outline:hover {
+  background: rgba(5,102,141,.06);
+}
+
+.btn-lg { padding: 0.6rem 1.2rem; font-size: 0.9rem; } 
+.btn-xl { padding: 0.7rem 1.5rem; font-size: 0.95rem; }
+
+
+/* =========================================
+   2. CARDS (SHARP & COMPACT)
+   ========================================= */
+
+/* Base Card Style */
+.card, .care-card, .review-card, .outcome-card {
+  background: #ffffff;
+  border: 1px solid #e2e8f0; /* Crisp grey border */
+  box-shadow: 0 1px 3px rgba(0,0,0,0.05); /* Very subtle shadow */
+  border-radius: 8px; /* Tighter radius */
+  transition: all 0.2s ease;
+}
+
+.card:hover, .care-card:hover, .review-card:hover, .outcome-card:hover {
+  border-color: var(--color-primary-blue);
+  box-shadow: 0 4px 6px rgba(0,0,0,0.05);
+  transform: translateY(-2px); /* Small lift */
+}
+
+/* --- Area of Care Cards --- */
+.care-card {
+  width: 100%;
+  padding: 0;
+  text-align: center;
+  position: relative;
+  overflow: hidden;
+}
+
+.care-card-visible {
+  padding: 1.5rem 1rem; /* Tight padding */
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 0.8rem;
+}
+
+.care-icon-box {
+  width: 60px; /* Smaller icon box */
+  height: 60px;
+  border-radius: 50%;
+  background: rgba(5, 102, 141, 0.05);
+  display: grid;
+  place-items: center;
+  color: var(--color-primary-blue);
+  margin-bottom: 0.2rem;
+}
+.care-icon-box svg { width: 30px; height: 30px; }
+
+.care-title {
+  color: var(--color-primary-blue);
+  font-family: var(--font-heading);
+  font-size: 1.2rem; /* Reduced font */
+  font-weight: 700;
+  margin: 0;
+}
+
+.care-desc {
+  color: var(--color-muted);
+  font-size: 0.85rem;
+  line-height: 1.5;
+  margin: 0 auto;
+}
+
+.care-card-hidden {
+  display: grid;
+  grid-template-rows: 0fr;
+  transition: grid-template-rows 0.3s ease;
+  background: #f8fafc; /* Subtle contrast */
+}
+.care-card[aria-expanded="true"] .care-card-hidden {
+  grid-template-rows: 1fr;
+  border-top: 1px solid #e2e8f0;
+}
+.care-list-wrapper { overflow: hidden; }
+
+/* --- Outcome Cards --- */
+.outcome-media-group {
+  display: grid;
+  grid-template-columns: 1fr 1fr; 
+  gap: 1px; 
+  background: #fff;
+  border-bottom: 1px solid #e2e8f0;
+}
+.outcome-media {
+  margin: 0;
+  position: relative;
+  width: 100%;
+  aspect-ratio: 4/5; 
+  background: #f1f5f9;
+  overflow: hidden;
+}
+.outcome-image {
+  width: 100%;
+  height: 100%;
+  object-fit: cover; 
+}
+.media-label {
+  position: absolute;
+  bottom: 0; left: 0; width: 100%;
+  padding: 0.25rem 0;
+  background: rgba(0,0,0,0.6); 
+  color: #fff;
+  font-size: 0.7rem;
+  font-weight: 600;
+  text-align: center;
+}
+
+.outcome-content { padding: 1rem; flex-grow: 1; text-align: left; }
+.outcome-title {
+  font-size: 1rem;
+  font-weight: 700;
+  margin-bottom: 0.4rem;
+  color: var(--color-primary-blue);
+}
+.outcome-desc {
+  font-size: 0.85rem;
+  margin: 0;
+}
+
+/* --- Review Cards --- */
+.review-card {
+  padding: 1.2rem;
+  justify-content: flex-start;
+}
+.review-header {
+  margin-bottom: 0.6rem;
+}
+.review-name {
+  font-size: 0.95rem;
+  font-weight: 700;
+}
+.review-text {
+  font-size: 0.85rem;
+  line-height: 1.5;
+  margin-bottom: 1rem;
+}
+.review-tag {
+  font-size: 0.65rem;
+  padding: 0.2rem 0.6rem;
+}
+
+/* --- Education/Video Cards --- */
+.edu-card, .review-video-card {
+  border-radius: 8px; 
+}
+.review-video-meta {
+  padding: 0.8rem;
+  background: #fff;
+}
+.review-video-meta h4 {
+  font-size: 0.9rem;
+  margin: 0;
+}
+
+/* =========================================
+   3. ACCORDIONS (COMPACT)
+   ========================================= */
+.accordion { display: grid; gap: 0.8rem; }
+
+.proc-item {
+  border: 1px solid #e2e8f0;
+  border-radius: 6px;
+}
+
+.proc-trigger {
+  padding: 1rem 1.5rem; /* Tighter padding */
+}
+.proc-title {
+  font-size: 1rem;
+  font-weight: 600;
+  text-align: left; 
+}
+
+/* =========================================
+   4. FORMS
+   ========================================= */
+.field { gap: 0.3rem; }
+.input, .textarea, select {
+  padding: 0.6rem 0.8rem;
+  border-radius: 6px;
+  border: 1px solid #cbd5e1;
+  font-size: 0.9rem;
+}

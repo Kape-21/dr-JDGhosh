@@ -1,0 +1,1009 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width,initial-scale=1" />
+  <meta name="theme-color" content="#05668d" />
+  <title>Patient Stories & Reviews | Dr. Jay Deep Ghosh</title>
+  
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600&family=Montserrat:wght@600;700;800;900&display=swap" rel="stylesheet" />
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css" />
+
+  <link rel="stylesheet" href="css/base.css" />
+  <link rel="stylesheet" href="css/components.css" />
+  <link rel="stylesheet" href="css/layout.css" />
+
+  <style>
+    /* =========================================
+       PAGE-SPECIFIC STYLES
+       ========================================= */
+    
+    :root {
+      --font-heading: 'Montserrat', sans-serif;
+      --font-body: 'Inter', sans-serif;
+      --color-primary-blue: #05668d;
+      --color-primary-green: #00a896;
+      --color-text: #374151;
+      --gradient-accent: linear-gradient(to right, #05668d, #00a896);
+      /* Backgrounds */
+      --bg-cream: linear-gradient(180deg, #fffbeb 0%, #ffffff 100%);
+      --bg-blue-cta: linear-gradient(135deg, #e0f2fe 0%, #bfdbfe 100%);
+      
+      --shadow-card: 0 4px 15px rgba(0,0,0,0.05);
+      --shadow-hover: 0 10px 25px rgba(5, 102, 141, 0.12);
+    }
+
+    body {
+      font-family: var(--font-body);
+      color: var(--color-text);
+      line-height: 1.6;
+      font-size: 0.9rem;
+    }
+
+    /* --- NAV BAR --- */
+    .nav-link {
+        position: relative;
+        text-decoration: none;
+        padding: 0.5rem 0;
+        margin: 0 0.5rem;
+        transition: opacity 0.3s ease;
+        display: inline-flex;
+        align-items: center;
+        gap: 6px; 
+    }
+    .nav-link span { position: relative; }
+    .nav-link.active { font-weight: 700; opacity: 1; color: inherit !important; }
+    .nav-link.active span::after {
+        content: ""; display: block; width: 100%; height: 3px;
+        background: var(--color-primary-green);
+        position: absolute; bottom: -4px; left: 0; border-radius: 2px;
+    }
+
+    /* --- CONTENT WRAPPER --- */
+    .content-wrapper {
+      background: var(--bg-cream);
+      padding-bottom: 1rem; /* Reduced from 3rem */
+      border-bottom: none;
+    }
+
+    /* --- HERO SECTION --- */
+    .testi-hero {
+      background: transparent; 
+      padding: 4rem 0 1rem; /* Reduced bottom padding */
+      text-align: center;
+    }
+    .testi-hero h1 { 
+        color: var(--color-primary-blue); 
+        margin-bottom: 0.5rem; 
+        font-size: 2.2rem; 
+        font-family: var(--font-heading);
+        font-weight: 900;
+    }
+    .testi-hero p { 
+        color: var(--color-text); 
+        max-width: 650px; 
+        margin: 0 auto 1.5rem; 
+        opacity: 0.9; 
+        font-size: 1rem; 
+        font-weight: 500;
+    }
+
+    /* Trust Badge Button */
+    .trust-badge {
+      display: inline-flex; align-items: center; gap: 0.6rem;
+      background: #fff; padding: 0.4rem 1rem; border-radius: 50px;
+      box-shadow: 0 4px 10px rgba(0,0,0,0.06); margin-bottom: 1.2rem;
+      border: 1px solid rgba(0,0,0,0.05);
+      font-size: 0.8rem;
+      text-decoration: none;
+      transition: transform 0.3s ease, box-shadow 0.3s ease;
+      cursor: pointer;
+    }
+    .trust-badge:hover {
+        transform: translateY(-2px);
+        box-shadow: 0 6px 15px rgba(0,0,0,0.1);
+        border-color: #cbd5e1;
+    }
+    .trust-stars { color: #f59e0b; font-size: 0.85rem; }
+    .trust-text { font-weight: 700; color: var(--color-primary-blue); }
+    .google-icon-svg { width: 16px; height: 16px; }
+
+    /* --- FILTERS --- */
+    .testi-filters {
+      display: flex; justify-content: center; gap: 0.5rem; flex-wrap: wrap; margin-bottom: 1.5rem;
+    }
+    .t-filter-btn {
+      background: #fff; border: 1px solid rgba(5, 102, 141, 0.15); color: #475569;
+      padding: 0.4rem 1rem; border-radius: 50px; font-size: 0.8rem; cursor: pointer;
+      transition: all 0.3s ease; font-weight: 600;
+    }
+    .t-filter-btn:hover, .t-filter-btn.active {
+      background: var(--color-primary-blue); color: #fff; border-color: var(--color-primary-blue);
+      box-shadow: 0 4px 10px rgba(5, 102, 141, 0.2);
+    }
+
+    /* --- FANCY DIVIDER (The Accent Line) --- */
+    .fancy-divider {
+        height: 1px;
+        border: 0;
+        /* Tapered gradient using accent color */
+        background: linear-gradient(90deg, transparent, rgba(0, 168, 150, 0.6), transparent);
+        width: 80%;
+        max-width: 500px;
+        margin: 2rem auto;
+    }
+
+    /* --- GLOBAL HEADINGS --- */
+    .section { padding: 1.5rem 0; /* Reduced padding */ }
+    
+    .section-centered-heading {
+      text-align: center; 
+      font-family: var(--font-heading);
+      font-weight: 800; 
+      font-size: 1.8rem;
+      color: var(--color-primary-blue);
+      margin-bottom: 2rem; 
+      position: relative;
+      display: inline-block;
+      left: 50%;
+      transform: translateX(-50%);
+      line-height: 1.2;
+    }
+    .section-centered-heading::after {
+      content: ""; display: block; width: 50px; height: 4px; 
+      background: var(--color-primary-green); margin: 0.5rem auto 0; border-radius: 2px; 
+    }
+    
+    /* Load More Button */
+    .load-more-container { text-align: center; margin-top: 1rem; margin-bottom: 0.5rem; }
+    .btn-load-more {
+        display: inline-flex; align-items: center; justify-content: center; gap: 0.5rem;
+        background: var(--gradient-accent);
+        color: #fff; border: none;
+        padding: 0.55rem 1.4rem; border-radius: 50px;
+        font-weight: 600; font-size: 0.85rem;
+        cursor: pointer; transition: all 0.3s ease;
+        box-shadow: 0 4px 10px rgba(5, 102, 141, 0.2);
+        border: 1px solid rgba(255,255,255,0.2);
+    }
+    .btn-load-more:hover { 
+        transform: translateY(-2px); 
+        box-shadow: 0 6px 15px rgba(5, 102, 141, 0.35); 
+        filter: brightness(1.1);
+    }
+    .hidden-initially { display: none !important; }
+
+
+    /* --- GOOGLE REVIEWS GRID --- */
+    .google-reviews-grid {
+      display: grid !important;
+      grid-template-columns: repeat(3, 1fr) !important;
+      gap: 1.5rem;
+      max-width: 1200px;
+      margin: 0 auto 2rem;
+      align-items: start;
+    }
+
+    .g-review-card {
+      background: #fff; 
+      padding: 1.25rem; 
+      border-radius: 12px; 
+      border: 1px solid rgba(0,0,0,0.06); 
+      display: flex; 
+      flex-direction: column; 
+      height: 100%;
+      box-shadow: var(--shadow-card);
+      transition: all 0.3s ease;
+      cursor: pointer;
+    }
+    
+    .g-review-card:hover { 
+      transform: translateY(-3px); 
+      box-shadow: var(--shadow-hover);
+      border-color: rgba(5, 102, 141, 0.5); 
+    }
+    
+    .g-card-header { 
+      display: flex; justify-content: space-between; align-items: center; margin-bottom: 0.8rem; 
+    }
+    .g-stars { color: #f59e0b; font-size: 0.75rem; letter-spacing: 1px; }
+    .g-logo { width: 16px; height: 16px; }
+    
+    .g-card-text { 
+        font-family: var(--font-body);
+        font-size: 0.85rem; 
+        line-height: 1.6; 
+        color: #4b5563; 
+        margin-bottom: 1.2rem; 
+        font-style: italic;
+        flex-grow: 1;
+        font-weight: 500;
+    }
+
+    .g-review-card.is-expanded .g-card-text {
+        display: block !important;
+        overflow: visible !important;
+        -webkit-line-clamp: unset !important;
+    }
+    .g-review-card.is-expanded {
+        border-color: var(--color-primary-green);
+        box-shadow: var(--shadow-hover);
+    }
+
+    .g-card-footer { 
+      display: flex; align-items: center; gap: 0.8rem; 
+      border-top: 1px solid rgba(0,0,0,0.08); padding-top: 0.8rem;
+      width: 100%;
+    }
+    
+    .g-avatar { 
+      width: 34px; height: 34px; 
+      background: #ecfdf5; 
+      color: #059669; 
+      border-radius: 50%; 
+      display: grid; place-items: center; 
+      font-size: 1.1rem;
+      flex-shrink: 0;
+    }
+    
+    .g-user-details {
+      display: flex;
+      flex-direction: column;
+      flex-grow: 1;
+    }
+
+    .g-user-name { 
+      font-family: var(--font-body); font-size: 0.8rem; font-weight: 700; color: #111827; 
+    }
+    .g-user-date { 
+        font-size: 0.7rem; color: #94a3b8; font-weight: 500;
+        margin-left: auto;
+    }
+
+
+    /* --- VIDEO REVIEWS GRID --- */
+    .video-grid-standard {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr); 
+      gap: 1.5rem;
+      max-width: 1200px;
+      margin: 0 auto 2rem;
+    }
+
+    .vid-card {
+      background: #fff; border-radius: 12px; overflow: hidden; position: relative;
+      box-shadow: var(--shadow-card); transition: all 0.3s ease;
+      cursor: pointer; display: flex; flex-direction: column;
+      border: 1px solid rgba(0,0,0,0.06);
+    }
+    .vid-card:hover { 
+      transform: translateY(-3px); 
+      box-shadow: var(--shadow-hover); 
+      z-index: 2; 
+      border-color: rgba(0, 168, 150, 0.6); 
+    }
+    
+    .vid-thumb { position: relative; width: 100%; aspect-ratio: 16/9; overflow: hidden; }
+    .vid-thumb img { width: 100%; height: 100%; object-fit: cover; transition: transform 0.5s ease; opacity: 0.95; }
+    .vid-card:hover img { transform: scale(1.05); opacity: 1; }
+
+    .vid-play {
+      position: absolute; top: 50%; left: 50%; transform: translate(-50%, -50%);
+      width: 45px; height: 45px;
+      background: var(--gradient-accent);
+      border-radius: 50%; display: grid; place-items: center; color: #fff;
+      font-size: 0.9rem; box-shadow: 0 4px 15px rgba(0,0,0,0.3); transition: all 0.3s ease; z-index: 3;
+    }
+    .vid-play::after {
+      content: ""; position: absolute; inset: -4px; border: 2px solid rgba(255,255,255,0.6);
+      border-radius: 50%; transition: inset 0.3s ease;
+    }
+    .vid-card:hover .vid-play { transform: translate(-50%, -50%) scale(1.1); }
+    .vid-card:hover .vid-play::after { inset: -6px; border-color: #fff; }
+
+    .vid-overlay {
+      position: absolute; inset: 0; background: linear-gradient(to top, rgba(0,0,0,0.9), transparent 50%);
+      display: flex; align-items: flex-end; padding: 0.8rem; z-index: 2;
+    }
+    
+    .vid-category-badge {
+      position: absolute; top: 10px; right: 10px; 
+      background: rgba(5, 102, 141, 0.85); color: #fff;
+      padding: 3px 8px; border-radius: 4px; 
+      font-size: 0.65rem; font-weight: 700; 
+      backdrop-filter: blur(4px); z-index: 3; text-transform: uppercase; letter-spacing: 0.5px;
+    }
+    
+    .vid-info { 
+        padding: 0.8rem 1rem; 
+        background: #fff; flex-shrink: 0; height: auto; 
+        border-top: 1px solid rgba(0,0,0,0.04);
+    }
+    .vid-title { 
+        font-family: var(--font-heading); font-size: 0.85rem; font-weight: 700; 
+        color: #1e293b; margin-bottom: 0.2rem; line-height: 1.3;
+    }
+    .vid-meta { font-family: var(--font-body); font-size: 0.7rem; color: var(--color-primary-green); font-weight: 600; text-transform: uppercase; }
+
+
+    /* --- CTA SECTION --- */
+    .share-story-section {
+      background: var(--bg-blue-cta); 
+      padding: 3rem 0 4rem; 
+      text-align: center; 
+      border-top: none; /* Replaced by fancy divider */
+    }
+
+    .share-story-section .section-centered-heading {
+        left: auto; transform: none; display: inline-block; margin-bottom: 0.5rem;
+    }
+
+    .section-lead { font-size: 0.9rem; color: #4b5563; line-height: 1.6; margin-bottom: 1.5rem !important; }
+    
+    .cta-btn-group { display: flex; justify-content: center; gap: 1rem; flex-wrap: wrap; }
+    
+    .btn-google, .btn-whatsapp {
+      padding: 0.55rem 1.4rem; border-radius: 50px; font-weight: 600;
+      display: inline-flex; align-items: center; justify-content: center; gap: 0.5rem;
+      transition: all 0.3s ease; font-size: 0.85rem; text-decoration: none; cursor: pointer;
+    }
+    
+    .btn-google {
+      background: #fff; color: #333; border: 1px solid #cbd5e1;
+      box-shadow: 0 2px 5px rgba(0,0,0,0.05);
+    }
+    .btn-google:hover { transform: translateY(-2px); box-shadow: 0 6px 15px rgba(0,0,0,0.1); border-color: #94a3b8; }
+    
+    .btn-whatsapp {
+      background: #25D366; color: #fff; border: none;
+      box-shadow: 0 4px 10px rgba(37, 211, 102, 0.2);
+    }
+    .btn-whatsapp:hover { background: #20bd5a; transform: translateY(-2px); box-shadow: 0 6px 15px rgba(37, 211, 102, 0.35); }
+
+    /* --- VIDEO MODAL --- */
+    .video-modal {
+      position: fixed; top: 0; left: 0; width: 100%; height: 100%;
+      background: rgba(0,0,0,0.95); z-index: 9999;
+      display: flex; align-items: center; justify-content: center;
+      opacity: 0; pointer-events: none; transition: opacity 0.3s ease;
+      padding: 1rem;
+    }
+    .video-modal.is-active { opacity: 1; pointer-events: auto; }
+    
+    .video-wrapper {
+      position: relative; width: 100%; max-height: 80vh; 
+      background: #000; box-shadow: 0 20px 50px rgba(0,0,0,0.5);
+      border-radius: 12px; display: flex; justify-content: center; align-items: center;
+    }
+    
+    .modal-close-btn {
+      position: absolute; top: -45px; right: 0;
+      background: rgba(255,255,255,0.1); border: 1px solid rgba(255,255,255,0.2);
+      color: #fff; width: 35px; height: 35px; border-radius: 50%;
+      font-size: 1.2rem; cursor: pointer; display: flex; align-items: center; justify-content: center;
+      transition: all 0.2s;
+    }
+    .modal-close-btn:hover { background: #ef4444; border-color: #ef4444; }
+
+    #video-container { width: 100%; height: 100%; }
+    #video-container iframe { width: 100%; height: 100%; border: none; }
+
+
+    /* --- RESPONSIVENESS --- */
+    @media (max-width: 900px) {
+      .testi-hero h1 { font-size: 1.8rem; }
+      .google-reviews-grid, .video-grid-standard { grid-template-columns: repeat(2, 1fr) !important; gap: 1rem; }
+    }
+    
+    @media (max-width: 600px) {
+      .testi-hero { padding: 3rem 0 1rem; }
+      .testi-hero h1 { font-size: 1.6rem; }
+      .section-centered-heading { font-size: 1.5rem; margin-bottom: 1.5rem; }
+      .section-centered-heading::after { width: 50px; margin-top: 0.5rem; }
+      
+      .google-reviews-grid { 
+          grid-template-columns: repeat(2, 1fr) !important; 
+          gap: 0.6rem; 
+          margin-bottom: 1.5rem; 
+      }
+      .g-review-card { padding: 0.75rem; } 
+      
+      .g-card-text { 
+          font-size: 0.7rem; 
+          line-height: 1.35; 
+          margin-bottom: 0.6rem; 
+          display: -webkit-box;
+          -webkit-line-clamp: 5; 
+          -webkit-box-orient: vertical;
+          overflow: hidden;
+      }
+      
+      .g-card-footer { padding-top: 0.5rem; gap: 0.4rem; }
+      .g-user-details { 
+          flex-direction: row; 
+          align-items: center; 
+          width: 100%; 
+          justify-content: space-between;
+      }
+      .g-avatar { width: 24px; height: 24px; font-size: 0.7rem; }
+      .g-user-name { 
+          font-size: 0.65rem; 
+          white-space: nowrap; 
+          overflow: hidden; 
+          text-overflow: ellipsis; 
+          max-width: 60px; 
+      }
+      .g-user-date { 
+          font-size: 0.55rem; 
+          margin-left: auto;
+          white-space: nowrap;
+      }
+      
+      .video-grid-standard { 
+          grid-template-columns: repeat(2, 1fr); 
+          gap: 0.6rem; 
+          margin-bottom: 1.5rem; 
+      }
+      .vid-info { padding: 0.6rem; }
+      .vid-title { font-size: 0.75rem; }
+      .vid-meta { font-size: 0.6rem; }
+      
+      .testi-filters { gap: 0.5rem; margin-bottom: 1.5rem; }
+      .t-filter-btn, .btn-load-more, .cta-btn-group .btn-google, .cta-btn-group .btn-whatsapp { 
+          padding: 0.45rem 1rem !important; 
+          font-size: 0.75rem !important; 
+      }
+      
+      .share-story-section { padding: 2rem 1rem; }
+      
+      .cta-btn-group { 
+          flex-direction: row; width: 100%; align-items: center; gap: 0.8rem;
+      }
+      .btn-google, .btn-whatsapp { 
+          width: auto; flex: 1; justify-content: center;
+      }
+      
+      .modal-close-btn { top: -40px; right: 0; width: 30px; height: 30px; font-size: 1rem; }
+      
+      .fancy-divider { margin: 1.5rem auto; width: 90%; }
+    }
+  </style>
+</head>
+
+<body>
+  <header class="site-header" data-header>
+    <div class="header-grid">
+      <a href="index.html" class="brand-area"><img src="assets/icon-new1.png" alt="Logo" class="brand-icon"><div class="brand-text-col"><span class="brand-name">Dr. Jay Deep Ghosh</span><span class="brand-subtitle">Your path to pain free healing</span></div></a>
+      <nav class="nav-center" data-nav-panel>
+        <ul class="nav-list">
+          <li><a href="about.html" class="nav-link"><i class="fa-solid fa-user-tie"></i> <span>About</span></a></li>
+          <li><a href="procedures.html" class="nav-link"><i class="fa-solid fa-stethoscope"></i> <span>Procedures</span></a></li>
+          <li><a href="outcomes.html" class="nav-link"><i class="fa-solid fa-chart-line"></i> <span>Outcomes</span></a></li>
+          <li><a href="videos.html" class="nav-link"><i class="fa-solid fa-play-circle"></i> <span>Videos</span></a></li>
+          <li><a href="testimonials.html" class="nav-link active" aria-current="page"><i class="fa-solid fa-star"></i> <span>Testimonials</span></a></li>
+        </ul>
+        <div class="mobile-actions"><a href="appointment.html" class="btn btn-header-primary"><i class="fa-solid fa-calendar-check"></i> Book Appointment</a></div>
+      </nav>
+      <div class="header-actions-desktop">
+        <!--<a href="appointment.html" class="btn btn-header-secondary">Contact Us</a> -->
+        <a href="appointment.html" class="btn btn-header-primary"><i class="fa-solid fa-calendar-check"></i> Book Appointment</a></div>
+      <button class="nav-toggle" data-nav-toggle aria-label="Toggle navigation"><i class="fa-solid fa-bars" id="nav-icon"></i></button>
+    </div>
+  </header>
+
+  <main id="main">
+    
+    <div class="content-wrapper">
+      
+      <section class="testi-hero">
+        <div class="container">
+          <a href="https://search.google.com/local/writereview?placeid=ChIJU4sXTGNZWjcRzfPo0c0eOIE" target="_blank" class="trust-badge">
+            <div class="trust-stars"><i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i></div>
+            <span class="trust-text">4.9/5 Average Rating</span>
+            <svg class="google-icon-svg" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 48 48"><path fill="#EA4335" d="M24 9.5c3.54 0 6.71 1.22 9.21 3.6l6.85-6.85C35.9 2.38 30.47 0 24 0 14.62 0 6.51 5.38 2.56 13.22l7.98 6.19C12.43 13.72 17.74 9.5 24 9.5z"/><path fill="#4285F4" d="M46.98 24.55c0-1.57-.15-3.09-.38-4.55H24v9.02h12.94c-.58 2.96-2.26 5.48-4.78 7.18l7.73 6c4.51-4.18 7.09-10.36 7.09-17.65z"/><path fill="#FBBC05" d="M10.53 28.59c-.48-1.45-.76-2.99-.76-4.59s.27-3.14.76-4.59l-7.98-6.19C.92 16.46 0 20.12 0 24c0 3.88.92 7.54 2.56 10.78l7.97-6.19z"/><path fill="#34A853" d="M24 48c6.48 0 12.56-2.15 17.16-6.35l-7.73-6c-2.15 1.45-4.92 2.3-7.43 2.3-6.26 0-11.57-4.22-13.47-9.91l-7.98 6.19C6.51 42.62 14.62 48 24 48z"/><path fill="none" d="M0 0h48v48H0z"/></svg>
+          </a>
+          <h1>Stories of Recovery & Hope</h1>
+          <p>Real experiences from patients who have regained their mobility and life back.</p>
+          <div class="testi-filters">
+            <button class="t-filter-btn active" data-filter="all">All Stories</button>
+            <button class="t-filter-btn" data-filter="spine">Spine Success</button>
+            <button class="t-filter-btn" data-filter="ortho">Orthopaedic Success</button>
+            <button class="t-filter-btn" data-filter="video">Video Reviews</button>
+          </div>
+        </div>
+      </section>
+
+      <hr class="fancy-divider">
+
+      <section class="section">
+        <div class="container">
+          
+          <h2 class="section-centered-heading">Google Reviews</h2>
+          
+          <div class="google-reviews-grid" id="text-grid">
+            
+            <div class="g-review-card js-text-card" data-category="spine">
+              <div class="g-card-header">
+                <div class="g-stars"><i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i></div>
+                <svg class="g-logo" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 48 48"><path fill="#EA4335" d="M24 9.5c3.54 0 6.71 1.22 9.21 3.6l6.85-6.85C35.9 2.38 30.47 0 24 0 14.62 0 6.51 5.38 2.56 13.22l7.98 6.19C12.43 13.72 17.74 9.5 24 9.5z"/><path fill="#4285F4" d="M46.98 24.55c0-1.57-.15-3.09-.38-4.55H24v9.02h12.94c-.58 2.96-2.26 5.48-4.78 7.18l7.73 6c4.51-4.18 7.09-10.36 7.09-17.65z"/><path fill="#FBBC05" d="M10.53 28.59c-.48-1.45-.76-2.99-.76-4.59s.27-3.14.76-4.59l-7.98-6.19C.92 16.46 0 20.12 0 24c0 3.88.92 7.54 2.56 10.78l7.97-6.19z"/><path fill="#34A853" d="M24 48c6.48 0 12.56-2.15 17.16-6.35l-7.73-6c-2.15 1.45-4.92 2.3-7.43 2.3-6.26 0-11.57-4.22-13.47-9.91l-7.98 6.19C6.51 42.62 14.62 48 24 48z"/><path fill="none" d="M0 0h48v48H0z"/></svg>
+              </div>
+              <p class="g-card-text">"Dr. Jay Deep Ghosh is an outstanding spine surgeon. My father recovered completely from severe lower back pain and is now active again after 4 months of treatment. We are deeply grateful to him — from Arunachal Pradesh"</p>
+              <div class="g-card-footer">
+                <div class="g-avatar"><i class="fa-solid fa-person"></i></div>
+                <div class="g-user-details">
+                    <span class="g-user-name">Okie Sangchoju</span>
+                    <span class="g-user-date">2 months ago</span>
+                </div>
+              </div>
+            </div>
+
+            <div class="g-review-card js-text-card" data-category="ortho">
+              <div class="g-card-header">
+                <div class="g-stars"><i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i></div>
+                <svg class="g-logo" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 48 48"><path fill="#EA4335" d="M24 9.5c3.54 0 6.71 1.22 9.21 3.6l6.85-6.85C35.9 2.38 30.47 0 24 0 14.62 0 6.51 5.38 2.56 13.22l7.98 6.19C12.43 13.72 17.74 9.5 24 9.5z"/><path fill="#4285F4" d="M46.98 24.55c0-1.57-.15-3.09-.38-4.55H24v9.02h12.94c-.58 2.96-2.26 5.48-4.78 7.18l7.73 6c4.51-4.18 7.09-10.36 7.09-17.65z"/><path fill="#FBBC05" d="M10.53 28.59c-.48-1.45-.76-2.99-.76-4.59s.27-3.14.76-4.59l-7.98-6.19C.92 16.46 0 20.12 0 24c0 3.88.92 7.54 2.56 10.78l7.97-6.19z"/><path fill="#34A853" d="M24 48c6.48 0 12.56-2.15 17.16-6.35l-7.73-6c-2.15 1.45-4.92 2.3-7.43 2.3-6.26 0-11.57-4.22-13.47-9.91l-7.98 6.19C6.51 42.62 14.62 48 24 48z"/><path fill="none" d="M0 0h48v48H0z"/></svg>
+              </div>
+              <p class="g-card-text">"I visited Dr. Jay Deep Ghosh for a slipped disc, and his conservative treatment resolved my problem without surgery. He listens patiently, gives proper time, and treats with genuine care. Truly grateful for his expert guidance"</p>
+              <div class="g-card-footer">
+                <div class="g-avatar"><i class="fa-solid fa-person"></i></div>
+                <div class="g-user-details">
+                    <span class="g-user-name">Hiranmay Mali</span>
+                    <span class="g-user-date">1 month ago</span>
+                </div>
+              </div>
+            </div>
+
+            <div class="g-review-card js-text-card" data-category="spine">
+              <div class="g-card-header">
+                <div class="g-stars"><i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i></div>
+                <svg class="g-logo" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 48 48"><path fill="#EA4335" d="M24 9.5c3.54 0 6.71 1.22 9.21 3.6l6.85-6.85C35.9 2.38 30.47 0 24 0 14.62 0 6.51 5.38 2.56 13.22l7.98 6.19C12.43 13.72 17.74 9.5 24 9.5z"/><path fill="#4285F4" d="M46.98 24.55c0-1.57-.15-3.09-.38-4.55H24v9.02h12.94c-.58 2.96-2.26 5.48-4.78 7.18l7.73 6c4.51-4.18 7.09-10.36 7.09-17.65z"/><path fill="#FBBC05" d="M10.53 28.59c-.48-1.45-.76-2.99-.76-4.59s.27-3.14.76-4.59l-7.98-6.19C.92 16.46 0 20.12 0 24c0 3.88.92 7.54 2.56 10.78l7.97-6.19z"/><path fill="#34A853" d="M24 48c6.48 0 12.56-2.15 17.16-6.35l-7.73-6c-2.15 1.45-4.92 2.3-7.43 2.3-6.26 0-11.57-4.22-13.47-9.91l-7.98 6.19C6.51 42.62 14.62 48 24 48z"/><path fill="none" d="M0 0h48v48H0z"/></svg>
+              </div>
+              <p class="g-card-text">"Dr. Jay Deep Ghosh is experienced, kind, and highly skilled in spine and bone-related treatments. His accurate diagnosis and clear treatment plan reflect his expertise. Special thanks to his assistant Kabir Das for the helpful follow-up support."</p>
+              <div class="g-card-footer">
+                <div class="g-avatar"><i class="fa-solid fa-person"></i></div>
+                <div class="g-user-details">
+                    <span class="g-user-name">Balbir Singh</span>
+                    <span class="g-user-date">3 weeks ago</span>
+                </div>
+              </div>
+            </div>
+
+            <div class="g-review-card js-text-card" data-category="ortho">
+              <div class="g-card-header">
+                <div class="g-stars"><i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i></div>
+                <svg class="g-logo" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 48 48"><path fill="#EA4335" d="M24 9.5c3.54 0 6.71 1.22 9.21 3.6l6.85-6.85C35.9 2.38 30.47 0 24 0 14.62 0 6.51 5.38 2.56 13.22l7.98 6.19C12.43 13.72 17.74 9.5 24 9.5z"/><path fill="#4285F4" d="M46.98 24.55c0-1.57-.15-3.09-.38-4.55H24v9.02h12.94c-.58 2.96-2.26 5.48-4.78 7.18l7.73 6c4.51-4.18 7.09-10.36 7.09-17.65z"/><path fill="#FBBC05" d="M10.53 28.59c-.48-1.45-.76-2.99-.76-4.59s.27-3.14.76-4.59l-7.98-6.19C.92 16.46 0 20.12 0 24c0 3.88.92 7.54 2.56 10.78l7.97-6.19z"/><path fill="#34A853" d="M24 48c6.48 0 12.56-2.15 17.16-6.35l-7.73-6c-2.15 1.45-4.92 2.3-7.43 2.3-6.26 0-11.57-4.22-13.47-9.91l-7.98 6.19C6.51 42.62 14.62 48 24 48z"/><path fill="none" d="M0 0h48v48H0z"/></svg>
+              </div>
+              <p class="g-card-text">"Dr. Jay Deep Ghosh is kind, humble, and truly caring. My mother was bedridden with osteoporosis, and after his treatment she is active and doing household work again. Very grateful to him and his assistant Kabir Das for the support."</p>
+              <div class="g-card-footer">
+                <div class="g-avatar"><i class="fa-solid fa-person-dress"></i></div>
+                <div class="g-user-details">
+                    <span class="g-user-name">Ranjan Saha</span>
+                    <span class="g-user-date">2 months ago</span>
+                </div>
+              </div>
+            </div>
+
+            <div class="g-review-card js-text-card" data-category="spine">
+              <div class="g-card-header">
+                <div class="g-stars"><i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i></div>
+                <svg class="g-logo" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 48 48"><path fill="#EA4335" d="M24 9.5c3.54 0 6.71 1.22 9.21 3.6l6.85-6.85C35.9 2.38 30.47 0 24 0 14.62 0 6.51 5.38 2.56 13.22l7.98 6.19C12.43 13.72 17.74 9.5 24 9.5z"/><path fill="#4285F4" d="M46.98 24.55c0-1.57-.15-3.09-.38-4.55H24v9.02h12.94c-.58 2.96-2.26 5.48-4.78 7.18l7.73 6c4.51-4.18 7.09-10.36 7.09-17.65z"/><path fill="#FBBC05" d="M10.53 28.59c-.48-1.45-.76-2.99-.76-4.59s.27-3.14.76-4.59l-7.98-6.19C.92 16.46 0 20.12 0 24c0 3.88.92 7.54 2.56 10.78l7.97-6.19z"/><path fill="#34A853" d="M24 48c6.48 0 12.56-2.15 17.16-6.35l-7.73-6c-2.15 1.45-4.92 2.3-7.43 2.3-6.26 0-11.57-4.22-13.47-9.91l-7.98 6.19C6.51 42.62 14.62 48 24 48z"/><path fill="none" d="M0 0h48v48H0z"/></svg>
+              </div>
+              <p class="g-card-text">"Dr. Ghosh is an excellent doctor and a true gentleman. He patiently listens, gives ample time, and clearly explains everything. His diagnosis and treatment are outstanding."</p>
+              <div class="g-card-footer">
+                <div class="g-avatar"><i class="fa-solid fa-user"></i></div>
+                <div class="g-user-details">
+                    <span class="g-user-name">Saurav Deb</span>
+                    <span class="g-user-date">1 month ago</span>
+                </div>
+              </div>
+            </div>
+
+            <div class="g-review-card js-text-card" data-category="ortho">
+              <div class="g-card-header">
+                <div class="g-stars"><i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i></div>
+                <svg class="g-logo" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 48 48"><path fill="#EA4335" d="M24 9.5c3.54 0 6.71 1.22 9.21 3.6l6.85-6.85C35.9 2.38 30.47 0 24 0 14.62 0 6.51 5.38 2.56 13.22l7.98 6.19C12.43 13.72 17.74 9.5 24 9.5z"/><path fill="#4285F4" d="M46.98 24.55c0-1.57-.15-3.09-.38-4.55H24v9.02h12.94c-.58 2.96-2.26 5.48-4.78 7.18l7.73 6c4.51-4.18 7.09-10.36 7.09-17.65z"/><path fill="#FBBC05" d="M10.53 28.59c-.48-1.45-.76-2.99-.76-4.59s.27-3.14.76-4.59l-7.98-6.19C.92 16.46 0 20.12 0 24c0 3.88.92 7.54 2.56 10.78l7.97-6.19z"/><path fill="#34A853" d="M24 48c6.48 0 12.56-2.15 17.16-6.35l-7.73-6c-2.15 1.45-4.92 2.3-7.43 2.3-6.26 0-11.57-4.22-13.47-9.91l-7.98 6.19C6.51 42.62 14.62 48 24 48z"/><path fill="none" d="M0 0h48v48H0z"/></svg>
+              </div>
+              <p class="g-card-text">"Dr. Jay Deep Ghosh is the best orthopedic and spine surgeon in Guwahati. My mother had severe heel pain and could not walk properly, but she is now getting steady relief with his treatment. Truly grateful for his care and attention."</p>
+              <div class="g-card-footer">
+                <div class="g-avatar"><i class="fa-solid fa-person-dress"></i></div>
+                <div class="g-user-details">
+                    <span class="g-user-name">Alangkrita Saikia</span>
+                    <span class="g-user-date">4 months ago</span>
+                </div>
+              </div>
+            </div>
+
+            <div class="g-review-card js-text-card hidden-initially" data-category="spine">
+              <div class="g-card-header">
+                <div class="g-stars"><i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i></div>
+                <svg class="g-logo" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 48 48"><path fill="#EA4335" d="M24 9.5c3.54 0 6.71 1.22 9.21 3.6l6.85-6.85C35.9 2.38 30.47 0 24 0 14.62 0 6.51 5.38 2.56 13.22l7.98 6.19C12.43 13.72 17.74 9.5 24 9.5z"/><path fill="#4285F4" d="M46.98 24.55c0-1.57-.15-3.09-.38-4.55H24v9.02h12.94c-.58 2.96-2.26 5.48-4.78 7.18l7.73 6c4.51-4.18 7.09-10.36 7.09-17.65z"/><path fill="#FBBC05" d="M10.53 28.59c-.48-1.45-.76-2.99-.76-4.59s.27-3.14.76-4.59l-7.98-6.19C.92 16.46 0 20.12 0 24c0 3.88.92 7.54 2.56 10.78l7.97-6.19z"/><path fill="#34A853" d="M24 48c6.48 0 12.56-2.15 17.16-6.35l-7.73-6c-2.15 1.45-4.92 2.3-7.43 2.3-6.26 0-11.57-4.22-13.47-9.91l-7.98 6.19C6.51 42.62 14.62 48 24 48z"/><path fill="none" d="M0 0h48v48H0z"/></svg>
+              </div>
+              <p class="g-card-text">"Dr. Jay Deep Ghosh is not money-minded and treats patients with honesty. I was suffering from back pain and am now fully cured under his care. Truly grateful — patient from Hajo"</p>
+              <div class="g-card-footer">
+                <div class="g-avatar"><i class="fa-solid fa-user"></i></div>
+                <div class="g-user-details">
+                    <span class="g-user-name">Subodh Sarkar</span>
+                    <span class="g-user-date">9 months ago</span>
+                </div>
+              </div>
+            </div>
+
+            <div class="g-review-card js-text-card hidden-initially" data-category="spine">
+              <div class="g-card-header">
+                <div class="g-stars"><i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i></div>
+                <svg class="g-logo" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 48 48"><path fill="#EA4335" d="M24 9.5c3.54 0 6.71 1.22 9.21 3.6l6.85-6.85C35.9 2.38 30.47 0 24 0 14.62 0 6.51 5.38 2.56 13.22l7.98 6.19C12.43 13.72 17.74 9.5 24 9.5z"/><path fill="#4285F4" d="M46.98 24.55c0-1.57-.15-3.09-.38-4.55H24v9.02h12.94c-.58 2.96-2.26 5.48-4.78 7.18l7.73 6c4.51-4.18 7.09-10.36 7.09-17.65z"/><path fill="#FBBC05" d="M10.53 28.59c-.48-1.45-.76-2.99-.76-4.59s.27-3.14.76-4.59l-7.98-6.19C.92 16.46 0 20.12 0 24c0 3.88.92 7.54 2.56 10.78l7.97-6.19z"/><path fill="#34A853" d="M24 48c6.48 0 12.56-2.15 17.16-6.35l-7.73-6c-2.15 1.45-4.92 2.3-7.43 2.3-6.26 0-11.57-4.22-13.47-9.91l-7.98 6.19C6.51 42.62 14.62 48 24 48z"/><path fill="none" d="M0 0h48v48H0z"/></svg>
+              </div>
+              <p class="g-card-text">"I visited Dr. Jay Deep Ghosh for lumbar spondylosis, and he treated my condition in a calm and systematic manner. He clearly explained the problem and guided me throughout the treatment."</p>
+              <div class="g-card-footer">
+                <div class="g-avatar"><i class="fa-solid fa-user"></i></div>
+                <div class="g-user-details">
+                    <span class="g-user-name">Bapon Dey</span>
+                    <span class="g-user-date">10 months ago</span>
+                </div>
+              </div>
+            </div>
+            
+            <div class="g-review-card js-text-card hidden-initially" data-category="ortho">
+              <div class="g-card-header">
+                <div class="g-stars"><i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i></div>
+                <svg class="g-logo" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 48 48"><path fill="#EA4335" d="M24 9.5c3.54 0 6.71 1.22 9.21 3.6l6.85-6.85C35.9 2.38 30.47 0 24 0 14.62 0 6.51 5.38 2.56 13.22l7.98 6.19C12.43 13.72 17.74 9.5 24 9.5z"/><path fill="#4285F4" d="M46.98 24.55c0-1.57-.15-3.09-.38-4.55H24v9.02h12.94c-.58 2.96-2.26 5.48-4.78 7.18l7.73 6c4.51-4.18 7.09-10.36 7.09-17.65z"/><path fill="#FBBC05" d="M10.53 28.59c-.48-1.45-.76-2.99-.76-4.59s.27-3.14.76-4.59l-7.98-6.19C.92 16.46 0 20.12 0 24c0 3.88.92 7.54 2.56 10.78l7.97-6.19z"/><path fill="#34A853" d="M24 48c6.48 0 12.56-2.15 17.16-6.35l-7.73-6c-2.15 1.45-4.92 2.3-7.43 2.3-6.26 0-11.57-4.22-13.47-9.91l-7.98 6.19C6.51 42.62 14.62 48 24 48z"/><path fill="none" d="M0 0h48v48H0z"/></svg>
+              </div>
+              <p class="g-card-text">"Dr. Jay Deep Ghosh is the best orthopedic doctors in the Northeast. What truly sets him apart is his empathy and care for patients. Highly grateful for his approach"</p>
+              <div class="g-card-footer">
+                <div class="g-avatar"><i class="fa-solid fa-person-dress"></i></div>
+                <div class="g-user-details">
+                    <span class="g-user-name">Aien Aier</span>
+                    <span class="g-user-date">8 months ago</span>
+                </div>
+              </div>
+            </div>
+            
+            <div class="g-review-card js-text-card hidden-initially" data-category="spine">
+              <div class="g-card-header">
+                <div class="g-stars"><i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i></div>
+                <svg class="g-logo" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 48 48"><path fill="#EA4335" d="M24 9.5c3.54 0 6.71 1.22 9.21 3.6l6.85-6.85C35.9 2.38 30.47 0 24 0 14.62 0 6.51 5.38 2.56 13.22l7.98 6.19C12.43 13.72 17.74 9.5 24 9.5z"/><path fill="#4285F4" d="M46.98 24.55c0-1.57-.15-3.09-.38-4.55H24v9.02h12.94c-.58 2.96-2.26 5.48-4.78 7.18l7.73 6c4.51-4.18 7.09-10.36 7.09-17.65z"/><path fill="#FBBC05" d="M10.53 28.59c-.48-1.45-.76-2.99-.76-4.59s.27-3.14.76-4.59l-7.98-6.19C.92 16.46 0 20.12 0 24c0 3.88.92 7.54 2.56 10.78l7.97-6.19z"/><path fill="#34A853" d="M24 48c6.48 0 12.56-2.15 17.16-6.35l-7.73-6c-2.15 1.45-4.92 2.3-7.43 2.3-6.26 0-11.57-4.22-13.47-9.91l-7.98 6.19C6.51 42.62 14.62 48 24 48z"/><path fill="none" d="M0 0h48v48H0z"/></svg>
+              </div>
+              <p class="g-card-text">"Dr. Jay Deep Ghosh is the best doctors in orthopedics. He gives proper time to every patient and listens carefully. Highly recommended"</p>
+              <div class="g-card-footer">
+                <div class="g-avatar"><i class="fa-solid fa-person-dress"></i></div>
+                <div class="g-user-details">
+                    <span class="g-user-name">Kaveri Das</span>
+                    <span class="g-user-date">7 months ago</span>
+                </div>
+              </div>
+            </div>
+
+          </div>
+          <div class="load-more-container" id="load-more-text-btn">
+              <button class="btn-load-more"><i class="fa-solid fa-caret-down"></i> Read More Reviews</button>
+          </div>
+
+          <hr class="fancy-divider">
+
+          <h2 class="section-centered-heading" style="margin-top: 2rem;">Video Reviews</h2>
+          
+          <div class="video-grid-standard" id="video-grid">
+  
+            <article class="vid-card js-vid-card" data-category="spine" onclick="openVideo('-kFDGEhjtCs', 'horizontal')">
+              <div class="vid-thumb">
+                <img src="https://img.youtube.com/vi/-kFDGEhjtCs/hqdefault.jpg" alt="Lumbar spine decompression">
+                <span class="vid-category-badge">Spine Success</span>
+                <div class="vid-play"><i class="fa-solid fa-play"></i></div>
+                <div class="vid-overlay"></div>
+              </div>
+              <div class="vid-info">
+                <h3 class="vid-title">Lumbar spine decompression and fixation surgery</h3>
+                <div class="vid-meta">Open surgery</div>
+              </div>
+            </article>
+
+            <article class="vid-card js-vid-card" data-category="spine" onclick="openVideo('XOhLRYKtb4M', 'horizontal')">
+              <div class="vid-thumb">
+                <img src="https://img.youtube.com/vi/XOhLRYKtb4M/hqdefault.jpg" alt="Slipped Disc Surgery">
+                <span class="vid-category-badge">Spine Success</span>
+                <div class="vid-play"><i class="fa-solid fa-play"></i></div>
+                <div class="vid-overlay"></div>
+              </div>
+              <div class="vid-info">
+                <h3 class="vid-title">Slipped Disc Surgery</h3>
+                <div class="vid-meta">Meghalaya Patient</div>
+              </div>
+            </article>
+
+            <article class="vid-card js-vid-card" data-category="spine" onclick="openVideo('6QpLA6gKYrc', 'horizontal')">
+              <div class="vid-thumb">
+                <img src="https://img.youtube.com/vi/6QpLA6gKYrc/hqdefault.jpg" alt="Slipped Disc Conservative">
+                <span class="vid-category-badge">Spine Success</span>
+                <div class="vid-play"><i class="fa-solid fa-play"></i></div>
+                <div class="vid-overlay"></div>
+              </div>
+              <div class="vid-info">
+                <h3 class="vid-title">Slipped Disc treated without surgery</h3>
+                <div class="vid-meta">Conservative Treatment</div>
+              </div>
+            </article>
+
+            <article class="vid-card js-vid-card" data-category="spine" onclick="openVideo('1Krsf_bXguo', 'horizontal')">
+              <div class="vid-thumb">
+                <img src="https://img.youtube.com/vi/1Krsf_bXguo/hqdefault.jpg" alt="Keyhole Spine Surgery">
+                <span class="vid-category-badge">Spine Success</span>
+                <div class="vid-play"><i class="fa-solid fa-play"></i></div>
+                <div class="vid-overlay"></div>
+              </div>
+              <div class="vid-info">
+                <h3 class="vid-title">Keyhole Spine Surgery</h3>
+                <div class="vid-meta">Accidental Injury</div>
+              </div>
+            </article>
+
+            <article class="vid-card js-vid-card" data-category="spine" onclick="openVideo('IpXgNQyw-w0', 'horizontal')">
+              <div class="vid-thumb">
+                <img src="https://img.youtube.com/vi/IpXgNQyw-w0/hqdefault.jpg" alt="Scoliosis Surgery">
+                <span class="vid-category-badge">Spine Success</span>
+                <div class="vid-play"><i class="fa-solid fa-play"></i></div>
+                <div class="vid-overlay"></div>
+              </div>
+              <div class="vid-info">
+                <h3 class="vid-title">Successful Scoliosis Surgery</h3>
+                <div class="vid-meta">Used Telescopic Rod System</div>
+              </div>
+            </article>
+
+            <article class="vid-card js-vid-card" data-category="ortho" onclick="openVideo('tAg_6sH9AmE', 'horizontal')">
+              <div class="vid-thumb">
+                <img src="https://img.youtube.com/vi/tAg_6sH9AmE/hqdefault.jpg" alt="Restless Leg Syndrome">
+                <span class="vid-category-badge">Orthopaedic Success</span>
+                <div class="vid-play"><i class="fa-solid fa-play"></i></div>
+                <div class="vid-overlay"></div>
+              </div>
+              <div class="vid-info">
+                <h3 class="vid-title">Restless Leg Syndrome</h3>
+                <div class="vid-meta">Conservative Treatment</div>
+              </div>
+            </article>
+
+            <article class="vid-card js-vid-card hidden-initially" data-category="spine" onclick="openVideo('Mz4jlyGtYhU', 'horizontal')">
+              <div class="vid-thumb">
+                <img src="https://img.youtube.com/vi/Mz4jlyGtYhU/hqdefault.jpg" alt="Spondylolisthesis">
+                <span class="vid-category-badge">Spine Success</span>
+                <div class="vid-play"><i class="fa-solid fa-play"></i></div>
+                <div class="vid-overlay"></div>
+              </div>
+              <div class="vid-info">
+                <h3 class="vid-title">Gr-3 Spondylolisthesis</h3>
+                <div class="vid-meta">Conservative Treatment</div>
+              </div>
+            </article>
+
+            <article class="vid-card js-vid-card hidden-initially" data-category="spine" onclick="openVideo('kJ-s4JS3psA', 'horizontal')">
+              <div class="vid-thumb">
+                <img src="https://img.youtube.com/vi/kJ-s4JS3psA/hqdefault.jpg" alt="Infective Listhesis">
+                <span class="vid-category-badge">Spine Success</span>
+                <div class="vid-play"><i class="fa-solid fa-play"></i></div>
+                <div class="vid-overlay"></div>
+              </div>
+              <div class="vid-info">
+                <h3 class="vid-title">Lumbar Spinal Infective Listhesis</h3>
+                <div class="vid-meta">Surgical Treatment</div>
+              </div>
+            </article>
+
+            <article class="vid-card js-vid-card hidden-initially" data-category="spine" onclick="openVideo('-BoAnui4qj0', 'horizontal')">
+              <div class="vid-thumb">
+                <img src="https://img.youtube.com/vi/-BoAnui4qj0/hqdefault.jpg" alt="Spine TB">
+                <span class="vid-category-badge">Spine Success</span>
+                <div class="vid-play"><i class="fa-solid fa-play"></i></div>
+                <div class="vid-overlay"></div>
+              </div>
+              <div class="vid-info">
+                <h3 class="vid-title">Spine TB with partial body paralysis</h3>
+                <div class="vid-meta">Senior Patient</div>
+              </div>
+            </article>
+
+          </div>
+          <div class="load-more-container" id="load-more-vid-btn">
+              <button class="btn-load-more"><i class="fa-solid fa-caret-down"></i> View More Videos</button>
+          </div>
+
+        </div>
+      </section>
+
+    </div> 
+    
+    <hr class="fancy-divider">
+
+    <section class="share-story-section">
+      <div class="container">
+        <h2 class="section-centered-heading" style="font-size: 1.8rem; margin-bottom: 1rem;">Help Others Find Hope</h2>
+        <p class="section-lead" style="max-width:600px; margin:0 auto;">Your story can inspire someone else to take the first step towards recovery. We'd love to hear from you.</p>
+        <div class="cta-btn-group">
+          <a href="https://search.google.com/local/writereview?placeid=ChIJU4sXTGNZWjcRzfPo0c0eOIE" target="_blank" class="btn-google">
+            <svg width="18" height="18" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 48 48"><path fill="#EA4335" d="M24 9.5c3.54 0 6.71 1.22 9.21 3.6l6.85-6.85C35.9 2.38 30.47 0 24 0 14.62 0 6.51 5.38 2.56 13.22l7.98 6.19C12.43 13.72 17.74 9.5 24 9.5z"/><path fill="#4285F4" d="M46.98 24.55c0-1.57-.15-3.09-.38-4.55H24v9.02h12.94c-.58 2.96-2.26 5.48-4.78 7.18l7.73 6c4.51-4.18 7.09-10.36 7.09-17.65z"/><path fill="#FBBC05" d="M10.53 28.59c-.48-1.45-.76-2.99-.76-4.59s.27-3.14.76-4.59l-7.98-6.19C.92 16.46 0 20.12 0 24c0 3.88.92 7.54 2.56 10.78l7.97-6.19z"/><path fill="#34A853" d="M24 48c6.48 0 12.56-2.15 17.16-6.35l-7.73-6c-2.15 1.45-4.92 2.3-7.43 2.3-6.26 0-11.57-4.22-13.47-9.91l-7.98 6.19C6.51 42.62 14.62 48 24 48z"/><path fill="none" d="M0 0h48v48H0z"/></svg>
+            Write a Review
+          </a>
+
+          <a href="https://wa.me/918638230049?text=I%20want%20to%20share%20my%20video%20testimonial" target="_blank" class="btn-whatsapp">
+            <i class="fa-brands fa-whatsapp" style="font-size: 1.1rem;"></i> Send Your Video 
+          </a>
+        </div>
+      </div>
+    </section>
+      
+  </main>
+
+  <footer class="site-footer" id="contact">
+    <div class="footer-top">
+      <div class="footer-grid">
+        <div class="footer-col footer-brand-col">
+          <a href="index.html" class="brand-area"><img src="assets/icon-new1.png" alt="Logo" class="brand-icon"><div class="brand-text-col"><span class="brand-name">Dr. Jay Deep Ghosh</span><span class="brand-subtitle">Your path to pain free healing</span></div></a>
+          <p class="footer-tagline">Restoring mobility with advanced spine & orthopaedic care.</p>
+          <div class="footer-legal-links"><a href="#">Terms & Conditions</a> | <a href="#">Privacy Policy</a></div>
+          <div class="footer-social-icons brand-social">
+            <a href="https://www.facebook.com/jaydeepxp" target="_blank" aria-label="Facebook"><i class="fa-brands fa-facebook-f"></i></a>
+            <a href="https://www.youtube.com/@jaydeepxp" target="_blank" aria-label="YouTube"><i class="fa-brands fa-youtube"></i></a>
+            <a href="https://www.instagram.com/dr.jay_deep_ghosh_official?igsh=ZmsybzB1YXI4Zzl1" target="_blank" aria-label="Instagram"><i class="fa-brands fa-instagram"></i></a></div>
+        </div>
+        <div class="footer-col footer-visit-col">
+          <h3 class="footer-heading">Visit Our Clinic</h3>
+          <div class="map-wrapper">
+            <iframe 
+              src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3580.346894569584!2d91.77869407604345!3d26.15404529094764!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x375a59634c178b53%3A0x81381ecdd1e8f3cd!2sDr.%20Jay%20Deep%20Ghosh%20%7C%20Best%20orthopedic%20%26%20spine%20surgeon%20doctor%20in%20guwahati-assam-northeast!5e0!3m2!1sen!2sin!4v1706346789012!5m2!1sen!2sin" 
+              width="100%" 
+              height="100%" 
+              style="border:0;" 
+              allowfullscreen="" 
+              loading="lazy" 
+              referrerpolicy="no-referrer-when-downgrade">
+            </iframe>
+          </div>
+          <p class="footer-address">
+            <i class="fa-solid fa-location-dot"></i> 
+            Apollo Hospitals, Lotus Tower, Christian Basti, Guwahati
+          </p>
+        </div>
+        <div class="footer-col footer-form-col">
+          <div class="footer-form-wrapper">
+            <h3 class="footer-heading">Contact Us</h3>
+            <form class="footer-contact-form"><input type="text" placeholder="Name"><input type="tel" placeholder="Phone"><textarea placeholder="Message"></textarea><button type="submit" class="btn btn-header-primary footer-submit-btn">Send</button></form>
+          </div>
+        </div>
+      </div>
+    </div>
+    <div class="footer-bottom"><div class="footer-bottom-inner"><p class="footer-note">
+        <span>© <span id="year">2026</span> Dr. Jay Deep Ghosh. All Rights Reserved.</span>
+        <br><i>Designed & Developed by Kapil</i>
+      </p>
+  </footer>
+
+  <div id="video-modal" class="video-modal" aria-hidden="true" onclick="closeVideo(event)">
+    <div class="video-wrapper" id="video-frame-wrapper">
+      <button class="modal-close-btn" onclick="closeVideo(event, true)"><i class="fa-solid fa-xmark"></i></button>
+      <div id="video-container"></div>
+    </div>
+  </div>
+
+  <script src="js/main.js"></script>
+  
+  <script>
+    /* --- MOBILE NAV TOGGLE --- */
+    const navToggle = document.querySelector('[data-nav-toggle]');
+    const navPanel = document.querySelector('[data-nav-panel]');
+    
+    if(navToggle && navPanel) {
+        navToggle.addEventListener('click', () => {
+            navPanel.classList.toggle('is-open');
+            const icon = navToggle.querySelector('i');
+            if(navPanel.classList.contains('is-open')) {
+                icon.classList.remove('fa-bars');
+                icon.classList.add('fa-xmark');
+            } else {
+                icon.classList.remove('fa-xmark');
+                icon.classList.add('fa-bars');
+            }
+        });
+    }
+
+    /* --- EXPAND TEXT CARD LOGIC (Mobile Tap) --- */
+    document.querySelectorAll('.g-review-card').forEach(card => {
+        card.addEventListener('click', function() {
+            this.classList.toggle('is-expanded');
+        });
+    });
+
+    /* --- FILTER LOGIC --- */
+    const filterBtns = document.querySelectorAll('.t-filter-btn');
+    const textCards = document.querySelectorAll('.js-text-card');
+    const videoCards = document.querySelectorAll('.js-vid-card');
+
+    filterBtns.forEach(btn => {
+      btn.addEventListener('click', () => {
+        filterBtns.forEach(b => b.classList.remove('active'));
+        btn.classList.add('active');
+        const filter = btn.getAttribute('data-filter');
+
+        textCards.forEach(card => {
+          const cat = card.getAttribute('data-category');
+           if (filter === 'all') {
+             card.style.display = card.classList.contains('hidden-initially') ? 'none' : 'flex';
+           } else {
+             if (cat === filter) card.style.display = 'flex';
+             else card.style.display = 'none';
+           }
+        });
+
+        videoCards.forEach(card => {
+          const cat = card.getAttribute('data-category');
+           if (filter === 'all') {
+             card.style.display = card.classList.contains('hidden-initially') ? 'none' : 'flex';
+           } else {
+             if (cat === filter || filter === 'video') card.style.display = 'flex';
+             else card.style.display = 'none';
+           }
+        });
+        
+        if(filter !== 'all') {
+            document.getElementById('load-more-text-btn').style.display = 'none';
+            document.getElementById('load-more-vid-btn').style.display = 'none';
+        } else {
+            document.getElementById('load-more-text-btn').style.display = 'block';
+            document.getElementById('load-more-vid-btn').style.display = 'block';
+        }
+      });
+    });
+
+    /* --- LOAD MORE LOGIC --- */
+    document.getElementById('load-more-text-btn').addEventListener('click', function() {
+        document.querySelectorAll('.js-text-card.hidden-initially').forEach(card => {
+            card.classList.remove('hidden-initially');
+            card.style.display = 'flex'; 
+        });
+        this.style.display = 'none'; 
+    });
+
+    document.getElementById('load-more-vid-btn').addEventListener('click', function() {
+        document.querySelectorAll('.js-vid-card.hidden-initially').forEach(card => {
+            card.classList.remove('hidden-initially');
+             card.style.display = 'flex';
+        });
+        this.style.display = 'none';
+    });
+
+
+    /* --- LIGHTBOX LOGIC --- */
+    const modal = document.getElementById('video-modal');
+    const wrapper = document.getElementById('video-frame-wrapper');
+    const container = document.getElementById('video-container');
+
+    function openVideo(videoId, type) {
+      if(!videoId) return;
+      wrapper.className = 'video-wrapper'; 
+      
+      if (type === 'vertical') {
+          wrapper.style.maxWidth = '400px'; 
+          wrapper.style.aspectRatio = '9/16';
+      } else {
+          wrapper.style.maxWidth = '1000px'; 
+          wrapper.style.aspectRatio = '16/9';
+      }
+
+      container.innerHTML = `<iframe src="https://www.youtube.com/embed/${videoId}?autoplay=1&rel=0" allow="autoplay; encrypted-media" allowfullscreen></iframe>`;
+      modal.classList.add('is-active');
+      document.body.style.overflow = 'hidden';
+    }
+
+    function closeVideo(e, force) {
+      if (force || e.target === modal) {
+        modal.classList.remove('is-active');
+        container.innerHTML = '';
+        document.body.style.overflow = '';
+      }
+    }
+    
+    /* --- YEAR --- */
+    const yearSpan = document.getElementById('year');
+    if(yearSpan) yearSpan.textContent = new Date().getFullYear();
+  </script>
+</body>
+</html>

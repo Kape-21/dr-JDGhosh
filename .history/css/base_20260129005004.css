@@ -1,0 +1,90 @@
+:root {
+  /* COLORS */
+  --color-primary-blue: #05668d;
+  --color-primary-green: #00a896;
+  --color-cream: #f0f3bd;
+  --color-ink: #0f172a;
+  --color-text: #334155; 
+  --color-muted: #64748b;
+  --color-border: rgba(15,23,42,.1);
+
+  --bg-page: #ffffff;
+  --bg-soft: rgba(240,243,189,.35);
+  --bg-cream: var(--color-cream);
+  --brand-gradient: linear-gradient(135deg,var(--color-primary-blue),var(--color-primary-green));
+
+  --shadow-sm: 0 1px 2px rgba(0,0,0,0.05);
+  --shadow-md: 0 4px 6px -1px rgba(0,0,0,0.05);
+
+  --radius-sm: 4px;
+  --radius-md: 8px;
+  --radius-lg: 12px;
+
+  --container: 1080px; 
+
+  --font-heading: "Montserrat",system-ui,-apple-system,Segoe UI,Roboto,Arial,sans-serif;
+  --font-body: "Inter",system-ui,-apple-system,Segoe UI,Roboto,Arial,sans-serif;
+
+  /* --- GLOBAL SIZING DOWNGRADE --- */
+  /* We removed the huge 'clamp' values. These are now fixed, compact sizes. */
+  --step--1: 0.85rem; 
+  --step-0: 0.95rem;  /* Body text */
+  --step-1: 1.1rem;   
+  --step-2: 1.25rem;  
+  --step-3: 1.6rem;   /* Section Titles (Was 2.2rem) */
+  --step-4: 2.2rem;   /* Hero Title (Was 2.8rem) */
+
+  --transition-fast: 160ms ease;
+  --transition-base: 220ms ease;
+
+  --header-bg: #002B49;
+  --header-text: #ffffff;
+  --header-text-hover: #38b6ff;
+  --btn-green: #00a896;
+}
+
+/* GLOBAL RESETS */
+* { box-sizing: border-box; }
+html { scroll-behavior: smooth; }
+
+body {
+  margin: 0;
+  font-family: var(--font-body);
+  font-size: var(--step-0);
+  line-height: 1.6;
+  color: var(--color-text);
+  background: var(--bg-page);
+}
+
+img { max-width: 100%; height: auto; display: block; }
+a { color: inherit; text-decoration: none; }
+button, input, textarea, select { font: inherit; }
+
+h1, h2, h3, h4 {
+  font-family: var(--font-heading);
+  color: var(--color-ink);
+  line-height: 1.2;
+  margin: 0 0 .5rem;
+}
+
+h1 { font-size: var(--step-4); letter-spacing: -.03em; font-weight: 800; }
+h2 { font-size: var(--step-3); letter-spacing: -.02em; font-weight: 700; }
+h3 { font-size: var(--step-2); font-weight: 700; }
+h4 { font-size: var(--step-1); font-weight: 600; }
+
+p { margin: 0 0 1rem; color: var(--color-text); max-width: 70ch; }
+strong { color: var(--color-primary-blue); }
+
+.container {
+  width: min(var(--container), calc(100% - 2rem));
+  margin-inline: auto;
+}
+
+/* UTILITIES */
+.skip-link {
+  position: absolute; left: -999px; top: 10px;
+  background: #ffffff; color: var(--color-ink); padding: .5rem 1rem; z-index: 9999;
+}
+.skip-link:focus { left: 12px; }
+.sr-only { position: absolute; width: 1px; height: 1px; padding: 0; margin: -1px; overflow: hidden; clip: rect(0,0,0,0); border: 0; }
+::selection { background: rgba(0,168,150,.2); }

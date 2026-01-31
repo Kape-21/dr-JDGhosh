@@ -1,0 +1,251 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width,initial-scale=1" />
+  <meta name="theme-color" content="#05668d" />
+  <title>Book Appointment | Dr. Jay Deep Ghosh</title>
+  <meta name="description" content="Book an appointment with Dr. Jay Deep Ghosh for advanced spine and orthopaedic care. Visit our clinic in Guwahati." />
+
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600&family=Montserrat:wght@600;700;800;900&display=swap" rel="stylesheet" />
+
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css" referrerpolicy="no-referrer" />
+
+  <link rel="stylesheet" href="css/base.css" />
+  <link rel="stylesheet" href="css/components.css" />
+  <link rel="stylesheet" href="css/layout.css" />
+</head>
+
+<body>
+  <a class="skip-link" href="#main">Skip to content</a>
+
+  <header class="site-header" data-header>
+    <div class="header-grid">
+      
+      <a href="index.html" class="brand-area">
+        <img src="assets/icon-new1.png" alt="Dr. Jay Deep Ghosh Logo" class="brand-icon">
+        <div class="brand-text-col">
+          <span class="brand-name">Dr. Jay Deep Ghosh</span>
+          <span class="brand-subtitle">Your path to pain free healing</span>
+        </div>
+      </a>
+
+      <nav class="nav-center" data-nav-panel>
+        <ul class="nav-list">
+          <li><a href="index.html#about" class="nav-link"><i class="fa-solid fa-user-tie"></i> About</a></li>
+          <li><a href="index.html#procedures" class="nav-link"><i class="fa-solid fa-stethoscope"></i> Procedures</a></li>
+          <li><a href="index.html#outcomes" class="nav-link"><i class="fa-solid fa-chart-line"></i> Outcomes</a></li>
+          <li><a href="index.html#videos" class="nav-link"><i class="fa-solid fa-play-circle"></i> Videos</a></li>
+          <li><a href="index.html#testimonials" class="nav-link"><i class="fa-solid fa-star"></i> Testimonials</a></li>
+        </ul>
+        
+        <div class="mobile-actions">
+          <a href="tel:+919999999999" class="btn btn-header-primary">
+            <i class="fa-solid fa-phone"></i> Call Now
+          </a>
+        </div>
+      </nav>
+
+      <div class="header-actions-desktop">
+        <a href="tel:+919999999999" class="btn btn-header-primary">
+          <i class="fa-solid fa-phone"></i> +91 99999 99999
+        </a>
+      </div>
+
+      <button class="nav-toggle" data-nav-toggle aria-label="Toggle navigation">
+        <i class="fa-solid fa-bars" id="nav-icon"></i>
+      </button>
+
+    </div>
+  </header>
+
+  <main id="main">
+    
+    <section class="section appointment" id="appointment">
+      <div class="container">
+        
+        <div class="section-head center">
+          <h1 class="section-title">Contact & Appointments</h1>
+          <p class="section-lead">Visit our clinic or book a consultation online. We are here to help you regain your mobility.</p>
+        </div>
+
+        <div class="appointment-grid">
+          
+          <div class="card appointment-card">
+            <div class="appointment-card-head">
+              <h3>WhatsApp Appointment Form</h3>
+              <p class="section-lead">Please share the basic details so we can guide you faster.</p>
+            </div>
+
+            <form class="appointment-form" data-whatsapp-form data-whatsapp-number="919999999999">
+              <div class="grid-2">
+                <div class="field">
+                  <label class="label" for="name">Name</label>
+                  <input class="input" id="name" name="name" type="text" placeholder="Your full name" autocomplete="name" required />
+                </div>
+                <div class="field">
+                  <label class="label" for="phone">Phone</label>
+                  <input class="input" id="phone" name="phone" type="tel" placeholder="Your phone number" autocomplete="tel" required />
+                </div>
+              </div>
+
+              <div class="grid-2">
+                <div class="field">
+                  <label class="label" for="date">Preferred Date</label>
+                  <input class="input" id="date" name="date" type="date" />
+                </div>
+                <div class="field">
+                  <label class="label" for="visit">Visit Type</label>
+                  <select id="visit" name="visit" aria-label="Visit type">
+                    <option value="Clinic">Clinic</option>
+                    <option value="Video Consultation">Video Consultation</option>
+                    <option value="Follow-up">Follow-up</option>
+                  </select>
+                </div>
+              </div>
+
+              <div class="field">
+                <label class="label" for="message">Message</label>
+                <textarea class="textarea" id="message" name="message" placeholder="Your concern (e.g., back pain, knee pain, slipped disc, injury details)"></textarea>
+              </div>
+
+              <div class="appointment-actions">
+                <button class="btn btn-primary btn-xl" type="submit">
+                  <i class="fa-brands fa-whatsapp"></i> Book via WhatsApp
+                </button>
+              </div>
+
+              <p class="appointment-note">Note: On submit, WhatsApp will open with your details prefilled. You just need to hit Send.</p>
+            </form>
+          </div>
+
+          <aside class="card appointment-side" aria-label="Clinic information">
+            <h3>Clinic Details</h3>
+            <p class="section-lead">For urgent issues (severe weakness, bowel/bladder symptoms, high fever), please visit the nearest emergency facility.</p>
+
+            <div class="divider"></div>
+
+            <div class="quick-list">
+              <div class="quick-item">
+                <div class="quick-icon" aria-hidden="true"><i class="fa-solid fa-location-dot"></i></div>
+                <div>
+                  <div class="quick-title">Address</div>
+                  <div class="quick-text">123 Medical Center Drive,<br>Guwahati, Assam 781000</div>
+                </div>
+              </div>
+              <div class="quick-item">
+                <div class="quick-icon" aria-hidden="true"><i class="fa-solid fa-phone"></i></div>
+                <div>
+                  <div class="quick-title">Phone</div>
+                  <div class="quick-text"><a href="tel:+919999999999">+91 99999 99999</a></div>
+                </div>
+              </div>
+              <div class="quick-item">
+                <div class="quick-icon" aria-hidden="true"><i class="fa-brands fa-whatsapp"></i></div>
+                <div>
+                  <div class="quick-title">WhatsApp</div>
+                  <div class="quick-text"><a href="https://wa.me/919999999999" target="_blank" rel="noopener">Chat on WhatsApp</a></div>
+                </div>
+              </div>
+              <div class="quick-item">
+                <div class="quick-icon" aria-hidden="true"><i class="fa-regular fa-clock"></i></div>
+                <div>
+                  <div class="quick-title">Hours</div>
+                  <div class="quick-text">Mon–Sat: 10:00 AM – 7:00 PM</div>
+                </div>
+              </div>
+            </div>
+          </aside>
+
+        </div>
+      </div>
+    </section>
+
+  </main>
+
+  <footer class="site-footer" id="contact">
+    <div class="footer-top">
+      <div class="footer-grid">
+        
+        <div class="footer-col footer-brand-col">
+          <a href="index.html" class="brand-area">
+            <img src="assets/icon-new1.png" alt="Dr. Jay Deep Ghosh Logo" class="brand-icon">
+            <div class="brand-text-col">
+              <span class="brand-name">Dr. Jay Deep Ghosh</span>
+              <span class="brand-subtitle">Your path to pain free healing</span>
+            </div>
+          </a>
+          
+          <p class="footer-tagline">
+            Restoring mobility with advanced spine & orthopaedic care.
+          </p>
+          
+          <div class="footer-legal-links">
+            <a href="#">Terms & Conditions</a>
+            <span class="legal-sep">|</span>
+            <a href="#">Privacy Policy</a>
+          </div>
+
+          <div class="footer-social-icons brand-social">
+            <a href="#" aria-label="Facebook"><i class="fa-brands fa-facebook-f"></i></a>
+            <a href="#" aria-label="YouTube"><i class="fa-brands fa-youtube"></i></a>
+            <a href="#" aria-label="Instagram"><i class="fa-brands fa-instagram"></i></a>
+          </div>
+        </div>
+
+        <div class="footer-col footer-visit-col">
+          <h3 class="footer-heading">Visit Our Clinic</h3>
+          <div class="map-wrapper">
+            <iframe 
+              src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3580.346894569584!2d91.77869407604345!3d26.15404529094764!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x375a59634c178b53%3A0x81381ecdd1e8f3cd!2sDr.%20Jay%20Deep%20Ghosh%20%7C%20Best%20orthopedic%20%26%20spine%20surgeon%20doctor%20in%20guwahati-assam-northeast!5e0!3m2!1sen!2sin!4v1706346789012!5m2!1sen!2sin" 
+              width="100%" 
+              height="100%" 
+              style="border:0;" 
+              allowfullscreen="" 
+              loading="lazy" 
+              referrerpolicy="no-referrer-when-downgrade">
+            </iframe>
+          </div>
+          <p class="footer-address">
+            <i class="fa-solid fa-location-dot"></i> 
+              Apollo Hospitals, Christian Basti, Guwahati, Assam 781005</p>
+        </div>
+
+        <div class="footer-col footer-form-col">
+          <div class="footer-form-wrapper">
+            <h3 class="footer-heading">Quick Query</h3>
+            <form class="footer-contact-form">
+              <div class="form-group">
+                <input type="text" placeholder="Your Name" required>
+              </div>
+              <div class="form-group">
+                <input type="tel" placeholder="Phone Number" required>
+              </div>
+              <div class="form-group">
+                <textarea placeholder="How can we help?" rows="3"></textarea>
+              </div>
+              <button type="submit" class="btn btn-header-primary footer-submit-btn">
+                Send
+              </button>
+            </form>
+          </div>
+        </div>
+
+      </div>
+    </div>
+
+    <div class="footer-bottom">
+      <div class="footer-bottom-inner">
+        <p class="footer-note">© <span id="year">2026</span> Dr. Jay Deep Ghosh. All Rights Reserved. <i>Designed & Developed by MaxXiMuS</i></p>
+      </div>
+    </div>
+  </footer>
+
+  <div class="toast" data-toast role="status" aria-live="polite"></div>
+
+  <script src="js/main.js" defer></script>
+  <script src="js/whatsapp.js" defer></script>
+</body>
+</html>

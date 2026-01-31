@@ -1,0 +1,703 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width,initial-scale=1" />
+  <meta name="theme-color" content="#05668d" />
+  
+  <title>Clinical Outcomes & Patient Stories | Dr. Jay Deep Ghosh</title>
+  <meta name="description" content="Watch real patient recovery stories and clinical outcomes from Dr. Jay Deep Ghosh. Featuring endoscopic spine surgery, scoliosis correction, and joint replacement success stories." />
+  
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link rel="preconnect" href="https://www.youtube.com">
+  <link rel="preconnect" href="https://img.youtube.com">
+
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600&family=Montserrat:wght@600;700;800;900&display=swap" rel="stylesheet" />
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css" />
+
+  <link rel="stylesheet" href="css/base.css" />
+  <link rel="stylesheet" href="css/components.css" />
+  <link rel="stylesheet" href="css/layout.css" />
+
+  <style>
+    /* =========================================
+       PAGE-SPECIFIC STYLES
+       ========================================= */
+    
+    :root {
+      --font-heading: 'Montserrat', sans-serif;
+      --font-body: 'Inter', sans-serif;
+      --color-primary-blue: #05668d;
+      --color-primary-green: #00a896;
+      --color-text: #374151;
+      --gradient-accent: linear-gradient(to right, #05668d, #00a896);
+      --shadow-card: 0 4px 15px rgba(0,0,0,0.05);
+    }
+
+    body {
+      font-family: var(--font-body);
+      color: var(--color-text);
+      line-height: 1.6;
+      font-size: 0.9rem;
+    }
+
+    /* --- NAV BAR --- */
+    .nav-link {
+        position: relative;
+        text-decoration: none;
+        padding: 0.5rem 0;
+        margin: 0 0.5rem;
+        transition: opacity 0.3s ease;
+        display: inline-flex;
+        align-items: center;
+        gap: 6px; 
+    }
+    .nav-link span { position: relative; }
+    .nav-link.active { font-weight: 700; opacity: 1; color: inherit !important; }
+    .nav-link.active span::after {
+        content: ""; display: block; width: 100%; height: 3px;
+        background: var(--color-primary-green);
+        position: absolute; bottom: -4px; left: 0; border-radius: 2px;
+    }
+
+    /* --- GLOBAL SECTION STYLES --- */
+    .section { padding: 2.5rem 0; }
+    .section-head { margin-bottom: 2rem; text-align: center; }
+    .section-title {
+      font-family: var(--font-heading);
+      font-size: 1.8rem;
+      font-weight: 800;
+      color: var(--color-primary-blue);
+      margin-bottom: 0.5rem; 
+      line-height: 1.2;
+      position: relative;
+      display: inline-block;
+    }
+    .section-title::after {
+      content: ""; display: block; width: 60px; height: 4px;
+      background: var(--color-primary-green); margin: 0.6rem auto 0; border-radius: 2px;
+    }
+    .section-lead {
+      font-size: 0.9rem; max-width: 700px; margin: 0.8rem auto 0;
+      opacity: 0.85; font-weight: 500;
+    }
+
+    /* --- HERO SECTION --- */
+    .outcomes-hero {
+      background: url('assets/outcomes-hero.webp') no-repeat center center;
+      background-size: cover;
+      position: relative;
+      padding: 6rem 0 5rem;
+      text-align: center;
+      color: #fff;
+      /* Hero Border Darkened */
+      border-bottom: 1px solid rgba(5, 102, 141, 0.3); 
+    }
+    
+    .hero-text { max-width: 800px; margin: 0 auto; position: relative; z-index: 2; }
+    
+    .hero-text h1 {
+      font-family: var(--font-heading);
+      font-size: 2.4rem;
+      font-weight: 900; 
+      line-height: 1.1; 
+      margin-bottom: 1rem; 
+      color: #fff; 
+      text-shadow: 0 4px 15px rgba(0,0,0,0.6);
+    }
+    
+    .hero-text p {
+      font-size: 1.1rem; 
+      color: #fff; 
+      font-weight: 600; 
+      opacity: 0.95;
+      text-shadow: 0 2px 10px rgba(0,0,0,0.6);
+    }
+
+    /* --- SHARED: PLAY BUTTON (Gradient) --- */
+    .vid-play-btn {
+      position: absolute; top: 50%; left: 50%; transform: translate(-50%, -50%);
+      width: 50px; height: 50px;
+      background: var(--gradient-accent); 
+      border-radius: 50%; display: grid; place-items: center; color: #fff;
+      font-size: 1rem; box-shadow: 0 4px 15px rgba(0,0,0,0.3);
+      transition: all 0.3s ease; z-index: 3;
+    }
+    .vid-play-btn::after {
+      content: ""; position: absolute; inset: -4px; 
+      border: 2px solid rgba(255,255,255,0.6);
+      border-radius: 50%; transition: inset 0.3s ease;
+    }
+    
+    .case-video-wrapper:hover .vid-play-btn,
+    .reel-card:hover .vid-play-btn {
+        transform: translate(-50%, -50%) scale(1.1);
+    }
+    .case-video-wrapper:hover .vid-play-btn::after,
+    .reel-card:hover .vid-play-btn::after {
+        inset: -6px; border-color: #fff;
+    }
+
+    /* --- CASE STUDIES --- */
+    .case-row {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 3rem; align-items: center;
+      margin-bottom: 3rem; padding-bottom: 3rem;
+      /* INCREASED DARKNESS HERE */
+      border-bottom: 1px solid rgba(0,0,0,0.15); 
+    }
+    .case-row:last-child { border-bottom: none; margin-bottom: 0; padding-bottom: 0; }
+    
+    .case-row:nth-child(even) .case-media-col { order: 2; }
+    .case-row:nth-child(even) .case-text-col { order: 1; }
+
+    /* Video Thumbnail Wrapper */
+    .case-video-wrapper {
+      position: relative;
+      width: 100%;
+      aspect-ratio: 16/9;
+      background: #000;
+      border-radius: 16px;
+      overflow: hidden;
+      box-shadow: var(--shadow-card);
+      border: 4px solid #fff; 
+      transition: border-color 0.3s ease; 
+      cursor: pointer;
+    }
+    .case-video-wrapper img {
+        width: 100%; height: 100%; object-fit: cover; opacity: 0.9;
+    }
+    .case-video-wrapper:hover {
+        border-color: var(--color-primary-green);
+    }
+
+    /* Text Styling */
+    .case-tag {
+      display: inline-block;
+      background: rgba(5, 102, 141, 0.08);
+      color: var(--color-primary-blue);
+      font-weight: 700; font-size: 0.7rem; padding: 0.3rem 0.8rem;
+      border-radius: 50px; margin-bottom: 0.8rem; text-transform: uppercase;
+    }
+    .case-heading {
+      font-family: var(--font-heading);
+      font-size: 1.5rem; font-weight: 800; color: #111827;
+      margin-bottom: 0.8rem; line-height: 1.2;
+    }
+    
+    .case-meta-grid {
+        display: flex; gap: 1.5rem; margin-bottom: 1rem;
+        padding-bottom: 1rem; 
+        /* INCREASED DARKNESS HERE */
+        border-bottom: 1px solid rgba(0,0,0,0.15);
+    }
+    
+    .case-meta-item { font-size: 0.8rem; color: #475569; }
+    .case-meta-item strong { color: var(--color-primary-green); font-weight: 700; display: block; margin-bottom: 2px;}
+    .case-desc {
+      font-size: 0.9rem; color: #4b5563; margin-bottom: 0; line-height: 1.6; font-weight: 500;
+    }
+
+    /* --- REELS SECTION --- */
+    .reels-section {
+        background: #0f172a; 
+        color: #fff;
+        padding: 4rem 0;
+    }
+    .reels-section .section-title { color: #fff; }
+    .reels-section .section-title::after { background: var(--color-primary-green); }
+    .reels-section .section-lead { color: #cbd5e1; }
+
+    .reels-grid {
+      display: grid;
+      grid-template-columns: repeat(5, 1fr); 
+      gap: 1rem;
+      max-width: 1100px; 
+      margin: 0 auto;
+    }
+
+    .reel-card {
+      position: relative;
+      aspect-ratio: 9/16; 
+      background: #1e293b;
+      border-radius: 12px;
+      overflow: hidden;
+      cursor: pointer;
+      transition: all 0.3s ease;
+      border: 1px solid rgba(255,255,255,0.1);
+    }
+    .reel-card:hover { 
+        transform: translateY(-5px); 
+        border-color: var(--color-primary-green); 
+        box-shadow: 0 10px 20px rgba(0, 168, 150, 0.2);
+    }
+    .reel-thumb { 
+        width: 100%; height: 100%; object-fit: cover; 
+        transition: transform 0.5s ease; opacity: 0.8;
+    }
+    .reel-card:hover .reel-thumb { transform: scale(1.05); opacity: 1; }
+    .reel-card .vid-play-btn { width: 35px; height: 35px; font-size: 0.8rem; }
+
+    .reel-info {
+        position: absolute; bottom: 0; left: 0; right: 0;
+        padding: 0.8rem;
+        background: linear-gradient(to top, rgba(0,0,0,0.95), transparent);
+    }
+    .reel-title { font-size: 0.75rem; font-weight: 700; color: #fff; line-height: 1.2; }
+    .reel-cat { font-size: 0.6rem; color: var(--color-primary-green); text-transform: uppercase; font-weight: 600; }
+
+    /* --- FINAL CTA --- */
+    .final-cta { 
+        text-align: center; 
+        background: #f8fafc; 
+        padding: 2.5rem 0 !important; 
+    }
+    
+    .final-cta .section-title { margin-bottom: 0.3rem; }
+    .final-cta .section-lead { margin-bottom: 1.2rem; }
+
+    .cta-actions {
+        display: flex;
+        justify-content: center;
+        gap: 1rem;
+        flex-wrap: wrap;
+    }
+    
+    .btn-proc {
+      display: inline-flex; align-items: center; gap: 0.5rem;
+      background: var(--gradient-accent);
+      color: #fff;
+      padding: 0.55rem 1.4rem;
+      border-radius: 50px;
+      font-weight: 600;
+      font-size: 0.9rem;
+      transition: all 0.3s ease;
+      text-decoration: none;
+      box-shadow: 0 4px 10px rgba(5, 102, 141, 0.2);
+    }
+    .btn-proc:hover {
+      transform: translateY(-2px);
+      box-shadow: 0 6px 15px rgba(5, 102, 141, 0.35);
+    }
+
+    .btn-whatsapp {
+      display: inline-flex; align-items: center; gap: 0.5rem;
+      background: #25D366; 
+      color: #fff;
+      padding: 0.55rem 1.4rem;
+      border-radius: 50px;
+      font-weight: 600;
+      font-size: 0.9rem;
+      transition: all 0.3s ease;
+      text-decoration: none;
+      box-shadow: 0 4px 10px rgba(37, 211, 102, 0.2);
+    }
+    .btn-whatsapp:hover {
+      background: #20bd5a;
+      transform: translateY(-2px);
+      box-shadow: 0 6px 15px rgba(37, 211, 102, 0.35);
+    }
+
+    /* --- VIDEO MODAL --- */
+    .video-modal {
+      position: fixed; top: 0; left: 0; width: 100%; height: 100%;
+      background: rgba(0,0,0,0.95); z-index: 9999;
+      display: flex; align-items: center; justify-content: center;
+      opacity: 0; pointer-events: none; transition: opacity 0.3s ease;
+      padding: 1rem;
+    }
+    .video-modal.is-active { opacity: 1; pointer-events: auto; }
+    
+    .video-wrapper {
+      position: relative; width: 100%; 
+      max-height: 80vh; 
+      background: #000; box-shadow: 0 20px 50px rgba(0,0,0,0.5);
+      border-radius: 12px;
+      display: flex; justify-content: center; align-items: center;
+    }
+    
+    .modal-close-btn {
+      position: absolute; 
+      top: -45px; 
+      right: 0;
+      background: rgba(255,255,255,0.1); 
+      border: 1px solid rgba(255,255,255,0.2);
+      color: #fff; 
+      width: 35px; height: 35px; border-radius: 50%;
+      font-size: 1.2rem; cursor: pointer;
+      display: flex; align-items: center; justify-content: center;
+      transition: all 0.2s;
+    }
+    .modal-close-btn:hover { background: #ef4444; border-color: #ef4444; }
+
+    #video-container { width: 100%; height: 100%; }
+    #video-container iframe { width: 100%; height: 100%; border: none; }
+
+
+    /* --- MOBILE RESPONSIVE FIXES --- */
+    @media (max-width: 900px) {
+      .hero-text h1 { font-size: 2rem; }
+      
+      .case-row, .case-row:nth-child(even) {
+        grid-template-columns: 1fr;
+        gap: 1.5rem;
+        margin-bottom: 2.5rem; padding-bottom: 2.5rem;
+      }
+      .case-row .case-text-col, .case-row:nth-child(even) .case-text-col { order: 0; }
+      .case-row .case-media-col, .case-row:nth-child(even) .case-media-col { order: 1; }
+
+      .reels-grid { grid-template-columns: repeat(2, 1fr); gap: 0.8rem; }
+    }
+
+    @media (max-width: 600px) {
+        .outcomes-hero { padding: 4rem 0 3rem; text-align: center; }
+        .hero-text h1 { font-size: 1.8rem; }
+        .hero-text p { font-size: 1rem; }
+        
+        .case-heading { font-size: 1.3rem; margin-bottom: 0.5rem; }
+        .case-meta-grid { gap: 1rem; flex-wrap: wrap; margin-bottom: 0.8rem; padding-bottom: 0.8rem; }
+        .case-desc { font-size: 0.85rem; }
+        
+        .modal-close-btn { top: -40px; right: 0; width: 30px; height: 30px; font-size: 1rem; }
+        
+        .cta-actions { flex-direction: column; width: 100%; }
+        .cta-actions .btn-proc, .cta-actions .btn-whatsapp { width: 100%; justify-content: center; }
+    }
+  </style>
+</head>
+
+<body>
+  
+  <header class="site-header" data-header>
+    <div class="header-grid">
+      <a href="index.html" class="brand-area">
+        <img src="assets/icon-new1.png" alt="Dr. Jay Deep Ghosh Logo" class="brand-icon">
+        <div class="brand-text-col">
+          <span class="brand-name">Dr. Jay Deep Ghosh</span>
+          <span class="brand-subtitle">Your path to pain free healing</span>
+        </div>
+      </a>
+      <nav class="nav-center" data-nav-panel>
+        <ul class="nav-list">
+          <li><a href="about.html" class="nav-link"><i class="fa-solid fa-user-tie"></i> <span>About</span></a></li>
+          <li><a href="procedures.html" class="nav-link"><i class="fa-solid fa-stethoscope"></i> <span>Procedures</span></a></li>
+          <li><a href="outcomes.html" class="nav-link active" aria-current="page"><i class="fa-solid fa-chart-line"></i> <span>Outcomes</span></a></li>
+          <li><a href="videos.html" class="nav-link"><i class="fa-solid fa-play-circle"></i> <span>Videos</span></a></li>
+          <li><a href="testimonials.html" class="nav-link"><i class="fa-solid fa-star"></i> <span>Testimonials</span></a></li>
+        </ul>
+        <div class="mobile-actions">
+          <a href="appointment.html" class="btn btn-header-primary"><i class="fa-solid fa-calendar-check"></i> Book Appointment</a>
+        </div>
+      </nav>
+      <div class="header-actions-desktop">
+        <a href="appointment.html" class="btn btn-header-secondary">Contact Us</a>
+        <a href="appointment.html" class="btn btn-header-primary"><i class="fa-solid fa-calendar-check"></i> Book Appointment</a>
+      </div>
+      <button class="nav-toggle" data-nav-toggle aria-label="Toggle navigation">
+        <i class="fa-solid fa-bars" id="nav-icon"></i>
+      </button>
+    </div>
+  </header>
+
+  <main id="main">
+    
+    <section class="outcomes-hero">
+      <div class="container">
+        <div class="hero-text">
+          <h1>Real Patient Outcomes</h1>
+          <p>Documented case studies showcasing successful recoveries from complex spinal and orthopaedic conditions.</p>
+        </div>
+      </div>
+    </section>
+
+    <section class="section">
+        <div class="container">
+            
+            <div class="case-row">
+                <div class="case-media-col">
+                    <div class="case-video-wrapper" onclick="openVideo('IpXgNQyw-w0', 'landscape')">
+                        <img src="https://img.youtube.com/vi/IpXgNQyw-w0/maxresdefault.jpg" alt="Scoliosis correction success" loading="lazy">
+                        <div class="vid-play-btn"><i class="fa-solid fa-play"></i></div>
+                    </div>
+                </div>
+                <div class="case-text-col">
+                    <span class="case-tag">Spinal Deformity</span>
+                    <h2 class="case-heading">Scoliosis Correction</h2>
+                    <div class="case-meta-grid">
+                        <div class="case-meta-item"><strong>Patient</strong> 14-Year-Old Boy</div>
+                        <div class="case-meta-item"><strong>Condition</strong> Idiopathic Scoliosis (60°)</div>
+                    </div>
+                    <p class="case-desc">
+                        Patient suffered from significant spinal curvature affecting posture and lung capacity. Traditional bracing had failed. Using a telescopic rod system, we corrected the curvature while allowing for future growth. The patient gained 3 inches in height immediately and returned to school in 3 weeks.
+                    </p>
+                </div>
+            </div>
+
+            <div class="case-row">
+                <div class="case-media-col">
+                    <div class="case-video-wrapper" onclick="openVideo('XYhuUaWxRxk', 'landscape')">
+                        <img src="assets/thumbnail-outcomes.jpg" alt="Endoscopic Spine Surgery" loading="lazy">
+                        <div class="vid-play-btn"><i class="fa-solid fa-play"></i></div>
+                    </div>
+                </div>
+                <div class="case-text-col">
+                    <span class="case-tag">Minimally Invasive</span>
+                    <h2 class="case-heading">Endoscopic Spine Surgery</h2>
+                    <div class="case-meta-grid">
+                        <div class="case-meta-item"><strong>Patient</strong> 35-Year-Old-Male</div>
+                        <div class="case-meta-item"><strong>Technique</strong> Keyhole Surgery</div>
+                    </div>
+                    <p class="case-desc">
+                        A revolutionary ultra-minimally invasive technique. The patient underwent surgery for a herniated disc through a tiny incision less than 1cm. This procedure ensures minimal tissue damage, significantly less pain, and allows the patient to walk immediately after the procedure.
+                    </p>
+                </div>
+            </div>
+
+            <div class="case-row">
+                <div class="case-media-col">
+                    <div class="case-video-wrapper" onclick="openVideo('aa5LyUfBzIE', 'landscape')">
+                        <img src="https://img.youtube.com/vi/aa5LyUfBzIE/maxresdefault.jpg" alt="Slip Disc Non Surgical Treatment" loading="lazy">
+                        <div class="vid-play-btn"><i class="fa-solid fa-play"></i></div>
+                    </div>
+                </div>
+                <div class="case-text-col">
+                    <span class="case-tag">Conservative Care</span>
+                    <h2 class="case-heading">Slip Disc Treated Without Surgery</h2>
+                    <div class="case-meta-grid">
+                        <div class="case-meta-item"><strong>Patient</strong> 38-Year-Old Male</div>
+                        <div class="case-meta-item"><strong>Treatment</strong> Targeted Therapy</div>
+                    </div>
+                    <p class="case-desc">
+                        Not every spine condition requires surgery. This patient suffered from a severe slip disc causing radiating leg pain. He was successfully treated using our comprehensive conservative management protocol, including spinal injections and physiotherapy, avoiding the need for an operation.
+                    </p>
+                </div>
+            </div>
+
+        </div>
+    </section>
+
+    <section class="reels-section">
+        <div class="container">
+            <div class="section-head">
+                <h2 class="section-title">Quick Recovery Stories</h2>
+                <p class="section-lead">Short clips tracking patient progress immediately after surgery.</p>
+            </div>
+            
+            <div class="reels-grid">
+                
+                <div class="reel-card" onclick="openVideo('k6iC6EFj4_s', 'vertical')">
+                    <img src="https://img.youtube.com/vi/k6iC6EFj4_s/hqdefault.jpg" alt="Bedridden to Walking" class="reel-thumb" loading="lazy">
+                    <div class="vid-play-btn"><i class="fa-solid fa-play"></i></div>
+                    <div class="reel-info">
+                        <div class="reel-title">Bedridden to Walking</div>
+                        <div class="reel-cat">Spine Surgery</div>
+                    </div>
+                </div>
+
+                <div class="reel-card" onclick="openVideo('J_MAdu_mKcQ', 'vertical')">
+                    <img src="https://img.youtube.com/vi/J_MAdu_mKcQ/hqdefault.jpg" alt="Limbs Injury & Trauma" class="reel-thumb" loading="lazy">
+                    <div class="vid-play-btn"><i class="fa-solid fa-play"></i></div>
+                    <div class="reel-info">
+                        <div class="reel-title">Limbs Injury & Trauma</div>
+                        <div class="reel-cat">Accident & Trauma</div>
+                    </div>
+                </div>
+
+                <div class="reel-card" onclick="openVideo('vxxNFGxgzG8', 'vertical')">
+                    <img src="https://img.youtube.com/vi/vxxNFGxgzG8/hqdefault.jpg" alt="Cervical Spine Fracture" class="reel-thumb" loading="lazy">
+                    <div class="vid-play-btn"><i class="fa-solid fa-play"></i></div>
+                    <div class="reel-info">
+                        <div class="reel-title">Cervical Spine Fracture</div>
+                        <div class="reel-cat">Spine Surgery</div>
+                    </div>
+                </div>
+
+                <div class="reel-card" onclick="openVideo('tkqIFceB12k', 'vertical')">
+                    <img src="https://img.youtube.com/vi/tkqIFceB12k/hqdefault.jpg" alt="Walking after TKR" class="reel-thumb" loading="lazy">
+                    <div class="vid-play-btn"><i class="fa-solid fa-play"></i></div>
+                    <div class="reel-info">
+                        <div class="reel-title">Walking after TKR</div>
+                        <div class="reel-cat">Orthopaedics</div>
+                    </div>
+                </div>
+
+                <div class="reel-card" onclick="openVideo('YG86FHd28AI', 'vertical')">
+                    <img src="https://img.youtube.com/vi/YG86FHd28AI/hqdefault.jpg" alt="Walking after Endoscopy" class="reel-thumb" loading="lazy">
+                    <div class="vid-play-btn"><i class="fa-solid fa-play"></i></div>
+                    <div class="reel-info">
+                        <div class="reel-title">Walking after Endoscopy</div>
+                        <div class="reel-cat">Spine Surgery</div>
+                    </div>
+                </div>
+
+                <div class="reel-card" onclick="openVideo('Yhr3yuRAUMo', 'vertical')">
+                    <img src="https://img.youtube.com/vi/Yhr3yuRAUMo/hqdefault.jpg" alt="Kyphoplasty Recovery" class="reel-thumb" loading="lazy">
+                    <div class="vid-play-btn"><i class="fa-solid fa-play"></i></div>
+                    <div class="reel-info">
+                        <div class="reel-title">Kyphoplasty Recovery</div>
+                        <div class="reel-cat">Spine Surgery</div>
+                    </div>
+                </div>
+
+                <div class="reel-card" onclick="openVideo('L9sFsnTdE2E', 'vertical')">
+                    <img src="https://img.youtube.com/vi/L9sFsnTdE2E/hqdefault.jpg" alt="Scoliosis Mobility" class="reel-thumb" loading="lazy">
+                    <div class="vid-play-btn"><i class="fa-solid fa-play"></i></div>
+                    <div class="reel-info">
+                        <div class="reel-title">Scoliosis Mobility</div>
+                        <div class="reel-cat">Spine Surgery</div>
+                    </div>
+                </div>
+
+                <div class="reel-card" onclick="openVideo('6mQCNrPVz4E', 'vertical')">
+                    <img src="https://img.youtube.com/vi/6mQCNrPVz4E/hqdefault.jpg" alt="Post Burn Scoliosis" class="reel-thumb" loading="lazy">
+                    <div class="vid-play-btn"><i class="fa-solid fa-play"></i></div>
+                    <div class="reel-info">
+                        <div class="reel-title">Post Burn Scoliosis</div>
+                        <div class="reel-cat">Accident & Trauma</div>
+                    </div>
+                </div>
+
+                <div class="reel-card" onclick="openVideo('_qrWWSynWos', 'vertical')">
+                    <img src="https://img.youtube.com/vi/_qrWWSynWos/hqdefault.jpg" alt="Scoliosis Surgery" class="reel-thumb" loading="lazy">
+                    <div class="vid-play-btn"><i class="fa-solid fa-play"></i></div>
+                    <div class="reel-info">
+                        <div class="reel-title">Scoliosis Surgery</div>
+                        <div class="reel-cat">Spine Surgery</div>
+                    </div>
+                </div>
+
+                <div class="reel-card" onclick="openVideo('uznpS3VGUPM', 'vertical')">
+                    <img src="https://img.youtube.com/vi/uznpS3VGUPM/hqdefault.jpg" alt="Improved Mobility" class="reel-thumb" loading="lazy">
+                    <div class="vid-play-btn"><i class="fa-solid fa-play"></i></div>
+                    <div class="reel-info">
+                        <div class="reel-title">Improved Mobility</div>
+                        <div class="reel-cat">Lumbar Surgery</div>
+                    </div>
+                </div>
+
+            </div>
+        </div>
+    </section>
+
+    <section class="section final-cta">
+      <div class="container">
+        <h2 class="section-title">Suffering from similar pain?</h2>
+        <p class="section-lead">
+            Early diagnosis leads to better outcomes. Book a consultation today.
+        </p>
+        <div class="cta-actions">
+            <a href="appointment.html" class="btn-proc">
+              <i class="fa-solid fa-calendar-check"></i> Book Appointment
+            </a>
+            <a href="https://wa.me/918638230049" class="btn-whatsapp">
+              <i class="fa-brands fa-whatsapp"></i> Drop us a text
+            </a>
+        </div>
+      </div>
+    </section>
+
+  </main>
+
+  <footer class="site-footer" id="contact">
+    <div class="footer-top">
+      <div class="footer-grid">
+        <div class="footer-col footer-brand-col">
+          <a href="index.html" class="brand-area"><img src="assets/icon-new1.png" alt="Logo" class="brand-icon"><div class="brand-text-col"><span class="brand-name">Dr. Jay Deep Ghosh</span><span class="brand-subtitle">Your path to pain free healing</span></div></a>
+          <p class="footer-tagline">Restoring mobility with advanced spine & orthopaedic care.</p>
+          <div class="footer-legal-links"><a href="#">Terms</a> | <a href="#">Privacy</a></div>
+          <div class="footer-social-icons brand-social"><a href="#"><i class="fa-brands fa-facebook-f"></i></a><a href="#"><i class="fa-brands fa-youtube"></i></a><a href="#"><i class="fa-brands fa-instagram"></i></a></div>
+        </div>
+        <div class="footer-col footer-visit-col">
+          <h3 class="footer-heading">Visit Our Clinic</h3>
+          <div class="map-wrapper">
+            <iframe 
+              src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3580.346894569584!2d91.77869407604345!3d26.15404529094764!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x375a59634c178b53%3A0x81381ecdd1e8f3cd!2sDr.%20Jay%20Deep%20Ghosh%20%7C%20Best%20orthopedic%20%26%20spine%20surgeon%20doctor%20in%20guwahati-assam-northeast!5e0!3m2!1sen!2sin!4v1706346789012!5m2!1sen!2sin" 
+              width="100%" 
+              height="100%" 
+              style="border:0;" 
+              loading="lazy"
+              allowfullscreen="" 
+              referrerpolicy="no-referrer-when-downgrade">
+            </iframe>
+          </div>
+          <p class="footer-address">
+            <i class="fa-solid fa-location-dot"></i> 
+            Apollo Hospitals, Lotus Tower, Christian Basti, Guwahati
+          </p>
+        </div>
+        <div class="footer-col footer-form-col">
+          <div class="footer-form-wrapper">
+            <h3 class="footer-heading">Contact Us</h3>
+            <form class="footer-contact-form"><input type="text" placeholder="Name"><input type="tel" placeholder="Phone"><textarea placeholder="Message"></textarea><button type="submit" class="btn btn-header-primary footer-submit-btn">Send</button></form>
+          </div>
+        </div>
+      </div>
+    </div>
+    <div class="footer-bottom"><div class="footer-bottom-inner"><p class="footer-note">© <span id="year">2026</span> Dr. Jay Deep Ghosh. All rights reserved.</p></div></div>
+  </footer>
+
+  <div id="video-modal" class="video-modal" aria-hidden="true" onclick="closeVideo(event)">
+    <div class="video-wrapper" id="video-frame-wrapper">
+      <button class="modal-close-btn" onclick="closeVideo(event, true)"><i class="fa-solid fa-xmark"></i></button>
+      <div id="video-container"></div>
+    </div>
+  </div>
+
+  <script>
+    const navToggle = document.querySelector('[data-nav-toggle]');
+    const navPanel = document.querySelector('[data-nav-panel]');
+    
+    if(navToggle && navPanel) {
+        navToggle.addEventListener('click', () => {
+            navPanel.classList.toggle('is-open');
+            const icon = navToggle.querySelector('i');
+            if(navPanel.classList.contains('is-open')) {
+                icon.classList.remove('fa-bars');
+                icon.classList.add('fa-xmark');
+            } else {
+                icon.classList.remove('fa-xmark');
+                icon.classList.add('fa-bars');
+            }
+        });
+    }
+
+    const modal = document.getElementById('video-modal');
+    const wrapper = document.getElementById('video-frame-wrapper');
+    const container = document.getElementById('video-container');
+
+    function openVideo(videoId, type) {
+      if(!videoId) return;
+      
+      wrapper.style.maxWidth = '';
+      wrapper.style.aspectRatio = '';
+      wrapper.style.width = '100%';
+
+      if (type === 'vertical') {
+          wrapper.style.maxWidth = '450px'; 
+          wrapper.style.aspectRatio = '9/16';
+      } else {
+          wrapper.style.maxWidth = '900px'; 
+          wrapper.style.aspectRatio = '16/9';
+      }
+
+      container.innerHTML = `<iframe src="https://www.youtube.com/embed/${videoId}?autoplay=1&playsinline=1&controls=1&rel=0" allow="autoplay; encrypted-media" allowfullscreen></iframe>`;
+      
+      modal.classList.add('is-active');
+      document.body.style.overflow = 'hidden';
+    }
+
+    function closeVideo(e, force) {
+      if (force || e.target === modal) {
+        modal.classList.remove('is-active');
+        container.innerHTML = '';
+        document.body.style.overflow = '';
+      }
+    }
+
+    const yearSpan = document.getElementById('year');
+    if(yearSpan) yearSpan.textContent = new Date().getFullYear();
+  </script>
+</body>
+</html>

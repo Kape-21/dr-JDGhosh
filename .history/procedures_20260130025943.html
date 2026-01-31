@@ -1,0 +1,821 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width,initial-scale=1" />
+  <meta name="theme-color" content="#05668d" />
+  <title>Advanced Procedures | Dr. Jay Deep Ghosh</title>
+  
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600&family=Montserrat:wght@600;700;800;900&display=swap" rel="stylesheet" />
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css" />
+
+  <link rel="stylesheet" href="css/base.css" />
+  <link rel="stylesheet" href="css/components.css" />
+  <link rel="stylesheet" href="css/layout.css" />
+
+  <style>
+    /* =========================================
+       PAGE-SPECIFIC STYLES & OVERRIDES
+       ========================================= */
+    
+    :root {
+      --font-heading: 'Montserrat', sans-serif;
+      --font-body: 'Inter', sans-serif;
+      --color-primary-blue: #05668d;
+      --color-primary-green: #00a896;
+      --color-text: #374151;
+      --gradient-section-bg: linear-gradient(to bottom, #e0f2fe 0%, #cbd5e1 100%); 
+      --gradient-accent: linear-gradient(to right, #05668d, #00a896);
+    }
+
+    body {
+      font-family: var(--font-body);
+      color: var(--color-text);
+      line-height: 1.6;
+      font-size: 0.9rem;
+    }
+
+    /* --- NAV BAR UPDATE: TEXT ONLY UNDERLINE --- */
+    .nav-link {
+        position: relative;
+        text-decoration: none;
+        padding: 0.5rem 0;
+        margin: 0 0.5rem;
+        transition: opacity 0.3s ease;
+        display: inline-flex;
+        align-items: center;
+        gap: 6px; 
+    }
+    
+    .nav-link span {
+        position: relative;
+    }
+
+    .nav-link.active {
+        font-weight: 700;
+        opacity: 1;
+        color: inherit !important;
+    }
+
+    .nav-link.active span::after {
+        content: "";
+        display: block;
+        width: 100%;
+        height: 3px;
+        background: var(--color-primary-green);
+        position: absolute;
+        bottom: -4px; 
+        left: 0;
+        border-radius: 2px;
+    }
+
+    /* --- GLOBAL SECTION STYLES --- */
+    .section { padding: 2.5rem 0; }
+    
+    .section-head { margin-bottom: 2.5rem; text-align: center; }
+    .section-title {
+      font-family: var(--font-heading);
+      font-size: 1.8rem;
+      font-weight: 800;
+      color: var(--color-primary-blue);
+      margin-bottom: 0.8rem; 
+      line-height: 1.2;
+      position: relative;
+      display: inline-block;
+    }
+    
+    .section-title::after {
+      content: "";
+      display: block;
+      width: 60px;
+      height: 4px;
+      background: var(--color-primary-green);
+      margin: 0.8rem auto 0; 
+      border-radius: 2px;
+    }
+
+    .section-lead {
+      font-size: 0.9rem;
+      max-width: 700px;
+      margin: 1rem auto 0;
+      opacity: 0.85;
+    }
+
+    /* --- HERO SECTION --- */
+    .proc-hero {
+      background: url('assets/about-hero-bg2.webp') no-repeat center center; 
+      background-size: 100% 100%; 
+      position: relative;
+      padding: 5rem 0 4rem;
+      text-align: center;
+    }
+
+    .proc-hero .container { position: relative; z-index: 1; }
+
+    .hero-text {
+      max-width: 800px;
+      margin: 0 auto;
+    }
+
+    .hero-text h1 {
+      font-family: var(--font-heading);
+      font-size: 2.2rem;
+      font-weight: 900; 
+      line-height: 1.1;
+      margin-bottom: 1rem;
+      color: #002a3a; 
+      text-shadow: 0px 0px 20px rgba(255, 255, 255, 0.6);
+    }
+    .hero-text p {
+      font-size: 1.1rem;
+      margin-bottom: 2rem;
+      color: #00334e; 
+      font-weight: 700; 
+      text-shadow: 0px 0px 15px rgba(255, 255, 255, 0.5);
+    }
+
+    .btn-hero {
+      display: inline-flex;
+      align-items: center;
+      gap: 0.5rem;
+      background: #fff;
+      color: var(--color-primary-blue);
+      padding: 0.6rem 1.4rem;
+      border-radius: 50px;
+      font-weight: 700;
+      font-size: 0.9rem;
+      transition: all 0.3s ease;
+      text-decoration: none;
+      box-shadow: 0 4px 10px rgba(0,0,0,0.15);
+      border: 1px solid rgba(5,102,141,0.1);
+    }
+    .btn-hero:hover {
+      background: #0f172a; 
+      color: #fff;
+      transform: translateY(-2px);
+      box-shadow: 0 6px 15px rgba(0,0,0,0.3);
+      border-color: #0f172a;
+    }
+
+    /* --- PROCEDURE BUTTONS --- */
+    .btn-proc {
+      display: inline-flex;
+      align-items: center;
+      gap: 0.5rem;
+      background: var(--gradient-accent);
+      color: #fff;
+      padding: 0.55rem 1.2rem;
+      border-radius: 50px;
+      font-weight: 600;
+      font-size: 0.85rem;
+      transition: all 0.3s ease;
+      text-decoration: none;
+      box-shadow: 0 4px 10px rgba(5, 102, 141, 0.2);
+    }
+    .btn-proc:hover {
+      transform: translateY(-2px);
+      box-shadow: 0 6px 15px rgba(5, 102, 141, 0.35);
+      filter: brightness(1.1);
+    }
+
+    /* --- SPOTLIGHT ROWS --- */
+    .spotlight-row {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 3rem;
+      align-items: center;
+      margin-bottom: 3rem; 
+    }
+    
+    .spotlight-row:nth-child(even) .spotlight-img-col { order: 2; }
+    .spotlight-row:nth-child(even) .spotlight-text-col { order: 1; }
+
+    .spotlight-img-col img {
+      width: 100%;
+      border-radius: 16px;
+      box-shadow: 0 10px 25px rgba(0,0,0,0.08);
+    }
+
+    .spotlight-tag {
+      display: inline-block;
+      background: rgba(5, 102, 141, 0.08);
+      color: var(--color-primary-blue);
+      font-weight: 700;
+      font-size: 0.7rem;
+      padding: 0.3rem 0.8rem;
+      border-radius: 50px;
+      margin-bottom: 0.8rem;
+      text-transform: uppercase;
+      letter-spacing: 0.5px;
+    }
+    
+    .spotlight-heading {
+      font-family: var(--font-heading);
+      font-size: 1.5rem;
+      font-weight: 700;
+      color: #111827;
+      margin-bottom: 0.8rem;
+    }
+    .spotlight-desc {
+      font-size: 0.9rem;
+      color: #4b5563;
+      margin-bottom: 1.2rem;
+    }
+
+    .feature-list {
+      list-style: none;
+      padding: 0;
+      margin-bottom: 1.5rem;
+    }
+    .feature-list li {
+      position: relative;
+      padding-left: 1.5rem;
+      margin-bottom: 0.5rem;
+      font-size: 0.85rem;
+      color: #374151;
+      font-weight: 500;
+    }
+    .feature-list li i {
+      position: absolute;
+      left: 0;
+      top: 4px;
+      color: var(--color-primary-green);
+      font-size: 0.8rem;
+    }
+
+    /* SEPARATOR LINE */
+    .proc-separator {
+      height: 2px; 
+      width: 60%; 
+      background: rgba(5, 102, 141, 0.25); 
+      margin: 0 auto 4rem; 
+      border-radius: 2px;
+    }
+
+    /* --- SPECIALIZED TREATMENTS --- */
+    .section-specialized {
+        background: var(--gradient-section-bg); 
+    }
+
+    .grid-3 {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 1.5rem;
+      align-items: stretch;
+    }
+
+    .cond-card {
+      background: #fff;
+      padding: 1.25rem;
+      border-radius: 12px;
+      border: 1px solid rgba(0,0,0,0.06);
+      box-shadow: 0 4px 6px rgba(0,0,0,0.02);
+      transition: all 0.3s ease;
+      display: flex;
+      flex-direction: row;
+      align-items: flex-start;
+      gap: 1rem;
+      height: 100%; 
+    }
+    .cond-card:hover {
+      transform: translateY(-5px);
+      border-color: var(--color-primary-blue);
+      box-shadow: 0 15px 35px rgba(5, 102, 141, 0.12);
+    }
+
+    .cond-icon {
+      width: 42px; 
+      height: 42px;
+      background: rgba(224, 242, 254, 0.6);
+      color: var(--color-primary-blue);
+      border-radius: 8px;
+      display: flex; 
+      justify-content: center; 
+      align-items: center;
+      font-size: 1.1rem;
+      flex-shrink: 0; 
+    }
+    
+    .cond-content {
+      flex: 1;
+    }
+
+    .cond-title {
+      font-size: 1rem;
+      font-weight: 700;
+      margin-bottom: 0.3rem;
+      color: #1e293b;
+      font-family: var(--font-heading);
+      line-height: 1.3;
+    }
+    .cond-text {
+      font-size: 0.85rem;
+      color: #64748b;
+      line-height: 1.5;
+    }
+
+    /* --- TECH BAR --- */
+    .tech-bar {
+      background: #0f172a;
+      padding: 2.5rem 0;
+      color: #fff;
+    }
+    .tech-grid {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 2rem;
+      text-align: center;
+    }
+    .tech-item h3 {
+      font-size: 1.8rem;
+      color: var(--color-primary-green);
+      margin-bottom: 0.2rem;
+      font-weight: 800;
+      font-family: var(--font-heading);
+    }
+    .tech-item p {
+      font-size: 0.85rem;
+      opacity: 0.8;
+      font-weight: 500;
+      color: var(--color-primary-green);
+    }
+
+    /* --- FINAL CTA --- */
+    .final-cta {
+      background: var(--gradient-section-bg); 
+      text-align: center;
+      padding: 2.5rem 0 3.5rem !important; 
+    }
+    
+    .final-cta .section-title {
+        margin-bottom: 0.5rem; 
+    }
+    .final-cta .section-lead {
+        margin-top: 0;
+        margin-bottom: 1.5rem; 
+        max-width: 600px;
+    }
+    
+    .cta-buttons {
+      display: flex;
+      justify-content: center;
+      gap: 1rem;
+      margin-top: 0;
+    }
+    .btn-outline-dark {
+        background: transparent;
+        color: var(--color-primary-blue);
+        border: 1px solid var(--color-primary-blue);
+        padding: 0.55rem 1.2rem;
+        border-radius: 50px;
+        font-weight: 600;
+        font-size: 0.85rem;
+        transition: all 0.3s ease;
+        text-decoration: none;
+    }
+    .btn-outline-dark:hover {
+        background: var(--color-primary-blue);
+        color: #fff;
+    }
+
+    /* --- TABLET RULES (UNCHANGED) --- */
+    @media (max-width: 900px) {
+      .hero-text h1 { font-size: 1.8rem; }
+      
+      .spotlight-row, .spotlight-row:nth-child(even) {
+        grid-template-columns: 1fr;
+        gap: 2rem;
+        margin-bottom: 2rem;
+      }
+      .spotlight-row:nth-child(even) .spotlight-img-col { order: 0; }
+      .spotlight-row:nth-child(even) .spotlight-text-col { order: 1; }
+
+      .grid-3 { grid-template-columns: 1fr; }
+      .tech-grid { grid-template-columns: 1fr; }
+      
+      .cond-card, .tech-item { max-width: 100%; margin: 0 auto; height: auto; }
+
+      .section-title { font-size: 1.5rem; }
+      .nav-link { margin: 0; } 
+      .nav-link.active::after { bottom: 0; } 
+    }
+
+    /* --- MOBILE SPECIFIC FIXES (Max-Width 600px) --- */
+    @media (max-width: 600px) {
+        /* 1. Hero Spacing */
+        .proc-hero {
+            padding: 2rem 0 2rem; 
+            background-size: cover; 
+        }
+        .hero-text h1 { font-size: 1.5rem; }
+        .hero-text p { font-size: 0.9rem; margin-bottom: 1.5rem; }
+
+        /* 2. Procedures Zig Zag */
+        .spotlight-row, 
+        .spotlight-row:nth-child(even) {
+            display: grid;
+            grid-template-columns: 1fr 1fr; 
+            gap: 0.8rem;
+            align-items: stretch; 
+            margin-bottom: 2.5rem;
+        }
+        
+        .spotlight-row:nth-child(even) .spotlight-img-col { order: 2; }
+        .spotlight-row:nth-child(even) .spotlight-text-col { order: 1; }
+
+        .spotlight-img-col {
+            display: flex;
+            height: auto;
+            min-height: 100%;
+        }
+        .spotlight-img-col img {
+            width: 100%;
+            height: 100%; 
+            object-fit: cover; 
+            object-position: center; 
+            display: block; 
+            border-radius: 12px;
+        }
+
+        .spotlight-text-col {
+            display: flex;
+            flex-direction: column;
+            justify-content: center; 
+            /* FIX: Prevents buttons from stretching to full width */
+            align-items: flex-start; 
+        }
+        
+        .spotlight-heading { font-size: 0.85rem; margin-bottom: 0.2rem; line-height: 1.3; }
+        .spotlight-tag { font-size: 0.55rem; padding: 0.15rem 0.5rem; margin-bottom: 0.3rem; }
+        .spotlight-desc { font-size: 0.65rem; line-height: 1.3; margin-bottom: 0.4rem; display: -webkit-box; -webkit-line-clamp: 4; -webkit-box-orient: vertical; overflow: hidden; }
+        .feature-list li { font-size: 0.6rem; padding-left: 0.9rem; margin-bottom: 0.15rem; }
+        .feature-list li i { font-size: 0.6rem; top: 3px; }
+        .feature-list { margin-bottom: 0.6rem; }
+
+        /* 3. Specialized Treatments (2 Column Grid) */
+        .grid-3 {
+            display: grid;
+            grid-template-columns: repeat(2, 1fr); 
+            gap: 0.8rem;
+        }
+        .cond-card {
+            flex-direction: column; 
+            padding: 0.8rem;
+            gap: 0.5rem;
+            text-align: left;
+        }
+        .cond-icon { width: 32px; height: 32px; font-size: 0.9rem; margin-bottom: 0; }
+        .cond-title { font-size: 0.8rem; margin-bottom: 0.2rem; }
+        .cond-text { font-size: 0.65rem; line-height: 1.3; }
+
+        /* 4. Tech Bar (Horizontal Strip) */
+        .tech-bar { padding: 1.5rem 0; }
+        .tech-grid {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr); 
+            gap: 0.5rem;
+        }
+        .tech-item h3 { font-size: 1.1rem; margin-bottom: 0; }
+        .tech-item p { font-size: 0.6rem; line-height: 1.2; }
+
+        /* 5. Button Sizing */
+        .btn-proc, .btn-hero, .btn-outline-dark {
+            padding: 0.35rem 0.7rem;
+            font-size: 0.65rem;
+            white-space: nowrap; 
+        }
+        .cta-buttons { gap: 0.5rem; flex-wrap: wrap; }
+    }
+  </style>
+</head>
+
+<body>
+  
+  <header class="site-header" data-header>
+    <div class="header-grid">
+      <a href="index.html" class="brand-area">
+        <img src="assets/icon-new1.png" alt="Logo" class="brand-icon">
+        <div class="brand-text-col">
+          <span class="brand-name">Dr. Jay Deep Ghosh</span>
+          <span class="brand-subtitle">Your path to pain free healing</span>
+        </div>
+      </a>
+      <nav class="nav-center" data-nav-panel>
+        <ul class="nav-list">
+          <li><a href="about.html" class="nav-link"><i class="fa-solid fa-user-tie"></i> <span>About</span></a></li>
+          <li><a href="procedures.html" class="nav-link active" aria-current="page"><i class="fa-solid fa-stethoscope"></i> <span>Procedures</span></a></li>
+          <li><a href="outcomes.html" class="nav-link"><i class="fa-solid fa-chart-line"></i> <span>Outcomes</span></a></li>
+          <li><a href="videos.html" class="nav-link"><i class="fa-solid fa-play-circle"></i> <span>Videos</span></a></li>
+          <li><a href="testimonials.html" class="nav-link"><i class="fa-solid fa-star"></i> <span>Testimonials</span></a></li>
+        </ul>
+        <div class="mobile-actions">
+          <a href="appointment.html" class="btn btn-header-primary"><i class="fa-solid fa-calendar-check"></i> Book Appointment</a>
+        </div>
+      </nav>
+      <div class="header-actions-desktop">
+        <a href="appointment.html" class="btn btn-header-secondary">Contact Us</a>
+        <a href="appointment.html" class="btn btn-header-primary"><i class="fa-solid fa-calendar-check"></i> Book Appointment</a>
+      </div>
+      <button class="nav-toggle" data-nav-toggle aria-label="Toggle navigation">
+        <i class="fa-solid fa-bars" id="nav-icon"></i>
+      </button>
+    </div>
+  </header>
+
+  <main id="main">
+    
+    <section class="proc-hero">
+      <div class="container">
+        <div class="hero-text">
+          <h1>Advanced Surgical Solutions</h1>
+          <p>Combining state-of-the-art technology with minimally invasive techniques to ensure safety, precision, and faster recovery.</p>
+          <div class="hero-actions">
+             <a href="#spine" class="btn-hero">
+               <i class="fa-solid fa-arrow-down"></i> Explore Procedures
+             </a>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <section class="section" id="spine">
+      <div class="container">
+        <div class="section-head">
+            <h2 class="section-title">Spine Excellence</h2>
+            <p class="section-lead">Precision care for complex spinal conditions using global gold-standard techniques.</p>
+        </div>
+
+        <div class="spotlight-row">
+            <div class="spotlight-img-col">
+                <img src="assets/MISS image.webp" alt="Minimally Invasive Spine Surgery" loading="lazy">
+            </div>
+            <div class="spotlight-text-col">
+                <span class="spotlight-tag">Gold Standard</span>
+                <h3 class="spotlight-heading">Minimally Invasive Spine Surgery (MISS)</h3>
+                <p class="spotlight-desc">
+                    A modern approach that uses tubular retractors and specialized instruments to treat spinal conditions through tiny incisions. This technique spares the muscles from being cut, resulting in significantly less pain.
+                </p>
+                <ul class="feature-list">
+                    <li><i class="fa-solid fa-check-circle"></i> Tiny incisions (less than 2cm)</li>
+                    <li><i class="fa-solid fa-check-circle"></i> Minimal blood loss & muscle sparing</li>
+                    <li><i class="fa-solid fa-check-circle"></i> Walk within 24 hours of surgery</li>
+                </ul>
+                <a href="appointment.html" class="btn-proc">Consult for MISS</a>
+            </div>
+        </div>
+        <div class="proc-separator"></div>
+
+        <div class="spotlight-row">
+            <div class="spotlight-img-col">
+                <img src="assets/Endoscopic.webp" alt="Endoscopic Spine Surgery" loading="lazy">
+            </div>
+            <div class="spotlight-text-col">
+                <span class="spotlight-tag">Keyhole Tech</span>
+                <h3 class="spotlight-heading">Endoscopic Spine Surgery</h3>
+                <p class="spotlight-desc">
+                    The ultra-minimally invasive solution for slipped discs and sciatica. Using a high-definition endoscope, the surgeon visualizes and removes the herniated disc fragment with extreme precision.
+                </p>
+                <ul class="feature-list">
+                    <li><i class="fa-solid fa-check-circle"></i> Often done under Local Anaesthesia</li>
+                    <li><i class="fa-solid fa-check-circle"></i> Day-care procedure (Home same day)</li>
+                    <li><i class="fa-solid fa-check-circle"></i> No stitches required</li>
+                </ul>
+                <a href="appointment.html" class="btn-proc">Is this for me?</a>
+            </div>
+        </div>
+        <div class="proc-separator"></div>
+
+      </div>
+    </section>
+
+    <section class="section section-specialized">
+        <div class="container">
+            <div class="section-head">
+                <h2 class="section-title">Specialized Treatments</h2>
+                <p class="section-lead">Targeted interventions for specific orthopaedic and spinal disorders.</p>
+            </div>
+            
+            <div class="grid-3">
+                <div class="cond-card">
+                    <div class="cond-icon"><i class="fa-solid fa-x-ray"></i></div>
+                    <div class="cond-content">
+                        <h4 class="cond-title">Scoliosis Correction</h4>
+                        <p class="cond-text">Correction of spinal curvature deformities in children and adults using advanced telescopic rod systems.</p>
+                    </div>
+                </div>
+
+                <div class="cond-card">
+                    <div class="cond-icon"><i class="fa-solid fa-bacteria"></i></div>
+                    <div class="cond-content">
+                        <h4 class="cond-title">Spinal Tuberculosis</h4>
+                        <p class="cond-text">Comprehensive management of Pott’s Spine through medication and surgical debridement.</p>
+                    </div>
+                </div>
+
+                <div class="cond-card">
+                    <div class="cond-icon"><i class="fa-solid fa-bone"></i></div>
+                    <div class="cond-content">
+                        <h4 class="cond-title">Spondylolisthesis</h4>
+                        <p class="cond-text">Treatment for "slipped vertebrae" using fixation and fusion to restore alignment.</p>
+                    </div>
+                </div>
+
+                <div class="cond-card">
+                    <div class="cond-icon"><i class="fa-solid fa-user-injured"></i></div>
+                    <div class="cond-content">
+                        <h4 class="cond-title">Cervical Spondylosis</h4>
+                        <p class="cond-text">Management of neck pain and radiating arm pain via ACDF (fusion) or artificial disc replacement.</p>
+                    </div>
+                </div>
+
+                <div class="cond-card">
+                    <div class="cond-icon"><i class="fa-solid fa-crutch"></i></div>
+                    <div class="cond-content">
+                        <h4 class="cond-title">Osteoporotic Fractures</h4>
+                        <p class="cond-text">Vertebroplasty and Kyphoplasty (cement injection) to instantly relieve pain from fractures.</p>
+                    </div>
+                </div>
+
+                <div class="cond-card">
+                    <div class="cond-icon"><i class="fa-solid fa-child-reaching"></i></div>
+                    <div class="cond-content">
+                        <h4 class="cond-title">Paediatric Spine</h4>
+                        <p class="cond-text">Specialized care for congenital spinal defects and deformities ensuring normal growth.</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section class="tech-bar">
+        <div class="container">
+            <div class="tech-grid">
+                <div class="tech-item">
+                    <h3>100%</h3>
+                    <p>Modular OT Hygiene</p>
+                </div>
+                <div class="tech-item">
+                    <h3>C-Arm</h3>
+                    <p>High Precision Imaging</p>
+                </div>
+                <div class="tech-item">
+                    <h3>24/7</h3>
+                    <p>Emergency Trauma Care</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section class="section">
+        <div class="container">
+            <div class="section-head">
+                <h2 class="section-title">Orthopaedic Solutions</h2>
+                <p class="section-lead">Restoring movement for active living with joint replacement and arthroscopy.</p>
+            </div>
+    
+            <div class="spotlight-row">
+                <div class="spotlight-img-col">
+                    <img src="assets/Total-Knee-Arthroplasty-.webp" alt="Total Knee Replacement" loading="lazy">
+                </div>
+                <div class="spotlight-text-col">
+                    <span class="spotlight-tag">Joint Revival</span>
+                    <h3 class="spotlight-heading">Total Knee Replacement (TKR)</h3>
+                    <p class="spotlight-desc">
+                        For severe arthritis where conservative treatment fails. We use high-flex designs and computer-assisted techniques to ensure perfect alignment and longevity of the implant.
+                    </p>
+                    <ul class="feature-list">
+                        <li><i class="fa-solid fa-check-circle"></i> Tissue-preserving technique</li>
+                        <li><i class="fa-solid fa-check-circle"></i> Rapid Recovery Protocol</li>
+                        <li><i class="fa-solid fa-check-circle"></i> Implants lasting 20-25 years</li>
+                    </ul>
+                    <a href="appointment.html" class="btn-proc">Get Knee Advice</a>
+                </div>
+            </div>
+            <div class="proc-separator"></div>
+    
+            <div class="spotlight-row">
+                <div class="spotlight-img-col">
+                    <img src="assets/hip replacement.webp" alt="Hip Replacement" loading="lazy">
+                </div>
+                <div class="spotlight-text-col">
+                    <span class="spotlight-tag">Mobility Restored</span>
+                    <h3 class="spotlight-heading">Total Hip Replacement (THR)</h3>
+                    <p class="spotlight-desc">
+                        Ideal for Avascular Necrosis (AVN) or Hip Fractures. Utilizing ceramic-on-ceramic or poly bearings to provide a friction-free, natural range of motion.
+                    </p>
+                    <ul class="feature-list">
+                        <li><i class="fa-solid fa-check-circle"></i> Pain-free walking usually within 2 days</li>
+                        <li><i class="fa-solid fa-check-circle"></i> Minimizes leg length discrepancy</li>
+                        <li><i class="fa-solid fa-check-circle"></i> Low dislocation risk</li>
+                    </ul>
+                    <a href="appointment.html" class="btn-proc">Consult for Hip Pain</a>
+                </div>
+            </div>
+            <div class="proc-separator"></div>
+
+            <div class="spotlight-row">
+                <div class="spotlight-img-col">
+                    <img src="assets/shoulder-arthroscopy-.webp" alt="Arthroscopy" loading="lazy">
+                </div>
+                <div class="spotlight-text-col">
+                    <span class="spotlight-tag">Sports Medicine</span>
+                    <h3 class="spotlight-heading">Arthroscopic (Keyhole) Surgery</h3>
+                    <p class="spotlight-desc">
+                        Diagnostic and therapeutic procedures for knee (ACL/PCL/Meniscus) and shoulder (Rotator Cuff) injuries. Perfect for sports enthusiasts wanting to return to the field.
+                    </p>
+                    <ul class="feature-list">
+                        <li><i class="fa-solid fa-check-circle"></i> Camera-guided precision</li>
+                        <li><i class="fa-solid fa-check-circle"></i> Minimal scarring</li>
+                        <li><i class="fa-solid fa-check-circle"></i> Faster return to sports</li>
+                    </ul>
+                    <a href="appointment.html" class="btn-proc">Consult for Joint Pain</a>
+                </div>
+            </div>
+    
+        </div>
+    </section>
+
+    <section class="section final-cta">
+        <div class="container">
+            <h2 class="section-title">Ready to live pain-free?</h2>
+            <p class="section-lead" style="color:#64748b;">
+                Don't let pain dictate your life. Schedule a consultation to discuss the best treatment plan for your condition.
+            </p>
+            <div class="cta-buttons">
+                <a href="appointment.html" class="btn-proc">Book an Appointment</a>
+                <a href="https://wa.me/918638230049" class="btn-outline-dark">Contact Us</a>
+            </div>
+        </div>
+    </section>
+
+  </main>
+
+  <footer class="site-footer" id="contact">
+    <div class="footer-top">
+      <div class="footer-grid">
+        <div class="footer-col footer-brand-col">
+          <a href="index.html" class="brand-area"><img src="assets/icon-new1.png" alt="Logo" class="brand-icon"><div class="brand-text-col"><span class="brand-name">Dr. Jay Deep Ghosh</span><span class="brand-subtitle">Your path to pain free healing</span></div></a>
+          <p class="footer-tagline">Restoring mobility with advanced spine & orthopaedic care.</p>
+          <div class="footer-legal-links"><a href="#">Terms</a> | <a href="#">Privacy</a></div>
+          <div class="footer-social-icons brand-social"><a href="#"><i class="fa-brands fa-facebook-f"></i></a><a href="#"><i class="fa-brands fa-youtube"></i></a><a href="#"><i class="fa-brands fa-instagram"></i></a></div>
+        </div>
+        <div class="footer-col footer-visit-col">
+          <h3 class="footer-heading">Visit Our Clinic</h3>
+          <div class="map-wrapper">
+            <iframe 
+              src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3580.346894569584!2d91.77869407604345!3d26.15404529094764!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x375a59634c178b53%3A0x81381ecdd1e8f3cd!2sDr.%20Jay%20Deep%20Ghosh%20%7C%20Best%20orthopedic%20%26%20spine%20surgeon%20doctor%20in%20guwahati-assam-northeast!5e0!3m2!1sen!2sin!4v1706346789012!5m2!1sen!2sin" 
+              width="100%" 
+              height="100%" 
+              style="border:0;" 
+              loading="lazy"
+              allowfullscreen="" 
+              referrerpolicy="no-referrer-when-downgrade">
+            </iframe>
+          </div>
+          <p class="footer-address">
+            <i class="fa-solid fa-location-dot"></i> 
+            Apollo Hospitals, Lotus Tower, Christian Basti, Guwahati
+          </p>
+        </div>
+        <div class="footer-col footer-form-col">
+          <div class="footer-form-wrapper">
+            <h3 class="footer-heading">Contact Us</h3>
+            <form class="footer-contact-form"><input type="text" placeholder="Name"><input type="tel" placeholder="Phone"><textarea placeholder="Message"></textarea><button type="submit" class="btn btn-header-primary footer-submit-btn">Send</button></form>
+          </div>
+        </div>
+      </div>
+    </div>
+    <div class="footer-bottom"><div class="footer-bottom-inner"><p class="footer-note">© <span id="year">2026</span> Dr. Jay Deep Ghosh. All rights reserved. <i>Designed & Developed by MaxXiMuS</i></p></div></div>
+  </footer>
+
+  <script>
+    document.addEventListener('DOMContentLoaded', () => {
+        // Mobile Nav Toggle
+        const navToggle = document.querySelector('[data-nav-toggle]');
+        const navPanel = document.querySelector('[data-nav-panel]');
+        
+        if(navToggle && navPanel) {
+            navToggle.addEventListener('click', () => {
+                navPanel.classList.toggle('is-open');
+                const icon = navToggle.querySelector('i');
+                if(navPanel.classList.contains('is-open')) {
+                    icon.classList.remove('fa-bars');
+                    icon.classList.add('fa-xmark');
+                } else {
+                    icon.classList.remove('fa-xmark');
+                    icon.classList.add('fa-bars');
+                }
+            });
+        }
+        
+        // Dynamic Year
+        const yearSpan = document.getElementById('year');
+        if(yearSpan) {
+            yearSpan.textContent = new Date().getFullYear();
+        }
+    });
+  </script>
+</body>
+</html>

@@ -1,0 +1,634 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width,initial-scale=1" />
+  <meta name="theme-color" content="#05668d" />
+  <title>Book Appointment | Dr. Jay Deep Ghosh</title>
+  <meta name="description" content="Book an appointment with Dr. Jay Deep Ghosh. Upload reports, check OPD timings, and find emergency contacts." />
+
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600&family=Montserrat:wght@600;700;800;900&display=swap" rel="stylesheet" />
+
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css" referrerpolicy="no-referrer" />
+
+  <link rel="stylesheet" href="css/base.css" />
+  <link rel="stylesheet" href="css/components.css" />
+  <link rel="stylesheet" href="css/layout.css" />
+
+  <style>
+    /* =========================================
+       PAGE-SPECIFIC STYLES
+       ========================================= */
+    
+    :root {
+      --font-heading: 'Montserrat', sans-serif;
+      --font-body: 'Inter', sans-serif;
+      --color-primary-blue: #05668d;
+      --color-primary-green: #00a896;
+      --color-text: #374151;
+      --color-emergency: #ef4444;
+      --color-emergency-bg: #fef2f2;
+      
+      --gradient-accent: linear-gradient(to right, #05668d, #00a896);
+      --bg-cream: linear-gradient(180deg, #fffbeb 0%, #ffffff 100%);
+      
+      --shadow-card: 0 4px 15px rgba(0,0,0,0.05);
+      --shadow-hover: 0 10px 25px rgba(5, 102, 141, 0.12);
+      
+      /* Apollo Brand Color */
+      --color-apollo-orange: #f07f23;
+    }
+
+    body {
+      font-family: var(--font-body);
+      color: var(--color-text);
+      line-height: 1.6;
+      font-size: 0.9rem;
+    }
+
+    /* --- NAV BAR --- */
+    .nav-link {
+        position: relative; text-decoration: none; padding: 0.5rem 0; margin: 0 0.5rem;
+        transition: opacity 0.3s ease; display: inline-flex; align-items: center; gap: 6px; 
+    }
+    .nav-link span { position: relative; }
+    .nav-link.active { font-weight: 700; opacity: 1; color: inherit !important; }
+    .nav-link.active span::after {
+        content: ""; display: block; width: 100%; height: 3px; background: var(--color-primary-green);
+        position: absolute; bottom: -4px; left: 0; border-radius: 2px;
+    }
+
+    /* --- HERO SECTION --- */
+    .appt-hero {
+      background: linear-gradient(135deg, #f0f9ff 0%, #e0f2fe 100%);
+      padding: 5rem 0 3rem;
+      text-align: center;
+      border-bottom: 1px solid rgba(5, 102, 141, 0.1);
+    }
+    .appt-hero h1 { 
+        color: var(--color-primary-blue); margin-bottom: 0.5rem; 
+        font-size: 2.2rem; font-family: var(--font-heading); font-weight: 900;
+    }
+    .appt-hero p { 
+        color: var(--color-text); max-width: 600px; margin: 0 auto; 
+        opacity: 0.9; font-size: 1rem; font-weight: 500;
+    }
+
+    /* --- MAIN LAYOUT --- */
+    .content-wrapper { background: var(--bg-cream); padding: 3rem 0; }
+    
+    .appt-grid {
+      display: grid;
+      grid-template-columns: 1.4fr 0.9fr; 
+      gap: 2.5rem;
+      align-items: start;
+    }
+
+    /* --- FORM CARD --- */
+    .form-card {
+      background: #fff; padding: 2rem; border-radius: 16px;
+      box-shadow: var(--shadow-card); border: 1px solid rgba(0,0,0,0.04);
+    }
+    .form-head { margin-bottom: 1.5rem; border-bottom: 1px solid rgba(0,0,0,0.06); padding-bottom: 1rem; }
+    .form-head h2 { font-size: 1.4rem; color: var(--color-primary-blue); font-family: var(--font-heading); margin-bottom: 0.3rem; }
+    .form-head p { font-size: 0.85rem; color: #64748b; }
+
+    .form-group { margin-bottom: 1.2rem; }
+    .form-label { display: block; font-size: 0.85rem; font-weight: 600; color: #374151; margin-bottom: 0.4rem; }
+    
+    .form-input, .form-select, .form-textarea {
+      width: 100%; padding: 0.7rem 1rem; font-size: 0.9rem;
+      border: 1px solid #e2e8f0; border-radius: 8px;
+      background: #f8fafc; color: #1e293b; transition: all 0.3s ease;
+      font-family: var(--font-body);
+    }
+    .form-input:focus, .form-select:focus, .form-textarea:focus {
+      outline: none; border-color: var(--color-primary-blue); background: #fff;
+      box-shadow: 0 0 0 3px rgba(5, 102, 141, 0.1);
+    }
+    
+    .form-row { display: grid; grid-template-columns: 1fr 1fr; gap: 1rem; }
+
+    /* File Upload Styling */
+    .file-upload-wrapper {
+      position: relative; border: 2px dashed #cbd5e1; border-radius: 12px;
+      padding: 1.5rem; text-align: center; background: #f8fafc;
+      transition: all 0.3s ease; cursor: pointer;
+    }
+    .file-upload-wrapper:hover { border-color: var(--color-primary-green); background: #f0fdfa; }
+    
+    .file-upload-input {
+      position: absolute; top: 0; left: 0; width: 100%; height: 100%; opacity: 0; cursor: pointer;
+    }
+    .file-upload-icon { font-size: 1.8rem; color: var(--color-primary-blue); margin-bottom: 0.5rem; }
+    .file-upload-text { font-size: 0.85rem; color: #64748b; font-weight: 500; }
+    .file-upload-info { font-size: 0.75rem; color: #94a3b8; margin-top: 0.2rem; }
+    .file-name-display { margin-top: 0.5rem; font-size: 0.8rem; font-weight: 600; color: var(--color-primary-green); }
+
+    /* Compact Button Centered */
+    .appointment-actions { text-align: center; margin-top: 1.5rem; }
+    .btn-submit {
+      display: inline-flex; align-items: center; justify-content: center; gap: 0.5rem;
+      padding: 0.7rem 2.5rem; 
+      font-size: 0.95rem; font-weight: 700;
+      background: var(--gradient-accent); color: #fff; border: none; border-radius: 50px;
+      cursor: pointer; transition: all 0.3s ease;
+      box-shadow: 0 4px 15px rgba(5, 102, 141, 0.25);
+    }
+    .btn-submit:hover { transform: translateY(-2px); box-shadow: 0 8px 20px rgba(5, 102, 141, 0.35); filter: brightness(1.1); }
+    .btn-submit:disabled { background: #cbd5e1; cursor: not-allowed; box-shadow: none; transform: none; }
+
+    /* --- SIDEBAR CARDS --- */
+    .sidebar-stack { display: flex; flex-direction: column; gap: 1.2rem; }
+
+    /* 1. Emergency Card (Compact) */
+    .card-emergency {
+      background: var(--color-emergency-bg); border: 1px solid rgba(239, 68, 68, 0.2);
+      border-radius: 12px; padding: 1rem; text-align: center;
+      box-shadow: 0 4px 10px rgba(239, 68, 68, 0.05);
+    }
+    .emerg-icon { 
+        font-size: 1.2rem; color: var(--color-emergency); margin-bottom: 0.3rem; 
+        animation: pulse 2s infinite;
+    }
+    .emerg-title { font-size: 0.9rem; font-weight: 800; color: #991b1b; margin-bottom: 0.2rem; }
+    .emerg-number { display: block; font-size: 1.2rem; font-weight: 900; color: var(--color-emergency); text-decoration: none; }
+    
+    @keyframes pulse {
+        0% { transform: scale(1); }
+        50% { transform: scale(1.1); }
+        100% { transform: scale(1); }
+    }
+
+    /* 2. Contact Card (Kabir Das Only) */
+    .card-contact {
+      background: #fff; padding: 1.5rem; border-radius: 12px;
+      box-shadow: var(--shadow-card); border: 1px solid rgba(0,0,0,0.04);
+    }
+    .contact-item { display: flex; align-items: flex-start; gap: 0.8rem; }
+    .c-icon { 
+        width: 32px; height: 32px; background: rgba(5, 102, 141, 0.1); 
+        color: var(--color-primary-blue); border-radius: 50%; 
+        display: grid; place-items: center; font-size: 0.8rem; flex-shrink: 0;
+    }
+    .c-info h4 { font-size: 0.8rem; font-weight: 700; color: #1e293b; margin-bottom: 0.1rem; }
+    .c-info p { font-size: 0.8rem; color: #475569; margin-bottom: 0.2rem; }
+    .c-info a { font-size: 0.85rem; font-weight: 700; color: var(--color-primary-green); text-decoration: none; }
+
+    /* 3. Map & Address Wrapper Card (High Contrast) */
+    .card-map-wrapper {
+      background: #fff; 
+      border-radius: 16px;
+      box-shadow: var(--shadow-card); 
+      border: 1px solid rgba(0,0,0,0.04);
+      overflow: hidden;
+    }
+    
+    /* Attention Grabbing Address Section */
+    .address-highlight {
+        padding: 1.2rem;
+        background: var(--color-primary-blue); /* Solid Blue Background */
+        color: #fff;
+    }
+    .addr-title {
+        font-size: 1rem; font-weight: 800; color: #fff; /* White Text */
+        margin-bottom: 0.6rem; display: flex; align-items: center; gap: 0.5rem;
+        text-transform: uppercase; letter-spacing: 0.5px;
+    }
+    .addr-text {
+        font-size: 0.9rem; color: rgba(255,255,255,0.9); line-height: 1.5; font-weight: 500;
+    }
+
+    .map-frame {
+      height: 220px;
+      width: 100%;
+    }
+    .map-frame iframe { width: 100%; height: 100%; border: none; }
+
+    /* 4. Apollo 247 Card (New) */
+    .card-apollo {
+      background: #fff; padding: 1.5rem; border-radius: 12px;
+      box-shadow: var(--shadow-card); border: 1px solid rgba(0,0,0,0.04);
+      text-align: center;
+    }
+    .apollo-logo-text {
+      font-family: var(--font-heading); font-weight: 800; font-size: 1.1rem;
+      color: var(--color-apollo-orange); margin-bottom: 0.2rem;
+    }
+    .apollo-desc { font-size: 0.8rem; color: #64748b; margin-bottom: 1rem; }
+    
+    .btn-apollo {
+        display: inline-flex; align-items: center; justify-content: center; gap: 0.5rem;
+        background: var(--color-apollo-orange);
+        color: #fff;
+        padding: 0.6rem 1.2rem; border-radius: 50px;
+        font-weight: 700; font-size: 0.85rem;
+        text-decoration: none; transition: all 0.3s ease;
+        box-shadow: 0 4px 10px rgba(240, 127, 35, 0.2);
+        width: 100%; margin-bottom: 1rem;
+    }
+    .btn-apollo:hover {
+        transform: translateY(-2px);
+        box-shadow: 0 6px 15px rgba(240, 127, 35, 0.35);
+        background: #e0701b;
+    }
+    
+    .apollo-contact {
+        border-top: 1px solid #f1f5f9; padding-top: 0.8rem;
+        font-size: 0.8rem;
+    }
+    .apollo-contact span { color: #475569; font-weight: 600; }
+    .apollo-contact a { color: var(--color-primary-blue); font-weight: 700; text-decoration: none; }
+
+
+    /* --- FOOTER SIMPLIFIED --- */
+    .footer-simple {
+        background-color: #0f172a; 
+        padding: 3rem 0;
+        text-align: center;
+        color: #fff;
+    }
+    .footer-brand-centered {
+        max-width: 600px;
+        margin: 0 auto;
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        gap: 1rem;
+    }
+    .f-logo { height: 50px; margin-bottom: 0.5rem; }
+    .f-name { font-size: 1.2rem; font-weight: 700; color: #fff; margin-bottom: 0; }
+    .f-tagline { font-size: 0.9rem; color: #cbd5e1; opacity: 0.8; margin-bottom: 1.5rem; }
+    .f-social { display: flex; gap: 1.5rem; font-size: 1.2rem; }
+    .f-social a { color: #fff; transition: color 0.3s; }
+    .f-social a:hover { color: var(--color-primary-green); }
+    
+    .footer-bottom { border-top: 1px solid rgba(255,255,255,0.1); padding: 1.5rem 0; text-align: center; font-size: 0.8rem; color: #94a3b8; }
+
+
+    /* --- RESPONSIVENESS --- */
+    @media (max-width: 900px) {
+        .appt-grid { grid-template-columns: 1fr; }
+        .sidebar-stack { order: 2; } 
+        .form-card { order: 1; }
+    }
+
+    @media (max-width: 600px) {
+        .appt-hero { padding: 3.5rem 0 2rem; }
+        .appt-hero h1 { font-size: 1.8rem; }
+        
+        .form-card { padding: 1.25rem; }
+        .form-row { grid-template-columns: 1fr; gap: 0; }
+        
+        /* Compact Input Styling for Mobile */
+        .form-input, .form-select { padding: 0.6rem; }
+        
+        .file-upload-wrapper { padding: 1rem; }
+        .file-upload-icon { font-size: 1.5rem; }
+    }
+  </style>
+</head>
+
+<body>
+  
+  <header class="site-header" data-header>
+    <div class="header-grid">
+      <a href="index.html" class="brand-area">
+        <img src="assets/icon-new1.png" alt="Logo" class="brand-icon">
+        <div class="brand-text-col">
+          <span class="brand-name">Dr. Jay Deep Ghosh</span>
+          <span class="brand-subtitle">Your path to pain free healing</span>
+        </div>
+      </a>
+      <nav class="nav-center" data-nav-panel>
+        <ul class="nav-list">
+          <li><a href="about.html" class="nav-link"><i class="fa-solid fa-user-tie"></i> <span>About</span></a></li>
+          <li><a href="procedures.html" class="nav-link"><i class="fa-solid fa-stethoscope"></i> <span>Procedures</span></a></li>
+          <li><a href="outcomes.html" class="nav-link"><i class="fa-solid fa-chart-line"></i> <span>Outcomes</span></a></li>
+          <li><a href="videos.html" class="nav-link"><i class="fa-solid fa-play-circle"></i> <span>Videos</span></a></li>
+          <li><a href="testimonials.html" class="nav-link"><i class="fa-solid fa-star"></i> <span>Testimonials</span></a></li>
+        </ul>
+        <div class="mobile-actions">
+          <a href="appointment.html" class="btn btn-header-primary"><i class="fa-solid fa-calendar-check"></i> Book Appointment</a>
+        </div>
+      </nav>
+      <div class="header-actions-desktop">
+        <a href="appointment.html" class="btn btn-header-secondary">Contact Us</a>
+        <a href="appointment.html" class="btn btn-header-primary"><i class="fa-solid fa-calendar-check"></i> Book Appointment</a>
+      </div>
+      <button class="nav-toggle" data-nav-toggle aria-label="Toggle navigation">
+        <i class="fa-solid fa-bars" id="nav-icon"></i>
+      </button>
+    </div>
+  </header>
+
+  <main id="main">
+    
+    <section class="appt-hero">
+      <div class="container">
+        <h1>Book Your Consultation</h1>
+        <p>Prioritize your health. Fill out the form below to schedule an appointment with Dr. Jay Deep Ghosh.</p>
+      </div>
+    </section>
+
+    <div class="content-wrapper">
+      <div class="container">
+        <div class="appt-grid">
+          
+          <div class="form-card">
+            <div class="form-head">
+              <h2>Patient Details</h2>
+              <p>Please provide accurate details for a smooth registration process.</p>
+            </div>
+            
+            <form id="primaryForm">
+              <input type="text" name="honeypot" style="display:none !important" tabindex="-1" autocomplete="off">
+
+              <div class="form-row">
+                <div class="form-group">
+                  <label class="form-label" for="name">Patient Name *</label>
+                  <input type="text" name="name" id="name" class="form-input" placeholder="Full Name" required>
+                </div>
+                <div class="form-group">
+                  <label class="form-label" for="phone">Phone Number *</label>
+                  <input type="tel" name="phone" id="phone" class="form-input" placeholder="+91 XXXXX XXXXX" required>
+                </div>
+              </div>
+
+              <div class="form-row">
+                <div class="form-group">
+                  <label class="form-label" for="date">Preferred Date *</label>
+                  <input type="date" name="date" id="date" class="form-input" required>
+                </div>
+                <div class="form-group">
+                  <label class="form-label" for="location">Location *</label>
+                  <input type="text" name="location" id="location" class="form-input" placeholder="City / Town" required>
+                </div>
+              </div>
+
+              <div class="form-row">
+                <div class="form-group">
+                  <label class="form-label" for="visit-type">Visit Type *</label>
+                  <select name="visitType" id="visit-type" class="form-select" required>
+                    <option value="" disabled selected>Select Type</option>
+                    <option value="first-visit">First Consultation</option>
+                    <option value="follow-up">Follow Up</option>
+                    <option value="reports">Show Reports</option>
+                    <option value="second-opinion">Second Opinion</option>
+                  </select>
+                </div>
+                <div class="form-group">
+                    <label class="form-label" for="email">Email (Optional)</label>
+                    <input type="email" name="email" id="email" class="form-input" placeholder="example@email.com">
+                </div>
+              </div>
+
+              <div class="form-group">
+                <label class="form-label" for="symptoms">Describe Symptoms / Reason for Visit *</label>
+                <textarea name="reason" id="symptoms" class="form-textarea" rows="4" placeholder="Briefly describe your pain, duration, and any previous treatments..." required></textarea>
+              </div>
+
+              <div class="form-group">
+                <label class="form-label">Upload Reports / X-Rays (Max 10MB)</label>
+                <div class="file-upload-wrapper">
+                    <input type="file" id="file-upload" class="file-upload-input" accept="image/*,.pdf">
+                    <div class="file-upload-icon"><i class="fa-solid fa-cloud-arrow-up"></i></div>
+                    <div class="file-upload-text">Click or Drag & Drop to Upload</div>
+                    <div class="file-upload-info">Supported: JPG, PNG, PDF (Max 10MB)</div>
+                    <div id="file-name" class="file-name-display"></div>
+                </div>
+              </div>
+
+              <div class="form-group" style="background:#f1f5f9; padding:10px; border-radius:8px; display:inline-block;">
+                  <label class="form-label" style="margin-bottom:5px;">Security Check: <span id="captcha_q"></span> = ?</label>
+                  <input type="number" id="captcha_ans" class="form-input" style="width: 100px; display:inline-block;" placeholder="Answer" required>
+              </div>
+
+              <div class="appointment-actions">
+                <button type="submit" id="p_submit_btn" class="btn-submit">
+                  <i class="fa-solid fa-calendar-check"></i> Book Appointment
+                </button>
+              </div>
+            </form>
+            </div>
+
+          <aside class="sidebar-stack">
+            
+            <div class="card-emergency">
+              <div class="emerg-icon"><i class="fa-solid fa-truck-medical"></i></div>
+              <div class="emerg-title">Emergency Trauma Care</div>
+              <a href="tel:1066" class="emerg-number">1066</a>
+            </div>
+
+            <div class="card-contact">
+              <div class="contact-item">
+                <div class="c-icon"><i class="fa-solid fa-user-doctor"></i></div>
+                <div class="c-info">
+                  <h4>Kabir Das (PRO)</h4>
+                  <p>Assistant to Dr. Ghosh</p>
+                  <a href="tel:+919864012345">+91 98640 12345</a>
+                </div>
+              </div>
+            </div>
+
+            <div class="card-map-wrapper">
+                <div class="address-highlight">
+                    <div class="addr-title"><i class="fa-solid fa-location-dot"></i> Clinic Address</div>
+                    <div class="addr-text">
+                        Apollo Hospitals, Lotus Tower, <br>
+                        Christian Basti, Guwahati, <br>
+                        Assam 781005
+                    </div>
+                </div>
+                <div class="map-wrapper">
+            <iframe 
+              src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3580.346894569584!2d91.77869407604345!3d26.15404529094764!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x375a59634c178b53%3A0x81381ecdd1e8f3cd!2sDr.%20Jay%20Deep%20Ghosh%20%7C%20Best%20orthopedic%20%26%20spine%20surgeon%20doctor%20in%20guwahati-assam-northeast!5e0!3m2!1sen!2sin!4v1706346789012!5m2!1sen!2sin" 
+              width="100%" 
+              height="100%" 
+              style="border:0;" 
+              allowfullscreen="" 
+              loading="lazy" 
+              referrerpolicy="no-referrer-when-downgrade">
+            </iframe>
+          </div>  
+            </div>
+
+            <div class="card-apollo">
+                <div class="apollo-logo-text">Apollo 24|7</div>
+                <p class="apollo-desc">To book an appointment via the Apollo 247 platform</p>
+                
+                <a href="https://www.apollo247.com/doctors/dr-jay-deep-ghosh-572fb72f-e250-4543-b303-b90ed55302af" target="_blank" class="btn-apollo">
+                    <i class="fa-solid fa-hospital-user"></i> Click Here
+                </a>
+                
+                <div class="apollo-contact">
+                   <span>Apollo Front Desk:</span> <a href="tel:03612345678">0361-2345678</a>
+                </div>
+            </div>
+
+          </aside>
+
+        </div>
+      </div>
+    </div>
+
+  </main>
+
+  <footer class="footer-simple" id="contact">
+    <div class="container">
+        <div class="footer-brand-centered">
+            <img src="assets/icon-new1.png" alt="Logo" class="f-logo">
+            <h3 class="f-name">Dr. Jay Deep Ghosh</h3>
+            <p class="f-tagline">Restoring mobility with advanced spine & orthopaedic care.</p>
+            
+            <div class="f-social">
+                <a href="#" aria-label="Facebook"><i class="fa-brands fa-facebook-f"></i></a>
+                <a href="#" aria-label="YouTube"><i class="fa-brands fa-youtube"></i></a>
+                <a href="#" aria-label="Instagram"><i class="fa-brands fa-instagram"></i></a>
+            </div>
+        </div>
+    </div>
+    <div class="footer-bottom">
+        <div class="container">
+             <p class="footer-note">© <span id="year">2026</span> Dr. Jay Deep Ghosh. All Rights Reserved. <i>Designed & Developed by MaxXiMuS</i></p>
+        </div>
+    </div>
+  </footer>
+
+<script>
+    // ==========================================
+    // CONFIGURATION: PASTE URL HERE
+    // ==========================================
+    const SCRIPT_URL = "https://script.google.com/macros/s/AKfycbxRSaMbfHTQMYPPDyE_S9Wu2ppS0kNPoqdAJiAnox8lAMC42jcI3eSj0Lxd8moiKWQnHA/exec"; 
+    // Your WhatsApp Number for the Redirect
+    const DOCTOR_WA_PHONE = "918638230049"; 
+
+    document.addEventListener('DOMContentLoaded', () => {
+        // 1. CAPTCHA INIT  
+        let captchaA, captchaB;
+        function generateCaptcha() {
+            captchaA = Math.floor(Math.random() * 10) + 1;
+            captchaB = Math.floor(Math.random() * 10) + 1;
+            const qEl = document.getElementById('captcha_q');
+            if(qEl) qEl.innerText = `${captchaA} + ${captchaB}`;
+        }
+        generateCaptcha();
+
+        // 2. FILE UPLOAD LOGIC
+        const fileInput = document.getElementById('file-upload');
+        const fileNameDisplay = document.getElementById('file-name');
+        if(fileInput) {
+            fileInput.addEventListener('change', function(e) {
+                const file = e.target.files[0];
+                if (file) {
+                    if(file.size > 10 * 1024 * 1024) { 
+                        alert("File too large. Max 10MB.");
+                        this.value = ""; fileNameDisplay.textContent = "";
+                    } else {
+                        fileNameDisplay.textContent = "Selected: " + file.name;
+                    }
+                }
+            });
+        }
+
+        // 3. FORM SUBMISSION
+        const form = document.getElementById('primaryForm');
+        const submitBtn = document.getElementById('p_submit_btn');
+
+        if(form) {
+            form.addEventListener('submit', async (e) => {
+                e.preventDefault();
+
+                // Check Attempts (Simple Spam Check)
+                let attempts = localStorage.getItem('appt_attempts') || 0;
+                if (parseInt(attempts) >= 3) {
+                    alert("Booking limit reached. Please call us directly.");
+                    return;
+                }
+
+                const originalBtnText = submitBtn.innerHTML;
+                submitBtn.disabled = true;
+                submitBtn.innerHTML = 'Processing...';
+
+                const formData = new FormData(form);
+                let fileData = "", mimeType = "", fileName = "";
+
+                // Handle File
+                if (fileInput.files.length > 0) {
+                    const file = fileInput.files[0];
+                    try {
+                        fileData = await new Promise((resolve, reject) => {
+                            const reader = new FileReader();
+                            reader.readAsDataURL(file);
+                            reader.onload = () => resolve(reader.result.split(',')[1]);
+                            reader.onerror = error => reject(error);
+                        });
+                        mimeType = file.type;
+                        fileName = file.name;
+                    } catch (err) {
+                        alert("File upload error.");
+                        submitBtn.disabled = false; submitBtn.innerHTML = originalBtnText;
+                        return;
+                    }
+                }
+
+                // Prepare Data
+                const payload = {
+                    name: formData.get('name'),
+                    phone: formData.get('phone'),
+                    date: formData.get('date'),
+                    location: formData.get('location'),
+                    visitType: formData.get('visitType'),
+                    email: formData.get('email'),
+                    reason: formData.get('reason'),
+                    honeypot: formData.get('honeypot'),
+                    captcha_a: captchaA,
+                    captcha_b: captchaB,
+                    captcha_ans: document.getElementById('captcha_ans').value,
+                    fileData: fileData,
+                    mimeType: mimeType,
+                    fileName: fileName
+                };
+
+                // Send to Google
+                fetch(SCRIPT_URL, {
+                    method: "POST",
+                    body: JSON.stringify(payload)
+                })
+                .then(res => res.json())
+                .then(response => {
+                    if (response.result === "success") {
+                        // SUCCESS - REDIRECT TO WHATSAPP
+                        const text = `Hello Dr. Ghosh, I have just booked an appointment.%0A%0A*Name:* ${payload.name}%0A*Phone:* ${payload.phone}%0A*Date:* ${payload.date}%0A*Reason:* ${payload.reason}%0A%0APlease confirm my slot.`;
+                        
+                        alert("Booking Saved! Redirecting to WhatsApp for confirmation...");
+                        window.open(`https://wa.me/${DOCTOR_WA_PHONE}?text=${text}`, '_blank');
+
+                        localStorage.setItem('appt_attempts', parseInt(attempts) + 1);
+                        form.reset();
+                        fileNameDisplay.textContent = "";
+                        generateCaptcha();
+                    } else {
+                        alert("Error: " + response.message);
+                    }
+                })
+                .catch(error => {
+                    alert("Network Error. Please try again.");
+                    console.error(error);
+                })
+                .finally(() => {
+                    submitBtn.disabled = false;
+                    submitBtn.innerHTML = originalBtnText;
+                });
+            });
+        }
+        
+        // Year Update
+        const yearSpan = document.getElementById('year');
+        if(yearSpan) yearSpan.textContent = new Date().getFullYear();
+    });
+  </script>
+</body>
+</html>
