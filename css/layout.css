@@ -236,7 +236,7 @@ main > .section:last-of-type { border-bottom: none; }
    3. FOOTER STYLES (Tight Spacing Fix)
    ========================================= */
 .site-footer {
-  background-color: var(--header-bg);
+  background-color: #0f172a;
   color: white;
   border-top: 4px solid var(--btn-green);
   width: 100%;

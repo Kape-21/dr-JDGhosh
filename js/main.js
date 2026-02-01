@@ -133,11 +133,65 @@
     element.appendChild(iframe);
   };
 
+// ... [Previous functions: initStickyHeader, initMobileNav, etc.] ...
+
+  // 6. Footer Contact Form Logic (Add this new function)
+  function initContactForm() {
+    var contactForm = document.getElementById('footerContactForm');
+    
+    // Safety Check: If form doesn't exist on this page, stop here.
+    if (!contactForm) return;
+
+    // CONFIGURATION: WEB APP URL HERE
+    var SCRIPT_URL = "https://script.google.com/macros/s/AKfycbxRSaMbfHTQMYPPDyE_S9Wu2ppS0kNPoqdAJiAnox8lAMC42jcI3eSj0Lxd8moiKWQnHA/exec"; 
+
+    contactForm.addEventListener('submit', function(e) {
+      e.preventDefault();
+
+      var btn = document.getElementById('c_submit_btn');
+      var originalText = btn.innerHTML;
+      
+      btn.innerHTML = 'Sending...';
+      btn.disabled = true;
+
+      var formData = new FormData(contactForm);
+      var payload = {
+        formType: "contact",
+        name: formData.get('name'),
+        phone: formData.get('phone'),
+        message: formData.get('message'),
+        honeypot: formData.get('honeypot')
+      };
+
+      fetch(SCRIPT_URL, {
+        method: "POST",
+        body: JSON.stringify(payload)
+      })
+      .then(function(res) { return res.json(); })
+      .then(function(response) {
+        if (response.result === "success") {
+          alert("Thank you! Your message has been sent.");
+          contactForm.reset();
+        } else {
+          alert("Error: " + response.message);
+        }
+      })
+      .catch(function(error) {
+        alert("Network error. Please try again.");
+      })
+      .finally(function() {
+        btn.disabled = false;
+        btn.innerHTML = originalText;
+      });
+    });
+  }
+
   // Initialize all functions
   window.addEventListener('DOMContentLoaded', function(){
     initStickyHeader();
     initMobileNav();
     initYear();
     initImageModal();
+    initContactForm(); // <--- call for footer contact form
   });
 })();

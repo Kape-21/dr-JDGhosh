@@ -815,20 +815,22 @@
         <div class="footer-col footer-form-col">
           <div class="footer-form-wrapper">
             <h3 class="footer-heading">Contact Us</h3>
-            <form class="footer-contact-form">
-                <div class="form-group">
-                  <input type="text" placeholder="Your Name" required>
-                </div>
-                <div class="form-group">
-                  <input type="tel" placeholder="Phone Number" required>
-                </div>
-                <div class="form-group">
-                  <textarea placeholder="Message" rows="3"></textarea>
-                </div>
-                <button type="submit" class="btn btn-header-primary footer-submit-btn">
-                  Send Message
-                </button>
-            </form>
+            <form class="footer-contact-form" id="footerContactForm">
+  <input type="hidden" name="formType" value="contact"> <input type="text" name="honeypot" style="display:none !important" tabindex="-1" autocomplete="off">
+
+  <div class="form-group">
+    <input type="text" name="name" placeholder="Your Name" required>
+  </div>
+  <div class="form-group">
+    <input type="tel" name="phone" placeholder="Phone Number" required>
+  </div>
+  <div class="form-group">
+    <textarea name="message" placeholder="Message" rows="3" required></textarea>
+  </div>
+  <button type="submit" id="c_submit_btn" class="btn btn-header-primary footer-submit-btn">
+    Send Message
+  </button>
+</form>
           </div>
         </div>
 

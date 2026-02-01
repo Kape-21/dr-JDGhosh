@@ -498,9 +498,9 @@
               <div class="contact-item">
                 <div class="c-icon"><i class="fa-solid fa-user"></i></div>
                 <div class="c-info">
-                  <h4>Kabir Das (PRO)</h4>
-                  <p>Assistant to Dr. Ghosh</p>
-                  <a href="tel:+919864012345">+91 98640 12345</a>
+                  <h4>Kabir Das</h4>
+                  <p>Public Relation Officer to Dr. Ghosh</p>
+                  <a href="tel:+919085961451">+91 90859 61451</a>
                 </div>
               </div>
             </div>
@@ -658,23 +658,24 @@
                     }
                 }
 
-                // Prepare Data
-                const payload = {
-                    name: formData.get('name'),
-                    phone: formData.get('phone'),
-                    date: formData.get('date'),
-                    location: formData.get('location'),
-                    visitType: formData.get('visitType'),
-                    email: formData.get('email'),
-                    reason: formData.get('reason'),
-                    honeypot: formData.get('honeypot'),
-                    captcha_a: captchaA,
-                    captcha_b: captchaB,
-                    captcha_ans: document.getElementById('captcha_ans').value,
-                    fileData: fileData,
-                    mimeType: mimeType,
-                    fileName: fileName
-                };
+                                  // Prepare Data
+                  const payload = {
+                      formType: "appointment", // <--- THIS WAS MISSING
+                      name: formData.get('name'),
+                      phone: formData.get('phone'),
+                      date: formData.get('date'),
+                      location: formData.get('location'),
+                      visitType: formData.get('visitType'),
+                      email: formData.get('email'),
+                      reason: formData.get('reason'),
+                      honeypot: formData.get('honeypot'),
+                      captcha_a: captchaA,
+                      captcha_b: captchaB,
+                      captcha_ans: document.getElementById('captcha_ans').value,
+                      fileData: fileData,
+                      mimeType: mimeType,
+                      fileName: fileName
+                  };
 
                 // Send to Google
                 fetch(SCRIPT_URL, {

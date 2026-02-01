@@ -704,15 +704,24 @@
   <footer class="site-footer" id="contact">
     <div class="footer-top">
       <div class="footer-grid">
+        
         <div class="footer-col footer-brand-col">
-          <a href="index.html" class="brand-area"><img src="assets/icon-new1.png" alt="Logo" class="brand-icon"><div class="brand-text-col"><span class="brand-name">Dr. Jay Deep Ghosh</span><span class="brand-subtitle">Your path to pain free healing</span></div></a>
+          <a href="index.html" class="brand-area">
+            <img src="assets/icon-new1.png" alt="Logo" class="brand-icon">
+            <div class="brand-text-col">
+              <span class="brand-name">Dr. Jay Deep Ghosh</span>
+              <span class="brand-subtitle">Your path to pain free healing</span>
+            </div>
+          </a>
           <p class="footer-tagline">Restoring mobility with advanced spine & orthopaedic care.</p>
           <div class="footer-legal-links"><a href="#">Terms & Conditions</a> | <a href="#">Privacy Policy</a></div>
           <div class="footer-social-icons brand-social">
             <a href="https://www.facebook.com/jaydeepxp" target="_blank" aria-label="Facebook"><i class="fa-brands fa-facebook-f"></i></a>
             <a href="https://www.youtube.com/@jaydeepxp" target="_blank" aria-label="YouTube"><i class="fa-brands fa-youtube"></i></a>
-            <a href="https://www.instagram.com/dr.jay_deep_ghosh_official?igsh=ZmsybzB1YXI4Zzl1" target="_blank" aria-label="Instagram"><i class="fa-brands fa-instagram"></i></a></div>
+            <a href="https://www.instagram.com/dr.jay_deep_ghosh_official?igsh=ZmsybzB1YXI4Zzl1" target="_blank" aria-label="Instagram"><i class="fa-brands fa-instagram"></i></a>
+          </div>
         </div>
+
         <div class="footer-col footer-visit-col">
           <h3 class="footer-heading">Visit Our Clinic</h3>
           <div class="map-wrapper">
@@ -731,19 +740,43 @@
             Apollo Hospitals, Lotus Tower, Christian Basti, Guwahati
           </p>
         </div>
+
         <div class="footer-col footer-form-col">
           <div class="footer-form-wrapper">
             <h3 class="footer-heading">Contact Us</h3>
-            <form class="footer-contact-form"><input type="text" placeholder="Name"><input type="tel" placeholder="Phone"><textarea placeholder="Message"></textarea><button type="submit" class="btn btn-header-primary footer-submit-btn">Send</button></form>
+            
+            <form class="footer-contact-form" id="footerContactForm">
+                <input type="hidden" name="formType" value="contact">
+                <input type="text" name="honeypot" style="display:none !important" tabindex="-1" autocomplete="off">
+
+                <div class="form-group">
+                  <input type="text" name="name" placeholder="Name" required>
+                </div>
+                <div class="form-group">
+                  <input type="tel" name="phone" placeholder="Phone" required>
+                </div>
+                <div class="form-group">
+                  <textarea name="message" placeholder="Message" rows="3" required></textarea>
+                </div>
+                <button type="submit" id="c_submit_btn" class="btn btn-header-primary footer-submit-btn">
+                  Send Message
+                </button>
+            </form>
+
           </div>
         </div>
+
       </div>
     </div>
-    <div class="footer-bottom"><div class="footer-bottom-inner"><p class="footer-note">
-        <span>© <span id="year">2026</span> Dr. Jay Deep Ghosh. All Rights Reserved.</span>
-        <br><i>Designed & Developed by Kapil</i>
-      </p>
-  </footer>
+    <div class="footer-bottom">
+        <div class="footer-bottom-inner">
+            <p class="footer-note">
+                <span>© <span id="year">2026</span> Dr. Jay Deep Ghosh. All Rights Reserved.</span>
+                <br><i>Designed & Developed by Kapil</i>
+            </p>
+        </div>
+    </div>
+</footer>
 
   <div id="video-modal" class="video-modal" aria-hidden="true" onclick="closeVideo(event)">
     <div class="video-wrapper" id="video-frame-wrapper">
@@ -828,5 +861,6 @@
     const yearSpan = document.getElementById('year');
     if(yearSpan) yearSpan.textContent = new Date().getFullYear();
   </script>
+  <script src="js/main.js" defer></script>
 </body>
 </html>

@@ -186,8 +186,8 @@
         display: inline-flex;
         align-items: center;
         gap: 0.4rem;
-        transition: all 0.3s ease;
-        text-shadow: 0 1px 3px rgba(0,0,0,0.3); /* Shadow for button text too */
+        transition: all 0.7s ease;
+        text-shadow: 0 3px 3px rgba(0,0,0,0.3); /* Shadow for button text too */
     }
     .btn-hero-outline:hover {
         background: #fff;
@@ -950,6 +950,7 @@
   <footer class="site-footer" id="contact">
     <div class="footer-top">
       <div class="footer-grid">
+        
         <div class="footer-col footer-brand-col">
           <a href="index.html" class="brand-area">
             <img src="assets/icon-new1.png" alt="Dr. Jay Deep Ghosh Logo" class="brand-icon">
@@ -958,18 +959,24 @@
               <span class="brand-subtitle">Your path to pain free healing</span>
             </div>
           </a>
-          <p class="footer-tagline">Restoring mobility with advanced spine & orthopaedic care.</p>
+          
+          <p class="footer-tagline">
+            Restoring mobility with advanced spine & orthopaedic care.
+          </p>
+          
           <div class="footer-legal-links">
             <a href="#">Terms & Conditions</a>
             <span class="legal-sep">|</span>
             <a href="#">Privacy Policy</a>
           </div>
+
           <div class="footer-social-icons brand-social">
             <a href="https://www.facebook.com/jaydeepxp" target="_blank" aria-label="Facebook"><i class="fa-brands fa-facebook-f"></i></a>
             <a href="https://www.youtube.com/@jaydeepxp" target="_blank" aria-label="YouTube"><i class="fa-brands fa-youtube"></i></a>
             <a href="https://www.instagram.com/dr.jay_deep_ghosh_official?igsh=ZmsybzB1YXI4Zzl1" target="_blank" aria-label="Instagram"><i class="fa-brands fa-instagram"></i></a>
           </div>
         </div>
+
         <div class="footer-col footer-visit-col">
           <h3 class="footer-heading">Visit Our Clinic</h3>
           <div class="map-wrapper">
@@ -987,28 +994,44 @@
             <i class="fa-solid fa-location-dot"></i> 
               Apollo Hospitals, Christian Basti, Guwahati, Assam 781005</p>
         </div>
+
         <div class="footer-col footer-form-col">
           <div class="footer-form-wrapper">
             <h3 class="footer-heading">Contact Us</h3>
-            <form class="footer-contact-form">
-              <div class="form-group"><input type="text" placeholder="Your Name" required></div>
-              <div class="form-group"><input type="tel" placeholder="Phone Number" required></div>
-              <div class="form-group"><textarea placeholder="Message" rows="3"></textarea></div>
-              <button type="submit" class="btn btn-header-primary footer-submit-btn">Send Message</button>
+            
+            <form class="footer-contact-form" id="footerContactForm">
+                <input type="hidden" name="formType" value="contact">
+                <input type="text" name="honeypot" style="display:none !important" tabindex="-1" autocomplete="off">
+
+                <div class="form-group">
+                  <input type="text" name="name" placeholder="Your Name" required>
+                </div>
+                <div class="form-group">
+                  <input type="tel" name="phone" placeholder="Phone Number" required>
+                </div>
+                <div class="form-group">
+                  <textarea name="message" placeholder="Message" rows="3" required></textarea>
+                </div>
+                <button type="submit" id="c_submit_btn" class="btn btn-header-primary footer-submit-btn">
+                  Send Message
+                </button>
             </form>
+
           </div>
         </div>
+
       </div>
     </div>
+
     <div class="footer-bottom">
       <div class="footer-bottom-inner">
-        <p class="footer-note">
+      <p class="footer-note">
         <span>© <span id="year">2026</span> Dr. Jay Deep Ghosh. All Rights Reserved.</span>
-        <br><i>Designed & Developed by Kapil</i>
+        <br><i>Designed & Developed by MaxXiMuS</i>
       </p>
       </div>
     </div>
-  </footer>
+</footer>
 
   <script>
     document.addEventListener('DOMContentLoaded', () => {
@@ -1052,5 +1075,6 @@
         }
     });
   </script>
+  <script src="js/main.js" defer></script>
 </body>
 </html>
