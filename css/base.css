@@ -122,3 +122,4 @@ strong { color: var(--color-primary-blue); }
   html { scroll-behavior: auto; }
   * { transition-duration: 1ms !important; animation-duration: 1ms !important; }
 }
+

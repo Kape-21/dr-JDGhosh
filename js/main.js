@@ -1,4 +1,5 @@
 (function(){
+  
   // 1. Sticky Header Logic
   function initStickyHeader(){
     var header = document.querySelector('[data-header]');
@@ -42,114 +43,31 @@
       }
     }
 
-    toggle.addEventListener('click', function(e){
-      e.preventDefault();
-      e.stopPropagation();
+    toggle.addEventListener('click', function(){
       var isOpen = panel.classList.contains('is-open');
       setOpen(!isOpen);
     });
 
-    panel.addEventListener('click', function(e){
-      if(e.target.closest('a')){
+    // Close when clicking a link
+    var links = panel.querySelectorAll('a');
+    Array.prototype.forEach.call(links, function(link){
+      link.addEventListener('click', function(){
         setOpen(false);
-      }
-    });
-
-    document.addEventListener('click', function(e){
-      if(panel.classList.contains('is-open') && 
-         !panel.contains(e.target) && 
-         !toggle.contains(e.target)){
-        setOpen(false);
-      }
-    });
-    
-    document.addEventListener('keydown', function(e){
-      if(e.key === 'Escape') setOpen(false);
-    });
-  }
-
-  // 3. Dynamic Year
-  function initYear(){
-    var el = document.getElementById('year');
-    if(!el) return;
-    el.textContent = String(new Date().getFullYear());
-  }
-
-  // 4. Image Modal (Lightbox) Logic
-  function initImageModal() {
-    const modal = document.getElementById('image-modal');
-    const modalImg = document.getElementById('modal-img');
-    const triggers = document.querySelectorAll('.outcomes-grid .outcome-image'); 
-    const closeButtons = document.querySelectorAll('[data-close-modal]');
-
-    if (!modal || !modalImg) return;
-
-    function openModal(src, alt) {
-      modalImg.src = src;
-      modalImg.alt = alt || 'Outcome Image';
-      modal.classList.add('is-visible');
-      modal.setAttribute('aria-hidden', 'false');
-      document.body.style.overflow = 'hidden'; 
-    }
-
-    function closeModal() {
-      modal.classList.remove('is-visible');
-      modal.setAttribute('aria-hidden', 'true');
-      document.body.style.overflow = ''; 
-      setTimeout(() => { modalImg.src = ''; }, 300); 
-    }
-
-    triggers.forEach(img => {
-      img.addEventListener('click', (e) => {
-        e.stopPropagation();
-        openModal(img.src, img.alt);
       });
     });
-
-    closeButtons.forEach(btn => {
-      btn.addEventListener('click', closeModal);
-    });
-
-    document.addEventListener('keydown', (e) => {
-      if (e.key === 'Escape' && modal.classList.contains('is-visible')) {
-        closeModal();
-      }
-    });
   }
 
-  // 5. Video Loader (Facade Pattern)
-  // Attached to window so the HTML onclick="loadVideo(this)" works
-  window.loadVideo = function(element) {
-    var videoId = element.getAttribute('data-id');
-    if(!videoId) return;
-
-    var iframe = document.createElement('iframe');
-    // autoplay=1 starts it immediately
-    iframe.src = 'https://www.youtube.com/embed/' + videoId + '?autoplay=1&rel=0&modestbranding=1';
-    iframe.setAttribute('allow', 'accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture');
-    iframe.setAttribute('allowfullscreen', '');
-    
-    element.innerHTML = '';
-    element.appendChild(iframe);
-  };
-
-// ... [Previous functions: initStickyHeader, initMobileNav, etc.] ...
-
-  // 6. Footer Contact Form Logic (Add this new function)
-  function initContactForm() {
+  // 3. Contact Form Logic (Google Sheets)
+  function initContactForm(){
     var contactForm = document.getElementById('footerContactForm');
-    
-    // Safety Check: If form doesn't exist on this page, stop here.
-    if (!contactForm) return;
+    if(!contactForm) return;
 
-    // CONFIGURATION: WEB APP URL HERE
-    var SCRIPT_URL = "https://script.google.com/macros/s/AKfycbxRSaMbfHTQMYPPDyE_S9Wu2ppS0kNPoqdAJiAnox8lAMC42jcI3eSj0Lxd8moiKWQnHA/exec"; 
+    const SCRIPT_URL = "https://script.google.com/macros/s/AKfycbxRSaMbfHTQMYPPDyE_S9Wu2ppS0kNPoqdAJiAnox8lAMC42jcI3eSj0Lxd8moiKWQnHA/exec"; 
 
     contactForm.addEventListener('submit', function(e) {
       e.preventDefault();
 
       var btn = document.getElementById('c_submit_btn');
-      var originalText = btn.innerHTML;
       
       btn.innerHTML = 'Sending...';
       btn.disabled = true;
@@ -181,17 +99,134 @@
       })
       .finally(function() {
         btn.disabled = false;
-        btn.innerHTML = originalText;
+        btn.innerHTML = 'Send Message';
       });
     });
   }
 
-  // Initialize all functions
-  window.addEventListener('DOMContentLoaded', function(){
+  // 4. Image Modal Logic
+  function initImageModal(){
+    var modal = document.getElementById('image-modal');
+    if(!modal) return;
+    
+    var modalImg = document.getElementById('modal-img');
+    var triggers = document.querySelectorAll('[data-open-modal]');
+    var closeBtns = document.querySelectorAll('[data-close-modal]');
+
+    function openModal(src){
+      modalImg.src = src;
+      modal.classList.add('is-visible');
+      modal.setAttribute('aria-hidden', 'false');
+    }
+
+    function closeModal(){
+      modal.classList.remove('is-visible');
+      modal.setAttribute('aria-hidden', 'true');
+      setTimeout(function(){ modalImg.src = ''; }, 300);
+    }
+
+    Array.prototype.forEach.call(triggers, function(btn){
+      btn.addEventListener('click', function(e){
+        e.preventDefault();
+        var img = btn.querySelector('img'); 
+        if(img) openModal(img.src); 
+      });
+    });
+
+    Array.prototype.forEach.call(closeBtns, function(btn){
+      btn.addEventListener('click', closeModal);
+    });
+    
+    document.addEventListener('keydown', function(e){
+      if(e.key === 'Escape' && modal.classList.contains('is-visible')) {
+        closeModal();
+      }
+    });
+  }
+
+  // 5. Counter Animation Logic (Smart Duration)
+  function initCounters() {
+    const counters = document.querySelectorAll('.counter-val');
+    if (counters.length === 0) return;
+
+    // Total duration for animation (in ms)
+    const duration = 2000; 
+
+    const animate = (counter) => {
+      const value = +counter.getAttribute('data-target');
+      const startTime = performance.now();
+
+      const updateCount = (currentTime) => {
+        const elapsedTime = currentTime - startTime;
+        const progress = Math.min(elapsedTime / duration, 1); 
+
+        // Ease-out effect
+        const easeProgress = 1 - Math.pow(1 - progress, 3);
+
+        const currentVal = Math.floor(easeProgress * value);
+        counter.innerText = currentVal.toLocaleString();
+
+        if (progress < 1) {
+          requestAnimationFrame(updateCount);
+        } else {
+          counter.innerText = value.toLocaleString();
+        }
+      };
+
+      requestAnimationFrame(updateCount);
+    }
+
+    const observerOptions = { threshold: 0.5 };
+    const observer = new IntersectionObserver((entries, observer) => {
+      entries.forEach(entry => {
+        if (entry.isIntersecting) {
+          animate(entry.target);
+          observer.unobserve(entry.target);
+        }
+      });
+    }, observerOptions);
+
+    counters.forEach(counter => {
+      observer.observe(counter);
+    });
+  }
+
+  // 6. Badge Fly-In Animation
+  function initBadgeAnimation() {
+    var pills = document.querySelectorAll('.cert-pill');
+    if(pills.length === 0) return;
+
+    var observerOptions = {
+      root: null,
+      rootMargin: '0px',
+      threshold: 0.15 
+    };
+
+    var observer = new IntersectionObserver(function(entries, obs) {
+      entries.forEach(function(entry) {
+        if (entry.isIntersecting) {
+          var target = entry.target;
+          target.classList.add('is-visible');
+          obs.unobserve(target); 
+        }
+      });
+    }, observerOptions);
+
+    pills.forEach(function(pill, index) {
+      // Staggered delay based on index
+      pill.style.transitionDelay = (index * 0.1) + 's';
+      observer.observe(pill);
+    });
+  }
+
+  // --- INITIALIZATION ---
+  document.addEventListener('DOMContentLoaded', function(){
     initStickyHeader();
     initMobileNav();
-    initYear();
+    initContactForm();
     initImageModal();
-    initContactForm(); // <--- call for footer contact form
+    initCounters(); 
+    initBadgeAnimation(); 
   });
+
 })();

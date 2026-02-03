@@ -553,8 +553,8 @@ main > .section:last-of-type { border-bottom: none; }
 
 @media (max-width: 640px) {
   .brand-icon { height: 42px; }
-  .brand-name { font-size: 1.1rem; }
-  .brand-subtitle { font-size: 0.8rem; }
+  .brand-name { font-size: 0.65rem; }
+  .brand-subtitle { font-size: 0.54rem; line-height: 1.1;}
   
   .grid-3 { grid-template-columns: 1fr; }
 }

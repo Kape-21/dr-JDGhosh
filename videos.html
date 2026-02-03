@@ -6,7 +6,6 @@
   <meta name="theme-color" content="#0f172a" />
   <title>Videos | Dr. Jay Deep Ghosh</title>
   
-  <!--FAVICONS HERE-->
   <link rel="shortcut icon" href="favicon.ico" type="image/x-icon">
   <link rel="icon" href="favicon.ico" type="image/x-icon">
 
@@ -15,8 +14,6 @@
   <link rel="apple-touch-icon" sizes="180x180" href="assets/apple-touch-icon.png">
   <link rel="icon" type="image/png" sizes="192x192" href="assets/android-chrome-192x192.png">
   <link rel="icon" type="image/png" sizes="512x512" href="assets/android-chrome-512x512.png">
-  <!--END OF FAVICONS-->
-
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600&family=Montserrat:wght@600;700;800;900&display=swap" rel="stylesheet" />
@@ -433,7 +430,6 @@
         </div>
       </nav>
       <div class="header-actions-desktop">
-        <!--<a href="appointment.html" class="btn btn-header-secondary">Contact Us</a> -->
         <a href="appointment.html" class="btn btn-header-primary"><i class="fa-solid fa-calendar-check"></i> Book Appointment</a>
       </div>
       <button class="nav-toggle" data-nav-toggle aria-label="Toggle navigation">
@@ -786,24 +782,6 @@
   </div>
 
   <script>
-    /* --- MOBILE NAV TOGGLE --- */
-    const navToggle = document.querySelector('[data-nav-toggle]');
-    const navPanel = document.querySelector('[data-nav-panel]');
-    
-    if(navToggle && navPanel) {
-        navToggle.addEventListener('click', () => {
-            navPanel.classList.toggle('is-open');
-            const icon = navToggle.querySelector('i');
-            if(navPanel.classList.contains('is-open')) {
-                icon.classList.remove('fa-bars');
-                icon.classList.add('fa-xmark');
-            } else {
-                icon.classList.remove('fa-xmark');
-                icon.classList.add('fa-bars');
-            }
-        });
-    }
-
     /* --- FILTERING LOGIC --- */
     const filterBtns = document.querySelectorAll('.filter-btn');
     const cards = document.querySelectorAll('.vid-card');

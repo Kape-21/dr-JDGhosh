@@ -6,7 +6,6 @@
   <meta name="theme-color" content="#05668d" />
   <title>Testimonials| Dr. Jay Deep Ghosh</title>
   
-  <!--FAVICONS HERE-->
   <link rel="shortcut icon" href="favicon.ico" type="image/x-icon">
   <link rel="icon" href="favicon.ico" type="image/x-icon">
 
@@ -17,7 +16,6 @@
 
   <link rel="icon" type="image/png" sizes="192x192" href="assets/android-chrome-192x192.png">
   <link rel="icon" type="image/png" sizes="512x512" href="assets/android-chrome-512x512.png">
-  <!--END OF FAVICONS-->
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600&family=Montserrat:wght@600;700;800;900&display=swap" rel="stylesheet" />
@@ -499,7 +497,6 @@
         <div class="mobile-actions"><a href="appointment.html" class="btn btn-header-primary"><i class="fa-solid fa-calendar-check"></i> Book Appointment</a></div>
       </nav>
       <div class="header-actions-desktop">
-        <!--<a href="appointment.html" class="btn btn-header-secondary">Contact Us</a> -->
         <a href="appointment.html" class="btn btn-header-primary"><i class="fa-solid fa-calendar-check"></i> Book Appointment</a></div>
       <button class="nav-toggle" data-nav-toggle aria-label="Toggle navigation"><i class="fa-solid fa-bars" id="nav-icon"></i></button>
     </div>
@@ -915,7 +912,7 @@
         <div class="footer-bottom-inner">
             <p class="footer-note">
                 <span>© <span id="year">2026</span> Dr. Jay Deep Ghosh. All Rights Reserved.</span>
-                <br><i>Designed & Developed by MaxXiMuS</i>
+                <br><i>Designed & Developed by Kapil</i>
             </p>
         </div>
     </div>
@@ -928,26 +925,7 @@
     </div>
   </div>
 
-  
   <script>
-    /* --- MOBILE NAV TOGGLE --- */
-    const navToggle = document.querySelector('[data-nav-toggle]');
-    const navPanel = document.querySelector('[data-nav-panel]');
-    
-    if(navToggle && navPanel) {
-        navToggle.addEventListener('click', () => {
-            navPanel.classList.toggle('is-open');
-            const icon = navToggle.querySelector('i');
-            if(navPanel.classList.contains('is-open')) {
-                icon.classList.remove('fa-bars');
-                icon.classList.add('fa-xmark');
-            } else {
-                icon.classList.remove('fa-xmark');
-                icon.classList.add('fa-bars');
-            }
-        });
-    }
-
     /* --- EXPAND TEXT CARD LOGIC (Mobile Tap) --- */
     document.querySelectorAll('.g-review-card').forEach(card => {
         card.addEventListener('click', function() {
@@ -1048,6 +1026,7 @@
     const yearSpan = document.getElementById('year');
     if(yearSpan) yearSpan.textContent = new Date().getFullYear();
   </script>
-   <script src="js/main.js"></script>
+  
+  <script src="js/main.js" defer></script>
 </body>
 </html>

@@ -168,12 +168,8 @@
     
     <section class="section about-section" id="about" aria-label="About the Surgeon">
       <div class="about-bg-wrapper" aria-hidden="true">
-        <picture>
-          <source media="(max-width: 768px)" srcset="assets/potrait100.webp">
-          <img src="assets/withpatients12.webp" alt="Dr. Ghosh consulting" class="about-bg-image" loading="lazy">
-        </picture>
-        <div class="about-bg-overlay"></div>
-      </div>
+        <img src="assets/withpatients12.webp" alt="Dr. Ghosh consulting" class="about-bg-image" loading="lazy">
+        </div>
 
       <div class="container about-container">
         
@@ -186,29 +182,67 @@
           With over 23 years of experience and thousands of successful surgeries, Dr. Ghosh is one of Northeast India’s leading spine specialists. Trained at premier institutions like Sir Ganga Ram Hospital and AO Spine International, he combines advanced surgical precision with a compassionate, patient-first approach.
         </p>
 
-        <div class="expertise-block">
-          <h3 class="expertise-heading">Areas of Expertise</h3>
-          <ul class="expertise-list">
-            <li><i class="fa-solid fa-circle-check"></i> Joint Replacement</li>
-            <li><i class="fa-solid fa-circle-check"></i> Spinal Deformity Correction</li>
-            <li><i class="fa-solid fa-circle-check"></i> Degenerative Spine Conditions</li>
-            <li><i class="fa-solid fa-circle-check"></i> Minimally Invasive Surgery</li>
-          </ul>
-        </div>
-
         <div class="stats-grid">
+          
           <div class="stat-card-clean">
-            <span class="stat-number">23+</span>
+            <div class="stat-value-wrapper">
+              <span class="stat-number counter-val" data-target="23">0</span>
+              <span class="stat-plus">+</span>
+            </div>
             <span class="stat-label">Years of Experience</span>
           </div>
+
           <div class="stat-card-clean">
-            <span class="stat-number">10,000+</span>
-            <span class="stat-label">Surgeries Completed</span>
+            <div class="stat-value-wrapper">
+              <span class="stat-number counter-val" data-target="10000">0</span>
+              <span class="stat-plus">+</span>
+            </div>
+            <span class="stat-label">Successful Surgeries</span>
           </div>
+
           <div class="stat-card-clean">
-            <span class="stat-number">FNB Spine</span>
-            <span class="stat-label">AO Spine Certified</span>
+            <div class="stat-value-wrapper">
+              <span class="stat-number counter-val" data-target="30000">0</span>
+              <span class="stat-plus">+</span>
+            </div>
+            <span class="stat-label">Patients Treated</span>
           </div>
+
+        </div>
+
+        <div class="cert-cloud" id="cert-cloud">
+          
+          <div class="cert-pill fly-in">
+            <i class="fa-solid fa-certificate"></i>
+            <span><strong>AO Spine</strong> Fellowship</span>
+          </div>
+          
+          <div class="cert-pill fly-in">
+            <i class="fa-solid fa-graduation-cap"></i>
+            <span><strong>DNB</strong> (Orthopaedics)</span>
+          </div>
+          
+          
+          
+          <div class="cert-pill fly-in">
+            <i class="fa-solid fa-globe"></i>
+            <span><strong>Fellowship</strong> Dartmouth Hitchcock (USA)</span>
+          </div>
+          
+          <div class="cert-pill fly-in">
+            <i class="fa-solid fa-eye"></i>
+            <span><strong>Observership</strong> Albert Einstein (NY)</span>
+          </div>
+          
+          <div class="cert-pill fly-in highlight">
+            <i class="fa-solid fa-star"></i>
+            <span><strong>FNB</strong> (Spine Surgery)</span>
+          </div>
+          <div class="cert-pill fly-in">
+            <i class="fa-solid fa-award"></i>
+            <span><strong>Diploma</strong> SICOT</span>
+          </div>
+
         </div>
 
         <div class="about-actions">
@@ -862,6 +896,5 @@
   <script src="js/main.js" defer></script>
   <script src="js/swiper.js" defer></script>
   <script src="js/accordion.js" defer></script>
-  <script src="js/whatsapp.js" defer></script>
 </body>
 </html>
