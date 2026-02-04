@@ -43,7 +43,8 @@
       }
     }
 
-    toggle.addEventListener('click', function(){
+    toggle.addEventListener('click', function(e){
+      e.stopPropagation(); // Prevent bubbling issues
       var isOpen = panel.classList.contains('is-open');
       setOpen(!isOpen);
     });
@@ -54,6 +55,13 @@
       link.addEventListener('click', function(){
         setOpen(false);
       });
+    });
+
+    // Close when clicking outside
+    document.addEventListener('click', function(e){
+      if(panel.classList.contains('is-open') && !panel.contains(e.target) && !toggle.contains(e.target)){
+        setOpen(false);
+      }
     });
   }
 
@@ -144,12 +152,11 @@
     });
   }
 
-  // 5. Counter Animation Logic (Smart Duration)
+  // 5. Counter Animation Logic
   function initCounters() {
     const counters = document.querySelectorAll('.counter-val');
     if (counters.length === 0) return;
 
-    // Total duration for animation (in ms)
     const duration = 2000; 
 
     const animate = (counter) => {
@@ -160,7 +167,6 @@
         const elapsedTime = currentTime - startTime;
         const progress = Math.min(elapsedTime / duration, 1); 
 
-        // Ease-out effect
         const easeProgress = 1 - Math.pow(1 - progress, 3);
 
         const currentVal = Math.floor(easeProgress * value);
@@ -213,12 +219,102 @@
     }, observerOptions);
 
     pills.forEach(function(pill, index) {
-      // Staggered delay based on index
       pill.style.transitionDelay = (index * 0.1) + 's';
       observer.observe(pill);
     });
   }
 
+ // 7. Video Modal Logic (Desktop Optimized + Mobile Preserved)
+  function initVideoFacades() {
+    var facades = document.querySelectorAll('.video-facade');
+    var modal = document.getElementById('video-modal');
+    var wrapper = document.getElementById('video-frame-wrapper'); 
+    var content = document.getElementById('video-modal-content'); 
+    var closeButtons = document.querySelectorAll('[data-close-video]');
+    var overlay = document.querySelector('.video-modal-overlay');
+
+    if (!modal || !wrapper || !content) return;
+
+    function openModal(videoId, type) {
+      // 1. Reset Styles
+      wrapper.style.maxWidth = '';
+      content.style.paddingBottom = ''; 
+      
+      // Simple check: Is this a large screen? (Desktop/Laptop)
+      var isDesktop = window.innerWidth > 1024;
+
+      // 2. Apply Sizing Logic
+      if (type === 'vertical') {
+        // --- Vertical (Shorts) ---
+        if (isDesktop) {
+          // DESKTOP: Scale down to 320px width. 
+          // Resulting Height is ~570px, which fits easily on monitors without cropping.
+          wrapper.style.maxWidth = '320px'; 
+        } else {
+          // MOBILE: Keep your "Perfect" setting
+          wrapper.style.maxWidth = '400px'; 
+        }
+        content.style.paddingBottom = '177.77%'; // 9/16 Ratio
+      } else {
+        // --- Horizontal ---
+        // Constrain desktop slightly more (850px) to match the grid feel
+        wrapper.style.maxWidth = isDesktop ? '850px' : '900px'; 
+        content.style.paddingBottom = '56.25%'; // 16/9 Ratio
+      }
+
+      // 3. Inject Iframe (Exact string that works)
+      content.innerHTML = '<iframe src="https://www.youtube.com/embed/' + videoId + '?autoplay=1&playsinline=1&controls=1&rel=0&modestbranding=1" allow="autoplay; encrypted-media" allowfullscreen></iframe>';
+
+      // 4. Show Modal
+      modal.classList.add('is-visible');
+      modal.setAttribute('aria-hidden', 'false');
+      document.body.style.overflow = 'hidden'; 
+    }
+
+    function closeModal() {
+      modal.classList.remove('is-visible');
+      modal.setAttribute('aria-hidden', 'true');
+      document.body.style.overflow = ''; 
+      
+      setTimeout(function(){ 
+        content.innerHTML = ''; 
+      }, 300);
+    }
+
+    // Facade Click Listeners
+    Array.prototype.forEach.call(facades, function(facade) {
+      facade.addEventListener('click', function(e) {
+        e.preventDefault();
+        e.stopPropagation();
+
+        var videoId = this.getAttribute('data-id');
+        if (!videoId) return;
+
+        // Auto-detect type
+        var isVertical = this.closest('.edu-card-tall') !== null;
+        var type = isVertical ? 'vertical' : 'horizontal';
+
+        openModal(videoId, type);
+      });
+    });
+
+    // Close Button Listeners
+    Array.prototype.forEach.call(closeButtons, function(btn) {
+      btn.addEventListener('click', closeModal);
+    });
+
+    // Overlay Click Listener
+    if(overlay) {
+      overlay.addEventListener('click', closeModal);
+    }
+
+    // Escape Key Listener
+    document.addEventListener('keydown', function(e) {
+      if (e.key === 'Escape' && modal.classList.contains('is-visible')) {
+        closeModal();
+      }
+    });
+  }
   // --- INITIALIZATION ---
   document.addEventListener('DOMContentLoaded', function(){
     initStickyHeader();
@@ -227,6 +323,7 @@
     initImageModal();
     initCounters(); 
     initBadgeAnimation(); 
+    initVideoFacades(); // Updated unified logic
   });
 
 })();

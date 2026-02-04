@@ -594,6 +594,10 @@
   grid-template-rows: auto auto; 
   gap: 1rem; 
   margin-bottom: 2rem;
+  /* ADDED: This constrains the grid size on Desktop only */
+  max-width: 900px;
+  margin-left: auto;
+  margin-right: auto;
 }
 
 .edu-actions { text-align: center; margin-top: 1.5rem; }
@@ -950,4 +954,96 @@
 
 .final-cta {
   background: linear-gradient(135deg, rgba(5, 102, 141, .08), rgba(0, 168, 150, .10));
+}
+
+/* --- VIDEO MODAL STYLES (FIXED FOR MOBILE CONTROLS) --- */
+.video-modal {
+  position: fixed;
+  inset: 0;
+  z-index: 10000;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 1rem;
+  background: rgba(0, 0, 0, 0.9); /* Dark background */
+  opacity: 0;
+  pointer-events: none;
+  transition: opacity 0.3s ease;
+}
+
+.video-modal.is-visible {
+  opacity: 1;
+  pointer-events: auto;
+}
+
+.video-modal-overlay {
+  position: absolute;
+  inset: 0;
+  z-index: -1; /* Ensures it sits behind the video container */
+  background: transparent; /* Background is handled by parent .video-modal */
+}
+
+.video-modal-container {
+  position: relative;
+  z-index: 10001;
+  width: 100%;
+  background: transparent;
+  /* Removed max-height and aspect-ratio constraints here to let content dictate size */
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+/* THE FIX: Intrinsic Ratio Wrapper */
+.video-modal-content {
+  position: relative;
+  width: 100%;
+  height: 0;
+  /* padding-bottom will be set by JS (56.25% for landscape, 177.77% for vertical) */
+  background: #000;
+  box-shadow: 0 20px 50px rgba(0,0,0,0.5);
+}
+
+/* Iframe fills the wrapper absolutely */
+.video-modal-content iframe {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  border: none;
+}
+
+.video-modal-close {
+  position: absolute;
+  top: -50px;
+  right: 0;
+  width: 44px;
+  height: 44px;
+  background: rgba(255, 255, 255, 0.15);
+  color: white;
+  border: 1px solid rgba(255, 255, 255, 0.3);
+  border-radius: 50%;
+  font-size: 1.2rem;
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  z-index: 10002;
+  transition: background 0.2s;
+}
+
+.video-modal-close:hover {
+  background: #ef4444;
+  border-color: #ef4444;
+}
+
+@media (max-width: 600px) {
+  .video-modal {
+    padding: 0.5rem; /* Less padding on small phones */
+  }
+  .video-modal-close {
+    top: -45px;
+    right: 5px;
+  }
 }
